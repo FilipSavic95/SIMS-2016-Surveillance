@@ -165,7 +165,6 @@ public class MyApp {
 	    	System.out.println("-monitor-");
 	        startX = e.getX();
 	        startY = e.getY();
-//	        if (startX )
 	        if (currentState != null) currentState.drawComponent(startX, startY, 'm');
 	      }
 	    });
@@ -200,9 +199,8 @@ public class MyApp {
 
   }
 
+  /* nepotrebna funkcija */
   private void addComponent(JComponent comp) {
-	// treba da joj stavim
-	//  			x,  y  ==> na mjesto gdje je kliknuo
     comp.setBounds(10, 10, 80, 24);
 
     comp.addMouseListener(new MouseAdapter() {
@@ -261,18 +259,7 @@ public class MyApp {
       }
     });
     System.out.println("CurrState 318: " + currentState + "\n");
-    /*
-    if (currentState == State.ACTION1) {
-    	actionPanel.add(comp);   
-	    //actionPanel.validate();
-	    actionPanel.repaint();
-    }  
-    else {
-    	monitorPanel.add(comp);   
-    	//monitorPanel.validate();
-    	monitorPanel.repaint();
-    }
-    */
+    
   }
 
   public static void main(String[] args) {
