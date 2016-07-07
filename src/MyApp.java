@@ -41,13 +41,6 @@ public class MyApp {
   private static final int NONE = -1;
 
   private static final int BORDER = 3;
-    
-//  Context context = new Context();
-  /*
-  private enum State {
-	  ACTION1, ACTION2, ACTION3, MONITOR1, MONITOR2
-  }
-  */
 
   private State currentState;
   // osnovni prozor
@@ -55,7 +48,6 @@ public class MyApp {
   
   //int counter = 0;
   
-//  private JToolBar mainToolbar = new JToolBar("MainToolbar");
   private JSplitPane mainTbSplitPane = null;
   
   private JToolBar actionToolbar = new JToolBar("ActionToolbar");
@@ -63,7 +55,7 @@ public class MyApp {
   private JToolBar monitorToolbar = new JToolBar("MonitorToolbar");
 
   // kanvas0
-  private JSplitPane mainPanel = null; // new JSplitPane()
+  private JSplitPane mainPanel = null;
 
   // kanvas 1 i 2
   private JSplitPane actionMonitorPanel = null;
@@ -85,24 +77,12 @@ public class MyApp {
   private boolean resize = false;
 
   public MyApp() {
-	  /*
-	   * TODO: 
-	   * Treba dodati actionListener tj. mouseClickedListener
-	   * na frame. 
-	   * Kada se klik dogodi, onda dodamo na kliknuto mjesto
-	   * onaj objekat koji je trenutno selektovan, tj. onaj
-	   * u kom je stanju sada nasa aplikacija.
-	   */
     frame.setBounds(100, 100, 600, 450);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
     frame.getContentPane().setLayout(new BorderLayout());
-    
-    // ne treba njemu nego svakom panelu po jedan maus lisener
     
     buildToolbox();
     buildMainPanel();
-    
     frame.setVisible(true);
   }
 
@@ -134,16 +114,6 @@ public class MyApp {
       JButton button = new JButton(buttonName);
       button.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-      	  // TODO: ovdje ubacujem kod koji provjeri 
-          // koja je komponenta selektovana (u kom 
-      	  // je stanju panel) pa, u skladu sa tim
-          // ubacuje komponentu na panel
-          // NE OVDJE == SAD dodam mouseListener   ========= SAD OVO ======
-          // na actionPanel i monitorPanel
-          // i samo u njima pozovem 
-          // currentState.draw( X , Y )
-          JButton btn = new JButton(componentName); //  + counter
-          //counter++;
           System.out.println("Clicked on: " + buttonName);
 
           createState(componentName);
@@ -195,7 +165,6 @@ public class MyApp {
 	    	System.out.println("-monitor-");
 	        startX = e.getX();
 	        startY = e.getY();
-//	        if (startX )
 	        if (currentState != null) currentState.drawComponent(startX, startY, 'm');
 	      }
 	    });
@@ -230,9 +199,8 @@ public class MyApp {
 
   }
 
+  /* nepotrebna funkcija */
   private void addComponent(JComponent comp) {
-	// treba da joj stavim
-	//  			x,  y  ==> na mjesto gdje je kliknuo
     comp.setBounds(10, 10, 80, 24);
 
     comp.addMouseListener(new MouseAdapter() {
@@ -291,18 +259,7 @@ public class MyApp {
       }
     });
     System.out.println("CurrState 318: " + currentState + "\n");
-    /*
-    if (currentState == State.ACTION1) {
-    	actionPanel.add(comp);   
-	    //actionPanel.validate();
-	    actionPanel.repaint();
-    }  
-    else {
-    	monitorPanel.add(comp);   
-    	//monitorPanel.validate();
-    	monitorPanel.repaint();
-    }
-    */
+    
   }
 
   public static void main(String[] args) {
