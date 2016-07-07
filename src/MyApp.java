@@ -77,24 +77,12 @@ public class MyApp {
   private boolean resize = false;
 
   public MyApp() {
-	  /*
-	   * TODO: 
-	   * Treba dodati actionListener tj. mouseClickedListener
-	   * na frame. 
-	   * Kada se klik dogodi, onda dodamo na kliknuto mjesto
-	   * onaj objekat koji je trenutno selektovan, tj. onaj
-	   * u kom je stanju sada nasa aplikacija.
-	   */
     frame.setBounds(100, 100, 600, 450);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
     frame.getContentPane().setLayout(new BorderLayout());
-    
-    // ne treba njemu nego svakom panelu po jedan maus lisener
     
     buildToolbox();
     buildMainPanel();
-    
     frame.setVisible(true);
   }
 
