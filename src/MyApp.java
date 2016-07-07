@@ -77,7 +77,7 @@ public class MyApp {
   private boolean resize = false;
 
   public MyApp() {
-    frame.setBounds(100, 100, 600, 450);
+    frame.setBounds(333, 100, 600, 450);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().setLayout(new BorderLayout());
     
