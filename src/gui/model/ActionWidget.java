@@ -13,6 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
+import javax.swing.SwingUtilities;
+
 public class ActionWidget extends Widget {
 	
 	/**
@@ -46,7 +49,19 @@ public class ActionWidget extends Widget {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("Mouse clicked (number of clicks: " + e.getClickCount() + ")\n");
-                if (e.getClickCount() == 2) {
+
+				if (SwingUtilities.isLeftMouseButton(e)) {
+					System.out.println("Lijeeevoo\n");
+				}
+				
+				if (SwingUtilities.isRightMouseButton(e)) {
+					System.out.println("Desnooooo\n");
+				}
+				if (SwingUtilities.isMiddleMouseButton(e)) {
+					System.out.println("Srednjeee\n");
+				}
+
+                if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {
                 	popoutPane();
                 }
              }
