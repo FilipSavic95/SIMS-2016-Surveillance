@@ -1,6 +1,7 @@
 package gui.model.states;
 
 import gui.model.ActionWidget;
+import gui.model.MyPanel;
 import gui.model.Widget;
 
 import java.awt.Cursor;
@@ -15,7 +16,7 @@ import javax.swing.JPanel;
 
 public class Action1 implements State {
 	
-	private	JPanel myPanel;
+	private	MyPanel myPanel;
 	private static final int NONE = -1;
 	private static final int BORDER = 3;
 	private int startX = NONE;
@@ -24,7 +25,7 @@ public class Action1 implements State {
 	private int prevY = NONE;
 	private boolean resize = false;
 	
-	public Action1(JPanel panel) {
+	public Action1(MyPanel panel) {
 		this.myPanel = panel;
 	}
 	
@@ -38,6 +39,7 @@ public class Action1 implements State {
 			myWidg.setBounds(X, Y, 80, 24);
 			
 		    myPanel.add(myWidg);
+		    myPanel.widgList.add(myWidg);
 		    myPanel.repaint();
 		}
 		else System.out.println("\nWrong panel bro!\n");

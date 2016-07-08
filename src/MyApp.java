@@ -23,6 +23,8 @@ import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -155,7 +157,8 @@ public class MyApp {
 	        startX = e.getX();
 	        startY = e.getY();
 	        
-	        if (currentState != null) currentState.drawComponent(startX, startY, 'a');
+	        if (currentState != null) 
+	        	currentState.drawComponent(startX, startY, 'a');
 	      }
 	    });
 	  
@@ -168,12 +171,14 @@ public class MyApp {
 	    	System.out.println("-monitor-");
 	        startX = e.getX();
 	        startY = e.getY();
-	        if (currentState != null) currentState.drawComponent(startX, startY, 'm');
+	        if (currentState != null) 
+	        	currentState.drawComponent(startX, startY, 'm');
 	      }
 	    });
 	  
 	  actionMonitorPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
               actionPanel, monitorPanel);
+	  
 	  actionMonitorPanel.setDividerLocation(250);
 	  actionMonitorPanel.setDividerSize(5);
 	  

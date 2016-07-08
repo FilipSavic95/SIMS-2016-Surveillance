@@ -1,16 +1,17 @@
 package gui.model;
 
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.border.EtchedBorder;
-
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.border.EtchedBorder;
 
 public class Widget extends JComponent {
 
@@ -18,6 +19,9 @@ public class Widget extends JComponent {
 	 * auto generated serialVersionUID
 	 */
 	private static final long serialVersionUID = -1163547952273601297L;
+	
+	/** Ako zatreba, a trebace kasnije za dugmice kojima se prelazi u stanja...mozda ne ovdje... */
+	//private static final Dimension dim = new Dimension(40, 80); 
 	
 	/** If sets <b>TRUE</b> this component is draggable */
     private boolean draggable = true;

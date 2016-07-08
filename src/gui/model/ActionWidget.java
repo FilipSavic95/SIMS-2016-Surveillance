@@ -48,7 +48,6 @@ public class ActionWidget extends Widget {
                 System.out.println("Mouse clicked (number of clicks: " + e.getClickCount() + ")\n");
                 if (e.getClickCount() == 2) {
                 	popoutPane();
-//                	JOptionPane JOptPane = new JOptionPane();
                 }
              }
 
