@@ -1,5 +1,6 @@
 package gui.model.states;
 
+import gui.model.ActionWidget;
 import gui.model.Widget;
 
 import java.awt.Cursor;
@@ -31,7 +32,7 @@ public class Action1 implements State {
 	public void drawComponent(int X, int Y, char panel) {
 		// TODO Auto-generated method stub
 		if (panel == 'a') {
-			Widget myWidg = new Widget();
+			ActionWidget myWidg = new ActionWidget();
 		
 			System.out.println("ACTION1");
 			myWidg.setBounds(X, Y, 80, 24);

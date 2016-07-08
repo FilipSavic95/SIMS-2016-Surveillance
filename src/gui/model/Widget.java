@@ -2,6 +2,7 @@ package gui.model;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.border.EtchedBorder;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -31,7 +32,7 @@ public class Widget extends JComponent {
         addDragListeners();
         setOpaque(true);
         setBackground(new Color(100,200,240)); // sve 240 je siva
-        setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.black));
+        setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.CYAN, Color.yellow)); //(2, 2, 2, 2, Color.black))
     }
 
     /**

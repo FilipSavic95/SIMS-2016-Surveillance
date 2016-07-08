@@ -1,6 +1,9 @@
 
 /* S T A C K   O V E R   F L O W  LOW */
 
+import gui.model.ActionPanel;
+import gui.model.MonitoringPanel;
+import gui.model.MyPanel;
 import gui.model.states.Action1;
 import gui.model.states.Action2;
 import gui.model.states.Action3;
@@ -61,10 +64,10 @@ public class MyApp {
   private JSplitPane actionMonitorPanel = null;
   
   // kanvas1
-  private JPanel actionPanel = new JPanel();
+  private ActionPanel actionPanel = new ActionPanel();
   
   // kanvas2
-  private JPanel monitorPanel = new JPanel();
+  private MonitoringPanel monitorPanel = new MonitoringPanel();
 
   private int startX = NONE;
 
