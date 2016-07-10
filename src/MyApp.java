@@ -33,6 +33,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -115,6 +116,7 @@ public class MyApp {
 	  		break;
 	  }
   }
+  
   private void addButtonToToolbar(JToolBar toolbar, String buttonName, String componentName) {
       JButton button = new JButton(buttonName);
       button.addActionListener(new ActionListener() {
@@ -202,9 +204,22 @@ public class MyApp {
 	  
 	  mainPanel.setDividerLocation(450);
 	  mainPanel.setDividerSize(5);
+	  
+//	  String	listData[] =
+//			{
+//				"Item 1",
+//				"Item 2",
+//				"Item 3",
+//				"Item 4"
+//			};
+//
+//			// Create a new listbox control
+//			JList<String> listbox = new JList<String>( listData );
+//			JPanel kljPanel = new JPanel();
+//			kljPanel.add( listbox, BorderLayout.CENTER );
 	    
 	  frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
-
+//	  frame.getContentPane().add(kljPanel, BorderLayout.SOUTH);
   }
 
   /* nepotrebna funkcija */
@@ -272,6 +287,7 @@ public class MyApp {
 
   public static void main(String[] args) {
 	//SwingWorker<String, MyApp>swingWorker; // parametri ne valjaju vjerovatno...
+	  
 	/**
 	 * Now we want to find the first N prime numbers and display the results in a JTextArea. 
 	 * While this is computing, we want to update our progress in a JProgressBar. 
@@ -317,7 +333,7 @@ public class MyApp {
 
 	 */
 	  
-    new MyApp();
+	new MyApp();
   }
 
 }

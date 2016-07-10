@@ -1,5 +1,6 @@
 package gui.model.states;
 
+import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
@@ -8,10 +9,28 @@ import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JList;
 import javax.swing.JPanel;
 
 public class Action2 implements State {
 
+	/*
+	 * 	  String	listData[] =
+			{
+				"Item 1",
+				"Item 2",
+				"Item 3",
+				"Item 4"
+			};
+
+			// Create a new listbox control
+			JList<String> listbox = new JList<String>( listData );
+			JPanel kljPanel = new JPanel();
+			kljPanel.add( listbox, BorderLayout.CENTER );
+		    
+		//	  frame.getContentPane().add(kljPanel, BorderLayout.SOUTH);
+
+	 */
 	private	JPanel myPanel;
 	private static final int NONE = -1;
 	private static final int BORDER = 3;
