@@ -90,7 +90,19 @@ public class MyApp {
     buildMainPanel();
     frame.setVisible(true);
   }
-
+  
+  /**
+   * Mijenja stanje aplikacije u zavisnosti od kliknutog dugmeta (tj. njegovog naziva).
+   * POBOLjSANJE (jedno od ovo dvoje):
+   * 1) promijeniti imena dugmadi u nazive stanja
+   * 2) napraviti mapu koja za kljuceve ima nazive dugmadi, a za vrijednosti nazive
+   * odgovarajucih klasa-stanja.
+   * 
+   * RJESENjE (FINALLY): izbjegavanje switch-case-a pozivom Class.forName(..)
+   * http://stackoverflow.com/a/7495850 // na oba linka je isto rjesenje,
+   * http://stackoverflow.com/a/1268885 // i oba rade :)
+   * @param buttonName
+   */
   private void createState(String buttonName) {
 	  switch (buttonName) {
 	  	case "Widg11":
