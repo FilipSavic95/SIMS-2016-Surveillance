@@ -43,54 +43,65 @@ import javax.swing.SwingWorker;
 
 /* S T A C K   O V E R   F L O W  LOW */
 
+/**
+ * Klasa za testiranje rada aplikacije.<br>
+ * Inicijalizuje sve potrebne vrijednosti i pokreće aplikaciju.
+ * Ovu klasu treba napraviti kao nasljednicu JFrame-a, a sve funkcije koje
+ * popunjavaju panele prebaciti u odgovarajuće klase (tih panela).
+ * @author Filip
+ *
+ */
 public class MyApp {
-  private static final int NONE = -1;
+	private static final int NONE = -1;
 
-  private static final int BORDER = 3;
+	private static final int BORDER = 3;
 
-  private State currentState;
-  // osnovni prozor
-  private JFrame frame = new JFrame("Surveillance System");
-  
-  //int counter = 0;
-  
-  private JSplitPane mainTbSplitPane = null;
-  
-  private JToolBar actionToolbar = new JToolBar("ActionToolbar");
+	private State currentState;
+	// osnovni prozor
+	private JFrame frame;
 
-  private JToolBar monitorToolbar = new JToolBar("MonitorToolbar");
+	// int counter = 0;
 
-  // kanvas0
-  private JSplitPane mainPanel = null;
+	private JSplitPane mainTbSplitPane, mainPanel;
 
-  // kanvas 1 i 2
-  private JSplitPane actionMonitorPanel = null;
-  
-  // kanvas1
-  private ActionPanel actionPanel = new ActionPanel();
-  
-  // kanvas2
-  private MonitoringPanel monitorPanel = new MonitoringPanel();
+	private JToolBar actionToolbar, monitorToolbar;
 
-  private int startX = NONE;
+	// kanvas 1 i 2
+	private JSplitPane actionMonitorPanel;
 
-  private int startY = NONE;
+	// kanvas1
+	private ActionPanel actionPanel;
 
-  private int prevX = NONE;
+	// kanvas2
+	private MonitoringPanel monitorPanel;
 
-  private int prevY = NONE;
+	private int startX, startY, prevX, prevY;
 
-  private boolean resize = false;
+	private boolean resize;
 
-  public MyApp() {
-    frame.setBounds(333, 100, 600, 450);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.getContentPane().setLayout(new BorderLayout());
-    
-    buildToolbox();
-    buildMainPanel();
-    frame.setVisible(true);
-  }
+	public MyApp() {
+		mainPanel = null;
+		mainTbSplitPane = null;
+		actionMonitorPanel = null;
+		
+		actionToolbar = new JToolBar("ActionToolbar");
+		monitorToolbar = new JToolBar("MonitorToolbar");
+		
+		actionPanel = new ActionPanel();
+		monitorPanel = new MonitoringPanel();
+		
+		startX = startY = prevX = prevY = NONE;
+		resize = false;
+		
+		frame = new JFrame("Surveillance System");		
+		frame.setBounds(333, 100, 600, 450);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout());
+
+		buildToolbox();
+		buildMainPanel();
+		frame.setVisible(true);
+	}
   
   /**
    * Mijenja stanje aplikacije u zavisnosti od kliknutog dugmeta (tj. njegovog naziva).
