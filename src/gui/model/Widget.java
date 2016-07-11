@@ -37,7 +37,7 @@ public class Widget extends JPanel {
         addDragListeners();
 //        setOpaque(true);
 //        setBackground(new Color(100,200,240)); // sve 240 je siva
-        setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.red, Color.yellow)); //(2, 2, 2, 2, Color.black))
+        setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.yellow)); //(2, 2, 2, 2, Color.black))
     }
 
     /**

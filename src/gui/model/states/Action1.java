@@ -39,9 +39,11 @@ public class Action1 implements State {
 
 			System.out.println("ACTION1");
 			myWidg.setBounds(X, Y, 180, 240);
-			myWidg.repaint();
+
 			myPanel.add(myWidg);
 			myPanel.widgList.add(myWidg);
+			
+			myPanel.revalidate();
 			myPanel.repaint();
 		} else
 			System.out.println("\nWrong panel bro!\n");

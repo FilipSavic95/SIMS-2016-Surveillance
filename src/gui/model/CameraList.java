@@ -91,11 +91,9 @@ public class CameraList extends ActionWidget {
 			checkBoxes.add(cb);
 			gbc.weighty = 1;
 			content.add(cb, gbc);
+			System.out.println("Lejaut: " + content.getLayout().toString());
 		}
-
 		add(new JScrollPane(content));
-		repaint();
-
 	}
 
 	public static CameraList getInstance() {

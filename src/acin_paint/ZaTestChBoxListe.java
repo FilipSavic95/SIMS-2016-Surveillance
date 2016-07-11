@@ -18,7 +18,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.Scrollable;
 import javax.swing.UIManager;
@@ -55,7 +54,12 @@ public class ZaTestChBoxListe {
 
     public class CheckBoxGroup extends JPanel {
 
-        private JCheckBox all;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = -7746275073758645055L;
+		
+		private JCheckBox all;
         private List<JCheckBox> checkBoxes;
 
         public CheckBoxGroup(String... options) {
@@ -102,7 +106,12 @@ public class ZaTestChBoxListe {
 
         public class ScrollablePane extends JPanel implements Scrollable {
 
-            public ScrollablePane(LayoutManager layout) {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 944045781264920010L;
+
+			public ScrollablePane(LayoutManager layout) {
                 super(layout);
             }
 
