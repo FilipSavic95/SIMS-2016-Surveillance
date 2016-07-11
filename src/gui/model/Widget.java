@@ -45,14 +45,16 @@ public class Widget extends JComponent {
      *
      * @param g Graphics object as canvas
      */
-//    @Override
-//    protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        if (isOpaque()) {
-//            g.setColor(getBackground());
-//            g.fillRect(0, 0, getWidth(), getHeight());
-//        }
-//    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (isOpaque()) {
+            g.setColor(getBackground());
+            g.fillRect(0, 0, getWidth(), getHeight());
+            g.setColor(Color.red);
+            g.drawString("KARMER", 15, 15);
+        }
+    }
 
     /**
      * Add Mouse Motion Listener with drag function
