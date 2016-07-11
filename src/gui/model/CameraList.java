@@ -83,7 +83,7 @@ public class CameraList extends ActionWidget {
 			/*
 			 * Ako je rezultujuci lejaut manji po vertikali nego povrsina u koju
 			 * treba da stane, dodatni prostor se dijeli medju redovima u skladu
-			 * sa njihovom weightY Red koji ima weightY = 0 ne dobija dodatni
+			 * sa njihovom weightY. Red koji ima weightY = 0 ne dobija dodatni
 			 * prostor.
 			 */
 			JCheckBox cb = new JCheckBox(options[options.length - 1]);
