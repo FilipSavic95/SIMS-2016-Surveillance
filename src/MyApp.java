@@ -3,6 +3,7 @@
 
 import gui.model.ActionPanel;
 import gui.model.MonitoringPanel;
+import gui.model.MyMenuBar;
 import gui.model.MyPanel;
 import gui.model.states.Action1;
 import gui.model.states.Action2;
@@ -62,17 +63,13 @@ import javax.swing.SwingWorker;
  * @author Filip
  *
  */
-public class MyApp implements ActionListener, ItemListener{
+public class MyApp {
 	private static final int NONE = -1;
 
 	private static final int BORDER = 3;
 
-	private JMenuBar menuBar;
-	private JMenu menu, submenu;
-    private JMenuItem menuItem;
-    private JRadioButtonMenuItem rbMenuItem;
-    private JCheckBoxMenuItem cbMenuItem;
-
+	private MyMenuBar myMBar;
+	
 	private State currentState;
 	// osnovni prozor
 	private JFrame frame;
@@ -109,100 +106,16 @@ public class MyApp implements ActionListener, ItemListener{
 		resize = false;
 		
 		frame = new JFrame("Surveillance System");		
-		frame.setBounds(333, 100, 600, 450);
+		frame.setBounds(300, 100, 800, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout());
 
 		buildToolbox();
 		buildMainPanel();
-		addMenuBar();
-//		MenuPanel menuPane = new MenuPanel();
-//		frame.setJMenuBar(menuPane.menuBar);
-
-		frame.setJMenuBar(menuBar);
+		myMBar = new MyMenuBar();
+		frame.setJMenuBar(myMBar.menuBar);
 		frame.setVisible(true);
 	}
-  
-  private void addMenuBar() {
-		// TODO Auto-generated method stub
-	  
-      //Glavni meni
-      menuBar = new JMenuBar();
-
-      //File podmeni
-      menu = new JMenu("File");
-      menu.setMnemonic(KeyEvent.VK_F);
-      menuBar.add(menu);
-
-      //grupa JMenuItem-a
-      menuItem = new JMenuItem("Open",
-                               KeyEvent.VK_O);
-      //menuItem.setMnemonic(KeyEvent.VK_O); //moze i ovako
-      menuItem.setAccelerator(KeyStroke.getKeyStroke(
-              KeyEvent.VK_O, ActionEvent.CTRL_MASK));
-      // obratiti paznju na to da implementiramo ActionListener i ItemListener interfejse
-      menuItem.addActionListener(this);
-      menu.add(menuItem);
-
-      //grupa radio button-a u podmeniju
-      menu.addSeparator();
-      ButtonGroup group = new ButtonGroup();
-
-      rbMenuItem = new JRadioButtonMenuItem("Radio button menu item br. 1");
-      rbMenuItem.setSelected(true);
-      rbMenuItem.setMnemonic(KeyEvent.VK_R);
-      group.add(rbMenuItem);
-      rbMenuItem.addActionListener(this);
-      menu.add(rbMenuItem);
-
-      rbMenuItem = new JRadioButtonMenuItem("Radio button menu item br. 2");
-      rbMenuItem.setMnemonic(KeyEvent.VK_2);
-      group.add(rbMenuItem);
-      rbMenuItem.addActionListener(this);
-      menu.add(rbMenuItem);
-
-      //grupa check box itema
-      menu.addSeparator();
-      cbMenuItem = new JCheckBoxMenuItem("Check box menu item br. 1");
-      cbMenuItem.setMnemonic(KeyEvent.VK_C);
-      cbMenuItem.addItemListener(this);
-      menu.add(cbMenuItem);
-
-      cbMenuItem = new JCheckBoxMenuItem("Check box menu item br. 2");
-      cbMenuItem.setMnemonic(KeyEvent.VK_H);
-      cbMenuItem.addItemListener(this);
-      menu.add(cbMenuItem);
-
-      //grupa JMenuItema
-      menuItem = new JMenuItem("Exit",
-                               KeyEvent.VK_X);
-      menuItem.setAccelerator(KeyStroke.getKeyStroke(
-              KeyEvent.VK_F4, ActionEvent.ALT_MASK));
-      menuItem.addActionListener(this);
-      menu.add(menuItem);
-
-      //Edit podmeni
-      menu = new JMenu("Edit");
-      menu.setMnemonic(KeyEvent.VK_E);
-      menuBar.add(menu);
-
-      //grupa JMenuItema
-      menuItem = new JMenuItem("Copy",
-                               KeyEvent.VK_C);
-      menuItem.setAccelerator(KeyStroke.getKeyStroke(
-              KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-      menuItem.addActionListener(this);
-      menu.add(menuItem);
-      
-      //grupa JMenuItema
-      menuItem = new JMenuItem("Paste",
-                               KeyEvent.VK_P);
-      menuItem.setAccelerator(KeyStroke.getKeyStroke(
-              KeyEvent.VK_V, ActionEvent.CTRL_MASK));
-      menuItem.addActionListener(this);
-      menu.add(menuItem);
-	}
-  
 
 /**
    * Mijenja stanje aplikacije u zavisnosti od kliknutog dugmeta (tj. njegovog naziva).
