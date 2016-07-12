@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 
 import javax.swing.JFrame;
 
+import view.CameraGUI;
 import view.SurveilanceDisplay;
 import model.CameraConfig.RotationDirection;
 import model.CameraConfig.RotationSpeed;
@@ -53,14 +54,22 @@ public class SystemTest extends JFrame {
 	/** Dodavanje test podataka... */
 	private void addTestData() {
 		//create observers
-		Observer obj1 = new CameraDevice(new Point2D.Double(150, 150), RotationSpeed.FAST, RotationDirection.CLOCKWISE, -20, 180, 0, 60);
-		Observer obj3 = new CameraDevice(new Point2D.Double( 50, 50), RotationSpeed.FAST, RotationDirection.COUNTER_CLK, -50, 180, 0, 60);
+		CameraDevice obj1 = new CameraDevice(new Point2D.Double(150, 150), RotationSpeed.FAST, RotationDirection.CLOCKWISE, -20, 180, 0, 60);
+		CameraDevice obj3 = new CameraDevice(new Point2D.Double( 50, 50), RotationSpeed.FAST, RotationDirection.COUNTER_CLK, -50, 180, 0, 60);
 		
-		ss.register(obj1, RotationSpeed.FAST.speed-1);
-		ss.register(obj3, RotationSpeed.FAST.speed-1);
+		CameraGUI cg1 = new CameraGUI(obj1);
+		CameraGUI cg3 = new CameraGUI(obj3);
 		
-		obj1.setSubject(ss);
-		obj3.setSubject(ss);
+		// dodajemo komponente modela u model
+		ss.register(obj1, 0); //obj1.setSubject(sm);
+		ss.register(obj3, 0); //obj3.setSubject(sm);
+		
+		sd.kamere.add(cg1);
+		sd.kamere.add(cg3);
+		
+		// dodajemo komponente viewa u view
+		sd.add(cg1);
+		sd.add(cg3);
 	}
 
 	public static void main(String[] args) {

@@ -23,7 +23,7 @@ public class SecuritySystem implements Subject, ActionListener {
 	}
 	
 	/** Svakih DELAY[ms] tajmer 'zvoni'.*/
-	private final int DELAY = 100;
+	private final int DELAY = 200;
 	
 	private Timer timer;
 	

@@ -72,9 +72,7 @@ public class SurveilanceDisplay extends JPanel {
 				kamere.add(cg);
 				
 				//System.out.println("velicina kameraa PRIJE:   "+ getComponentCount() + toString());
-				
 				add(cg); // RAZLIKA ?! ((JPanel)e.getComponent()).add(cg); // mora cast jer se reaguje na klik na panel
-				
 				//System.out.println("velicina kameraa POSLIJE: "+ getComponentCount());
 			}
 			
