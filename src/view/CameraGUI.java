@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -40,7 +41,7 @@ public class CameraGUI extends JComponent {
 		setOpaque(true);
 		setCursor(new Cursor(Cursor.HAND_CURSOR));
 		//setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.RED, Color.WHITE)); //(2, 2, 2, 2, Color.black))
-		setBorder(null);
+		//setBorder(null);
 		
 		addMouseListener(new MouseAdapter() {
 			@Override
@@ -70,20 +71,24 @@ public class CameraGUI extends JComponent {
 		CameraConfig ccf = cd.camConf;
 		g.setColor(Color.BLACK);
 		// trenutno vidno polje
-		g.fillArc(0, 0, cameraFrame, cameraFrame, ccf.sightStart, ccf.sightWidth);
+		g.setColor(Color.BLACK);
+		g.fillArc(8, 8, cameraFrame-2*8, cameraFrame-2*8, ccf.sightStart, ccf.sightWidth);
 		// ograničenje vidnog polja
-		g.drawArc(0, 0, cameraFrame, cameraFrame, ccf.limitStart, ccf.limitWidth);
+		g.drawArc(8, 8, cameraFrame-2*8, cameraFrame-2*8, ccf.limitStart, ccf.limitWidth);
 		// okvir - ivice objekta
-		g.drawRect(cameraFrame/2-cameraLense/2, cameraFrame/2-cameraLense/2, cameraLense, cameraLense);
+		g.drawRect(cameraFrame/2-cameraLense/2-5, cameraFrame/2-cameraLense/2-5, cameraLense+10, cameraLense+10);
 		// sočivo
+		g.setColor(Color.RED);
 		g.fillOval(cameraFrame/2-cameraLense/2, cameraFrame/2-cameraLense/2, cameraLense, cameraLense);
 		// parametri za praćenje kamere - može se dodati NAZIV..
-		g.drawString("start "+ ccf.sightStart+" width "+ccf.sightWidth, 0, 0);
+		g.drawString("s: "+ ccf.sightStart+" w: "+ccf.sightWidth, 0, cameraFrame-5);
 		// prikaz veličine komponente - border...
 		
 		// Graphics2D objekat omogućava dodatne opcije za crtanje
 		// kao što je podebljavanje linija
 		Graphics2D g2 = (Graphics2D) g;
+		// enable antialiasing
+		// g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setStroke(new BasicStroke(2));
 		g2.drawRect(0, 0, cameraFrame, cameraFrame);
 	}
