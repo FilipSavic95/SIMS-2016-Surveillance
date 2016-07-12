@@ -41,7 +41,7 @@ public class ActionWidget extends Widget {
      * Add Mouse Clicked Listener with function which
      * opens JOptionPane
      */
-    private void addClickListeners() {
+    protected void addClickListeners() {
     	/** This handle is a reference to THIS beacause in next Mouse Adapter "this" is not allowed */
 //        final Widget handle = this;
         addMouseListener(new MouseAdapter() {
@@ -64,12 +64,9 @@ public class ActionWidget extends Widget {
                 if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {
                 	popoutPane();
                 }
-                
                 revalidate();
                 repaint();
-                
              }
-
         });
     }
     

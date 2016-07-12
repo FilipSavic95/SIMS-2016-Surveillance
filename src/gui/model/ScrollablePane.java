@@ -1,5 +1,6 @@
 package gui.model;
 
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
@@ -21,6 +22,7 @@ public class ScrollablePane extends MyPanel implements Scrollable {
 
 	public ScrollablePane(LayoutManager layout) {
 		super(layout);
+		addClickListeners();
 	}
 
 	public ScrollablePane() {
@@ -76,18 +78,27 @@ public class ScrollablePane extends MyPanel implements Scrollable {
                 System.out.println("Mouse clicked (number of clicks: " + e.getClickCount() + ")\n");
 
 				if (SwingUtilities.isLeftMouseButton(e)) {
-					System.out.println("Left\n");
+					System.out.println("Left scrollPane/n");
 				}
 				
 				if (SwingUtilities.isRightMouseButton(e)) {
-					System.out.println("Right\n");
+					System.out.println("Right scrollPane\n");
 				}
 				if (SwingUtilities.isMiddleMouseButton(e)) {
-					System.out.println("Middle\n");
+					System.out.println("Middle scrollPane/n");
 				}
-                revalidate();
-                repaint();
-             }
+
+				revalidate();
+				repaint();
+            	
+//				Component parent = getParent();
+//                
+//				parent.revalidate();
+//				parent.repaint();
+				
+//				for (Component comp : parent.getC)
+				
+            }
         });
     }
 

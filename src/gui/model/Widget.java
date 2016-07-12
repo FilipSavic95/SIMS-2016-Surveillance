@@ -14,7 +14,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
-public class Widget extends JPanel {
+public class Widget extends MyPanel {
 
     /**
 	 * auto generated serialVersionUID
@@ -64,12 +64,28 @@ public class Widget extends JPanel {
                 Point mouseOnScreen = e.getLocationOnScreen();
                 Point position = new Point(mouseOnScreen.x - parentOnScreen.x - anchorX, mouseOnScreen.y - parentOnScreen.y - anchorY);
                 setLocation(position);
-
-                //Change Z-Buffer if it is "overbearing"
+                
                 if (overbearing) {
+                	System.out.println("EVO overbearing 11\n");
                     getParent().setComponentZOrder(handle, 0);
+//                    revalidate();
                     repaint();
                 }
+                /*
+                //Change Z-Buffer if it is "overbearing"
+                if (overbearing) {
+                	System.out.println("EVO OVRERKFL 11");
+                    getParent().setComponentZOrder(handle, 0);
+                    revalidate();
+                    repaint();
+                }
+                else {
+                	System.out.println("EVO OVRERKFL 22");
+                	getParent().setComponentZOrder(handle, 1);
+                    revalidate();
+                    repaint();
+                }
+                */
             }
         });
     }
