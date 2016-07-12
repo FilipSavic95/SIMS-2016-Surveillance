@@ -245,6 +245,21 @@ public class MyApp {
 //	  frame.getContentPane().add(kljPanel, BorderLayout.SOUTH);
   }
 
+  /*
+   * frame.addComponentListener(this);
+	Finally, catch the different events of these components by using four methods of Component Listener as shown below:
+	public void componentHidden(ComponentEvent e) {
+	        displayMessage(e.getComponent().getClass().getName() + " --- Hidden");
+	    }
+	
+	    public void componentMoved(ComponentEvent e) {
+	        displayMessage(e.getComponent().getClass().getName() + " --- Moved");
+	    }
+	
+	    public void componentResized(ComponentEvent e) {
+	        displayMessage(e.getComponent().getClass().getName() + " --- Resized ");            
+	    }
+   */
   /* nepotrebna funkcija */
   private void addComponent(JComponent comp) {
     comp.setBounds(10, 10, 80, 24);

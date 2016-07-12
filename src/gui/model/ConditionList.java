@@ -25,7 +25,9 @@ import javax.swing.ListCellRenderer;
 import javax.swing.Scrollable;
 import javax.swing.UIManager;
 
-public class CameraList extends ActionWidget {
+import gui.model.ScrollablePane;
+
+public class ConditionList extends ActionWidget {
 
 	private static final long serialVersionUID = 7455335893012389408L;
 
@@ -35,12 +37,12 @@ public class CameraList extends ActionWidget {
 		// g.drawString("CAMERA LIST", 0, 0);
 	}
 
-	private static CameraList instance = null;
+	private static ConditionList instance = null;
 
 	private JCheckBox all;
 	private List<JCheckBox> checkBoxes;
 
-	protected CameraList() {
+	protected ConditionList() {
 
 		String options[] = { "Item 1", "Item 2", "Item 3", "Item 4" };
 
@@ -49,8 +51,8 @@ public class CameraList extends ActionWidget {
 		// checkBoxes = new ArrayList<>(25);
 
 		setLayout(new BorderLayout());
-		MyPanel header = new MyPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
-		all = new JCheckBox("Select All...");
+		JPanel header = new JPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
+		all = new JCheckBox("ConditionList 2...");
 		all.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -62,7 +64,7 @@ public class CameraList extends ActionWidget {
 		header.add(all);
 		add(header, BorderLayout.NORTH);
 
-		MyPanel content = new ScrollablePane(new GridBagLayout());
+		JPanel content = new ScrollablePane(new GridBagLayout());
 		content.setBackground(UIManager.getColor("List.background"));
 		if (options.length > 0) {
 
@@ -94,9 +96,9 @@ public class CameraList extends ActionWidget {
 		add(new JScrollPane(content));
 	}
 
-	public static CameraList getInstance() {
+	public static ConditionList getInstance() {
 		if (instance == null) {
-			instance = new CameraList();
+			instance = new ConditionList();
 		}
 		return instance;
 	}
@@ -120,8 +122,6 @@ public class CameraList extends ActionWidget {
 
 	/*
 	public class ScrollablePane extends JPanel implements Scrollable {
-
-		private static final long serialVersionUID = -1313284155086850248L;
 
 		public ScrollablePane(LayoutManager layout) {
 			super(layout);

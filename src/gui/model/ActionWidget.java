@@ -64,6 +64,10 @@ public class ActionWidget extends Widget {
                 if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {
                 	popoutPane();
                 }
+                
+                revalidate();
+                repaint();
+                
              }
 
         });
