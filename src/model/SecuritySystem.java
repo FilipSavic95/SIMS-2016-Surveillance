@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.swing.Timer;
 
+import view.CameraGUI;
+import view.SurveilanceDisplay;
 import controler.Observer;
 import controler.Subject;
 
@@ -16,7 +18,7 @@ public class SecuritySystem implements Subject, ActionListener {
 	/** Referenca na View dio sablona. */ 
 	private SurveilanceDisplay sd;
 	
-	void setSD (SurveilanceDisplay sd) {
+	public void setSD (SurveilanceDisplay sd) {
 		this.sd = sd;
 	}
 	

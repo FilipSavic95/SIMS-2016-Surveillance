@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 
 import javax.swing.JFrame;
 
+import view.SurveilanceDisplay;
 import model.CameraConfig.RotationDirection;
 import model.CameraConfig.RotationSpeed;
 import model.CameraDevice;
