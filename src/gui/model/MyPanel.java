@@ -27,14 +27,23 @@ public class MyPanel extends JPanel {
 	public MyPanel(FlowLayout flowLayout) {
 		// TODO Auto-generated constructor stub
 		super();
+//		setLayout(null); // OTAC MAJKA TROJE MALE DJECE I JEDNO NERODJENOOO !
+		widgList = new ArrayList<Widget>();
+		addClickListeners();
 	}
 	
 	public MyPanel(ScrollablePane scP) {
 		super();
+//		setLayout(null); // OTAC MAJKA TROJE MALE DJECE I JEDNO NERODJENOOO !
+		widgList = new ArrayList<Widget>();
+		addClickListeners();
 	}
 	
 	public MyPanel(LayoutManager layout) {
 		super(layout);
+//		setLayout(null); // OTAC MAJKA TROJE MALE DJECE I JEDNO NERODJENOOO !
+		widgList = new ArrayList<Widget>();
+		addClickListeners();
 	}
 
 	/*void redrawElements(Graphics g) {
@@ -66,20 +75,26 @@ public class MyPanel extends JPanel {
                 System.out.println("Mouse clicked (number of clicks: " + e.getClickCount() + ")\n");
 
 				if (SwingUtilities.isLeftMouseButton(e)) {
-					System.out.println("Left\n");
+					System.out.println("Left in MyPanel/n");
 				}
 				
 				if (SwingUtilities.isRightMouseButton(e)) {
-					System.out.println("Right\n");
+					System.out.println("Right/n");
 				}
 				if (SwingUtilities.isMiddleMouseButton(e)) {
-					System.out.println("Middle\n");
+					System.out.println("Middle in MyPanel/n");
 				}
-                
                 revalidate();
                 repaint();
-                
              }
+            
+            public void mouseEntered(MouseEvent e) {
+                System.out.println("Mouse entered in MyPanel/n");
+             }
+
+            public void mouseExited(MouseEvent e) {
+                System.out.println("Mouse exited in MyPanel/n");
+			}
 
         });
     }

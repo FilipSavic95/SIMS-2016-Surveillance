@@ -64,6 +64,8 @@ public class ConditionList extends ActionWidget {
 		header.add(all);
 		add(header, BorderLayout.NORTH);
 
+		ComponentMover CamListHeaderCM = new ComponentMover(this, header);
+//		myCompMov.registerComponent(components);
 		JPanel content = new ScrollablePane(new GridBagLayout());
 		content.setBackground(UIManager.getColor("List.background"));
 		if (options.length > 0) {
@@ -91,9 +93,11 @@ public class ConditionList extends ActionWidget {
 			checkBoxes.add(cb);
 			gbc.weighty = 1;
 			content.add(cb, gbc);
-			System.out.println("Lejaut: " + content.getLayout().toString());
 		}
 		add(new JScrollPane(content));
+
+		ComponentMover CamListContentCM = new ComponentMover(this, content);
+//		myCompMov.registerComponent(components);
 	}
 
 	public static ConditionList getInstance() {

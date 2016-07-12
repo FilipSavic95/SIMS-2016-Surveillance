@@ -85,12 +85,9 @@ public class ScrollablePane extends MyPanel implements Scrollable {
 				if (SwingUtilities.isMiddleMouseButton(e)) {
 					System.out.println("Middle\n");
 				}
-                
                 revalidate();
                 repaint();
-                
              }
-
         });
     }
 
