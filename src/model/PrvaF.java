@@ -1,4 +1,4 @@
-package gui.model;
+package model;
 
 public class PrvaF {
 

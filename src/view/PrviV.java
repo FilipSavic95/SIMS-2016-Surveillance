@@ -1,4 +1,4 @@
-package gui.view;
+package view;
 
 public class PrviV {
 

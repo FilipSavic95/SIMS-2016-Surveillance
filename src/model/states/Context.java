@@ -1,4 +1,4 @@
-package gui.model.states;
+package model.states;
 
 public class Context {
 	private State state;

@@ -1,4 +1,4 @@
-package gui.model.states;
+package model.states;
 
 import java.awt.Cursor;
 import java.awt.Rectangle;
@@ -10,8 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-public class Action3 implements State {
-
+public class Action1 implements State {
+	
 	private	JPanel myPanel;
 	private static final int NONE = -1;
 	private static final int BORDER = 3;
@@ -21,7 +21,7 @@ public class Action3 implements State {
 	private int prevY = NONE;
 	private boolean resize = false;
 	
-	public Action3(JPanel panel) {
+	public Action1(JPanel panel) {
 		this.myPanel = panel;
 	}
 	
@@ -31,8 +31,8 @@ public class Action3 implements State {
 		if (panel == 'a') {
 			JButton button = null;
 		
-			System.out.println("ACTION3");
-			button = new JButton("ACTION3");
+			System.out.println("ACTION1");
+			button = new JButton("ACTION1");
 			button.setBounds(X, Y, 80, 24);
 	
 			button.addMouseListener(new MouseAdapter() {
@@ -100,6 +100,6 @@ public class Action3 implements State {
 
 	@Override
 	public String toString() {
-		return "Action3 State";
+		return "Action1 State";
 	}
 }
