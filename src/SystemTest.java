@@ -1,152 +1,78 @@
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.Timer;
+import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.geom.Point2D;
 
+import javax.swing.JFrame;
+
+import model.CameraConfig.RotationDirection;
+import model.CameraConfig.RotationSpeed;
+import model.CameraDevice;
+import model.SecuritySystem;
 import controler.Observer;
-import controler.Subject;
 
-public class SecuritySystem implements Subject, ActionListener {
-	ArrayList<ArrayList<Observer>> observerLists;
-
-	/** Referenca na View dio sablona. */
-	private SurveilanceDisplay sd;
-
-	void setSD(SurveilanceDisplay sd) {
-		this.sd = sd;
+@SuppressWarnings("serial")
+public class SystemTest extends JFrame {
+	public static SecuritySystem ss; 
+	public static SurveilanceDisplay sd;
+	
+	SystemTest() {
+		initializeSystem();
 	}
-
-	/** Svakih DELAY[ms] tajmer 'zvoni'. */
-	private final int DELAY = 100;
-
-	private Timer timer;
-
-	/** Vrijeme pokretanja tajmera. */
-	private static long timerStarted;
-
-	/** Zaokruzeno vrijeme okidanja tajmera. */
-	private static long roundTime;
-
-	private void initTimer() {
-		timer = new Timer(DELAY, this);
-		timer.start();
-		timerStarted = System.currentTimeMillis();
-		System.out.println("staro: " + timerStarted);
-		timerStarted = timerStarted - (timerStarted % DELAY); // DODAJ JOS +
-																// DELAY ako
-																// bude falilo !
-		System.out.println("novo:  " + timerStarted);
-	}
-
-	public Timer getTimer() {
-		return timer;
-	}
-
-	public void stopTimer() {
-		timer.stop();
-	}
-
-	private long otkucaj; // broj otkucaja
-	private final Object MUTEX = new Object();
-
-	public SecuritySystem() {
-		observerLists = new ArrayList<ArrayList<Observer>>();
-
-		this.observerLists.add(new ArrayList<Observer>());
-		this.observerLists.add(new ArrayList<Observer>());
-		this.observerLists.add(new ArrayList<Observer>());
-
-		initTimer(); // pokrece tajmer
-	}
-
-	/**
-	 * Dodavanje kamere u liste:
-	 * <ul>
-	 * <li>za upravljanje,</li>
-	 * <li>za prikaz.</li>
-	 * </ul>
-	 */
-	public void register(Observer obj, int queueNo) {
-		if (obj == null)
-			throw new NullPointerException("Null Observer");
-
-		synchronized (MUTEX) {
-			if (!observerLists.get(queueNo).contains(obj))
-				observerLists.get(queueNo).add(obj);
-
-			CameraGUI cg = new CameraGUI((CameraDevice) obj);
-			sd.kamere.add(cg);
-			sd.add(cg);
-			System.out.println("velicina kameraa: " + sd.kamere.size());
-		}
-	}
-
-	public void unregister(Observer obj, int queueNo) {
-		synchronized (MUTEX) {
-			observerLists.get(queueNo).remove(obj);
-		}
-	}
-
-	public void notifyObservers() {
-		List<Observer> fastCams = null; // brzina = 1
-		List<Observer> mediumCams = null; // brzina = 2
-		List<Observer> slowCams = null; // brzina = 3
-
-		// Zakljucavamo da bismo obavijestili samo one
-		// koji su se registrovali prije pocetka notify-a.
-		synchronized (MUTEX) {
-			// ovo ce najvjerovatnije biti izbaceno.... !! {#$%!@%? {#$%!@%?
-			// {#$%!@%?
-			if (otkucaj == -1) { // ovo ce najvjerovatnije biti izbaceno.... !!
-									// {#$%!@%?
-				System.out.println("\nVRACANJE?!?\n");
-				return;
+	
+	void initializeSystem () {
+		ss = new SecuritySystem();
+		sd = new SurveilanceDisplay(ss);
+		ss.setSD(sd);
+		
+		addTestData();
+		
+		/**
+		 * Tajmer rucno zaustavljamo, da se ne desi beskonacno drzanje resursa.
+		 * EXIT_ON_CLOSE iskljucuje JVM i sve njene niti, pa ovo nije neophodno.
+		 */
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				ss.stopTimer();
+				System.exit(0); // visak?
 			}
+		});
 
-			// if (otkucaj % 1 == 0) // svaki otkucaj
-			fastCams = new ArrayList<Observer>(this.observerLists.get(0));
-			if (otkucaj % 2 == 0) // svaki drugi otkucaj
-				mediumCams = new ArrayList<Observer>(this.observerLists.get(1));
-			if (otkucaj % 3 == 0) // svaki treci otkucaj
-				slowCams = new ArrayList<Observer>(this.observerLists.get(2));
-		}
-		// obavijestimo odgovarajuce posmatrace
-		for (Observer obj : fastCams)
-			obj.update();
-
-		if (mediumCams != null)
-			for (Observer obj : mediumCams)
-				obj.update();
-
-		if (slowCams != null)
-			for (Observer obj : slowCams)
-				obj.update();
-
-		otkucaj = -1; // ovo ce najvjerovatnije biti izbaceno.... !! {#$%!@%?
+		setTitle("Sigurnosni sistem v1.0");
+		setSize(400, 400);
+		setLocationRelativeTo(null); // centers the window
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		add(sd); // dodajemo panel za prikaz kamera
+	}
+	
+	/** Dodavanje test podataka... */
+	private void addTestData() {
+		//create observers
+		Observer obj1 = new CameraDevice(new Point2D.Double(150, 150), RotationSpeed.FAST, RotationDirection.CLOCKWISE, -20, 180, 0, 60);
+		Observer obj3 = new CameraDevice(new Point2D.Double( 50, 50), RotationSpeed.FAST, RotationDirection.COUNTER_CLK, -50, 180, 0, 60);
+		
+		ss.register(obj1, RotationSpeed.FAST.speed-1);
+		ss.register(obj3, RotationSpeed.FAST.speed-1);
+		
+		obj1.setSubject(ss);
+		obj3.setSubject(ss);
 	}
 
-	public Object getUpdate(Observer obj) {
-		return this.otkucaj;
-	}
-
-	// Tajmer "zvoni" govoreci koji put je otkucao.
-	public void ring(long tickNo) {
-		this.otkucaj = tickNo;
-		notifyObservers();
-	}
-
-	/** Reakcija na okidanje tajmera. */
-	public void actionPerformed(ActionEvent e) {
-		roundTime = e.getWhen() - (e.getWhen() % DELAY); // dodaj DELAY ako bude
-															// problema
-		long result = (long) Math.ceil((roundTime - timerStarted) / DELAY);
-		System.out.println("rezultat: " + result);
-		ring(result);
-		// Obavjestavanje View-a
-		sd.reactToTimer();
+	public static void main(String[] args) {
+		/**
+		 * invokeLater() dodaje zadatak aplikacije u Swing Event Queue.
+		 * Ovim osiguravamo da su sva azuriranja UI-a konkurentno-sigurna.
+		 */
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				SystemTest st = new SystemTest();
+				st.setVisible(true);
+			}
+		});
 	}
 
 }
