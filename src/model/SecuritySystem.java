@@ -69,6 +69,8 @@ public class SecuritySystem implements Subject, ActionListener {
 	 * <li> za upravljanje,</li>
 	 * <li> za prikaz. </li>
 	 * </ul>
+	 * @param obj - posmatrač koji se dodaje,
+	 * @param queueNo - indeks reda u koji se dodaje (== brzina-1).
 	 */
 	public void register(Observer obj, int queueNo) {
 		if (obj == null) throw new NullPointerException("Null Observer");
@@ -76,12 +78,12 @@ public class SecuritySystem implements Subject, ActionListener {
 		synchronized (MUTEX) {
 			if(!observerLists.get(queueNo).contains(obj))
 				observerLists.get(queueNo).add(obj);
-			
-			CameraGUI cg = new CameraGUI( (CameraDevice)obj);
-			sd.kamere.add(cg);
-			sd.add(cg);
-			System.out.println("velicina kameraa: "+ sd.kamere.size());
 		}
+		/*CameraGUI cg = new CameraGUI( (CameraDevice)obj);
+		sd.kamere.add(cg);
+		sd.add(cg);
+		System.out.println("velicina kameraa: "+ sd.kamere.size());*/
+		obj.setSubject(this);
 	}
 
 	public void unregister(Observer obj, int queueNo) {
