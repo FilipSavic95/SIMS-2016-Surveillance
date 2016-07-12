@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -8,25 +10,22 @@ import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.CameraConfig;
-import model.CameraConfig.RotationDirection;
-import model.CameraConfig.RotationSpeed;
 import model.CameraDevice;
 import model.SecuritySystem;
 
 /**
- * Osnovna klasa za prikaz monitoring widget-a. Trenutno nasljeđuje {@code JPanel},
- * ali će kasnije to biti {@code MyPanel}.
+ * Osnovna klasa za prikaz monitoring widget-a. Trenutno nasljedjuje {@code JPanel},
+ * ali ce kasnije to biti {@code MyPanel}.
  * 
  * <b>napomena:</b>
  * Default Layout je FLOW. Potrebno je postaviti ga na NULL, da se komponente ne bi pomijerale
- * prilikom promjene veličine kontejnera i ostalih 'opasnih' događaja. 
+ * prilikom promjene velicine kontejnera i ostalih 'opasnih' dogadjaja. 
  * @author Aleksandar
  *
  */
@@ -34,15 +33,27 @@ import model.SecuritySystem;
 public class SurveilanceDisplay extends JPanel {
 	
 	public ArrayList<CameraGUI> kamere;
-	SecuritySystem ss;
+	SecuritySystem sm;
 	
-	public SurveilanceDisplay() {
+	SurveilanceDisplay() {
 		kamere = new ArrayList<CameraGUI>();
+		FlowLayout fl = new FlowLayout();
+		BorderLayout bl = new BorderLayout();
+		this.setLayout(null); // http://javadude.com/articles/layouts/#sin1 <<==== objasnjenje LAYOUTA !
+		//http://docs.oracle.com/javase/tutorial/uiswing/layout/custom.html <<==== MOJ LAYOUT DA PRAVIM QQ
+		//https://docs.oracle.com/javase/tutorial/uiswing/layout/none.html  <<==== NULL layout
+//http://stackoverflow.com/questions/24530246/placing-multiple-objects-in-a-region-of-borderlayout <==extends BorderLayout
+		//http://stackoverflow.com/questions/19122416/java-swing-jpanel-vs-jcomponent <<==== PREDJI NA JPANEL !!
+		//http://stackoverflow.com/questions/3567190/displaying-a-jcomponent-inside-a-jpanel-on-a-jframe <<=== PREDJI !
+		//http://www.java2s.com/Questions_And_Answers/Swing/JPanel/JComponent.htm
+		//
+		// TOP ANSWER
+		// http://stackoverflow.com/questions/2155351/swing-jpanel-wont-repaint
 	}
 	
-	public SurveilanceDisplay(SecuritySystem sSys) {
+	public SurveilanceDisplay(SecuritySystem sModel) {
 		this(); // poziv podrazumijevanog konstruktora radi preglednosti
-		this.ss = sSys;
+		this.sm = sModel;
 		
 		addMouseListener(new MouseListener() {
 			public void mousePressed(MouseEvent e) {
@@ -51,13 +62,20 @@ public class SurveilanceDisplay extends JPanel {
 				CameraConfig ccfg = getCameraConfig();
 				if (ccfg == null) return; // prekid dodavanja u slucaju Cancel, tj. otkaza
 				
+				// pravimo model
 				CameraDevice cd = new CameraDevice(new Point2D.Double(e.getX(), e.getY()), ccfg);
+				// pravimo view
+				CameraGUI cg = new CameraGUI( (CameraDevice) cd);
 				
-				// uvežemo je u sistem -- model..view??
-				// Razgraničeno i popravljeno u drugom lokalnom paketu !
 				System.out.println("\npocinje uvezivanje....");
-				ss.register(cd, ccfg.rotationSpeed.speed - 1);
-				cd.setSubject(ss);
+				sm.register(cd, 0); // 0 ----> BRZINAAA !!!
+				kamere.add(cg);
+				
+				//System.out.println("velicina kameraa PRIJE:   "+ getComponentCount() + toString());
+				
+				add(cg); // RAZLIKA ?! ((JPanel)e.getComponent()).add(cg); // mora cast jer se reaguje na klik na panel
+				
+				//System.out.println("velicina kameraa POSLIJE: "+ getComponentCount());
 			}
 			
 			// ostale metode.. ostavljene za kasnije.. ili nikad.. :)
@@ -72,43 +90,27 @@ public class SurveilanceDisplay extends JPanel {
 	 * Unos konfiguracije kamere preko prilagođenog dijalog-prozora. 
 	 * @return konfiguracija preuzeta od korisnika. Ako je unos parametara otkazan, biće {@code null}.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected CameraConfig getCameraConfig() {
-		JLabel labelCombo = new JLabel("Brzina: "); // labelCombo.setAlignmentX(RIGHT_ALIGNMENT);
-		
-		String[] items = {"SLOW", "MEDIUM", "FAST"};
-        JComboBox combo = new JComboBox(items);
-        combo.setSelectedIndex(2); // default je MEDIUM
-        
         JLabel labelSightStart = new JLabel("Pocetni ugao okretanja: ");
-        JTextField fSightStart = new JTextField("0 - 360");
+        JTextField fSightStart = new JTextField("0");
         JLabel labelSightWidth = new JLabel("Sirina opsega kamere:");
-        JTextField fSightWidth = new JTextField("1 - 359");
-        /*===== labele i polja za end1 i end2 uglove ====*/
+        JTextField fSightWidth = new JTextField("90");
         
-        // šest redova - jedan će ostati za razmak nakon dodavanja svih pet parametara !
-        JPanel panel = new JPanel(new GridLayout(6, 1));
-        panel.add(labelCombo);       	panel.add(combo);
+        JPanel panel = new JPanel(new GridLayout(4, 1));
         panel.add(labelSightStart);		panel.add(fSightStart);
-        panel.add(labelSightWidth);		panel.add(fSightWidth);
-        /*//dodavanje parametara početnih i krajnjih uglova
-        panel.add(labelEndAngle1);		panel.add(fEndAngle1);
-        panel.add(labelEndAngle2);		panel.add(fEndAngle2); // kasnije cemo dodati OVA DVA PARAMETRA */ 
+        panel.add(labelSightWidth);		panel.add(fSightWidth); 
         
-        // postavljanje 'OK' i 'Cancel' dugmadi
         int result = JOptionPane.showConfirmDialog(null, panel, "Test",
             JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         
         if (result == JOptionPane.OK_OPTION) {
-            System.out.println(combo.getSelectedItem()+ " " +
-            		fSightStart.getText()+ " " + fSightWidth.getText());
+            System.out.println(fSightStart.getText()+ " " + fSightWidth.getText());
         } else {
             System.out.println("Otkazano dodavanje kamere.");
             return null;
         }
         
 		// pokupimo vrijednosti parametara
-        RotationSpeed rs = RotationSpeed.valueOf(combo.getSelectedItem().toString());
         int newSightStart = 0;	// podrazumijevane vrijednosti
 		int newSightWidth = 90; // za parametre kamere
 		
@@ -116,21 +118,19 @@ public class SurveilanceDisplay extends JPanel {
 		
 		newSightStart = validateInput(fSightStart.getText(), sb, "pocetni ugao", 0);
 		newSightWidth = validateInput(fSightWidth.getText(), sb, "opseg", 90);
-		// ostali parametri....
-		// ostali parametri....
 		
 		if (sb.length() > 53)
 			JOptionPane.showMessageDialog(null, sb.toString());
 		
-		// nova podešavanja su dostupna
-		CameraConfig ccfg = new CameraConfig(rs, RotationDirection.COUNTER_CLK, -50, 180, newSightStart, newSightWidth); 
+		// nova podesavanja su dostupna
+		CameraConfig ccfg = new CameraConfig(newSightStart, newSightWidth); 
 		return ccfg;
 	}
 	
 	/**
 	 * Provjera ispravnosti unesenih vrijednosti.
 	 * @param input - sadržaj odgovarajućeg text polja
-	 * @param errorSB - {@code stringBuilder} koji sadrži dosadašnju poruku o gređci
+	 * @param errorSB - {@code stringBuilder} koji sadrži dosadašnju poruku o grešci
 	 * @param inputName - naziv parametra koji trenutno provjeravamo
 	 * @param defaultValue - podrazumijevana vrijednost koja će biti dodijeljena
 	 * ovom parametru ako se ustanovi da {@code input} nije ispravan.
@@ -139,7 +139,7 @@ public class SurveilanceDisplay extends JPanel {
 	private int validateInput (String input, StringBuilder errorSB, String inputName, int defaultValue) {
 		int retval = defaultValue;
 		try {
-			// apsolutna vrijednost radi sigurnosti unosa --- ERROR ALERT !
+			// apsolutna vrijednost radi sigurnosti unosa -- ERROR ALERT ! ERROR ALERT !
 			retval = Math.abs( Integer.parseInt(input) );
 		} catch (Exception exc) {
 			errorSB.append("Parametar \"" + inputName + "\" postavljen na "+ defaultValue + ".\n");
@@ -156,16 +156,16 @@ public class SurveilanceDisplay extends JPanel {
 	}
 	
 	/**
-	 * paintComponent() vrsi custom crtanje. Da bismo iscrtali naš objekat 
-	 * na pravi nacin, pozvaćemo istu metodu od roditeljske klase, čime
-	 * pripremamo naš objekat za iscrtavanje dodatnih komponenti.
-	 * To delegiramo doDrawing() metodi. --- za sada je izbačeno ! IZBAČENO
+	 * paintComponent() vrsi custom crtanje. Da bismo iscrtali nas objekat 
+	 * na pravi nacin, pozvacemo istu metodu od roditeljske klase, cime
+	 * pripremamo nas objekat za iscrtavanje dodatnih komponenti. 
+	 * To delegiramo doDrawing() metodi.
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 *
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		doDrawing(g);
+		//doDrawing(g); // trebalo bi bez ovoga ! ! ! ! ! !
 	} // */
 	
 	public void reactToTimer() {
@@ -181,6 +181,5 @@ public class SurveilanceDisplay extends JPanel {
 		 */
 		this.validate();
 		this.repaint();
-		System.out.println(getParent().toString());
 	}
 }

@@ -65,15 +65,27 @@ public class CameraConfig {
 	public CameraConfig() {
 	}
 	
+	public CameraConfig(int sightStart, int sightWidth) {
+		this.limitStart = 0;
+		this.limitWidth = 200;
+		this.sightStart = sightStart;
+		this.sightWidth = sightWidth;
+		this.rotationSpeed = RotationSpeed.FAST;
+		this.rotationDirection = RotationDirection.COUNTER_CLK;
+	}
+	
 	public CameraConfig(RotationSpeed rotationSpeed,
 			RotationDirection rotationDirection, int limitStart,
 			int limitWidth, int sightStart, int sightWidth) {
-		this.rotationSpeed = rotationSpeed;
-		this.rotationDirection = rotationDirection;
-		this.limitStart = limitStart; // dodati provjeru za ogranicenja i vidno polje
+		this.limitStart = limitStart;
 		this.limitWidth = limitWidth;
+		// dodati provjeru za ogranicenja i vidno polje
+		//  if (notValid(sightStart,sightWidth, limitStart,limitWidth) )
+		//    { this.sightStart = limitStart; this.sightWidth = limitWidth/3; } // recimo...
 		this.sightStart = sightStart;
 		this.sightWidth = sightWidth;
+		this.rotationSpeed = rotationSpeed;
+		this.rotationDirection = rotationDirection;
 	}
 
 	/** Promjena smjera okretanja kamere. */
