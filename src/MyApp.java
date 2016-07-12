@@ -25,19 +25,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 // za niti
 import javax.swing.SwingWorker;
 
@@ -51,16 +62,20 @@ import javax.swing.SwingWorker;
  * @author Filip
  *
  */
-public class MyApp {
+public class MyApp implements ActionListener, ItemListener{
 	private static final int NONE = -1;
 
 	private static final int BORDER = 3;
 
+	private JMenuBar menuBar;
+	private JMenu menu, submenu;
+    private JMenuItem menuItem;
+    private JRadioButtonMenuItem rbMenuItem;
+    private JCheckBoxMenuItem cbMenuItem;
+
 	private State currentState;
 	// osnovni prozor
 	private JFrame frame;
-
-	// int counter = 0;
 
 	private JSplitPane mainTbSplitPane, mainPanel;
 
@@ -100,10 +115,96 @@ public class MyApp {
 
 		buildToolbox();
 		buildMainPanel();
+		addMenuBar();
+//		MenuPanel menuPane = new MenuPanel();
+//		frame.setJMenuBar(menuPane.menuBar);
+
+		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
 	}
   
-  /**
+  private void addMenuBar() {
+		// TODO Auto-generated method stub
+	  
+      //Glavni meni
+      menuBar = new JMenuBar();
+
+      //File podmeni
+      menu = new JMenu("File");
+      menu.setMnemonic(KeyEvent.VK_F);
+      menuBar.add(menu);
+
+      //grupa JMenuItem-a
+      menuItem = new JMenuItem("Open",
+                               KeyEvent.VK_O);
+      //menuItem.setMnemonic(KeyEvent.VK_O); //moze i ovako
+      menuItem.setAccelerator(KeyStroke.getKeyStroke(
+              KeyEvent.VK_O, ActionEvent.CTRL_MASK));
+      // obratiti paznju na to da implementiramo ActionListener i ItemListener interfejse
+      menuItem.addActionListener(this);
+      menu.add(menuItem);
+
+      //grupa radio button-a u podmeniju
+      menu.addSeparator();
+      ButtonGroup group = new ButtonGroup();
+
+      rbMenuItem = new JRadioButtonMenuItem("Radio button menu item br. 1");
+      rbMenuItem.setSelected(true);
+      rbMenuItem.setMnemonic(KeyEvent.VK_R);
+      group.add(rbMenuItem);
+      rbMenuItem.addActionListener(this);
+      menu.add(rbMenuItem);
+
+      rbMenuItem = new JRadioButtonMenuItem("Radio button menu item br. 2");
+      rbMenuItem.setMnemonic(KeyEvent.VK_2);
+      group.add(rbMenuItem);
+      rbMenuItem.addActionListener(this);
+      menu.add(rbMenuItem);
+
+      //grupa check box itema
+      menu.addSeparator();
+      cbMenuItem = new JCheckBoxMenuItem("Check box menu item br. 1");
+      cbMenuItem.setMnemonic(KeyEvent.VK_C);
+      cbMenuItem.addItemListener(this);
+      menu.add(cbMenuItem);
+
+      cbMenuItem = new JCheckBoxMenuItem("Check box menu item br. 2");
+      cbMenuItem.setMnemonic(KeyEvent.VK_H);
+      cbMenuItem.addItemListener(this);
+      menu.add(cbMenuItem);
+
+      //grupa JMenuItema
+      menuItem = new JMenuItem("Exit",
+                               KeyEvent.VK_X);
+      menuItem.setAccelerator(KeyStroke.getKeyStroke(
+              KeyEvent.VK_F4, ActionEvent.ALT_MASK));
+      menuItem.addActionListener(this);
+      menu.add(menuItem);
+
+      //Edit podmeni
+      menu = new JMenu("Edit");
+      menu.setMnemonic(KeyEvent.VK_E);
+      menuBar.add(menu);
+
+      //grupa JMenuItema
+      menuItem = new JMenuItem("Copy",
+                               KeyEvent.VK_C);
+      menuItem.setAccelerator(KeyStroke.getKeyStroke(
+              KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+      menuItem.addActionListener(this);
+      menu.add(menuItem);
+      
+      //grupa JMenuItema
+      menuItem = new JMenuItem("Paste",
+                               KeyEvent.VK_P);
+      menuItem.setAccelerator(KeyStroke.getKeyStroke(
+              KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+      menuItem.addActionListener(this);
+      menu.add(menuItem);
+	}
+  
+
+/**
    * Mijenja stanje aplikacije u zavisnosti od kliknutog dugmeta (tj. njegovog naziva).
    * POBOLjSANJE (jedno od ovo dvoje):
    * 1) promijeniti imena dugmadi u nazive stanja
@@ -164,7 +265,7 @@ public class MyApp {
 
   private void buildMainPanel() {
 	  
-	  //Provide minimum sizes for the two components in the split pane
+	  //Minimalna velicina za komponente u SplitPane-u
 	  Dimension minimumSize = new Dimension(100, 50);
 	  actionPanel.setMinimumSize(minimumSize);
 	  monitorPanel.setMinimumSize(minimumSize);
@@ -228,23 +329,28 @@ public class MyApp {
 	  mainPanel.setDividerLocation(450);
 	  mainPanel.setDividerSize(5);
 	  
-//	  String	listData[] =
-//			{
-//				"Item 1",
-//				"Item 2",
-//				"Item 3",
-//				"Item 4"
-//			};
-//
-//			// Create a new listbox control
-//			JList<String> listbox = new JList<String>( listData );
-//			JPanel kljPanel = new JPanel();
-//			kljPanel.add( listbox, BorderLayout.CENTER );
-	    
 	  frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
-//	  frame.getContentPane().add(kljPanel, BorderLayout.SOUTH);
   }
 
+  public void actionPerformed(ActionEvent e) {
+      JMenuItem source = (JMenuItem)(e.getSource());
+      String s = "Opcija menija:"
+                 + source.getText();
+      System.out.println(s);
+      if (source.getText().equals("Exit"))
+        System.exit(0);
+  }
+
+  public void itemStateChanged(ItemEvent e) {
+      JMenuItem source = (JMenuItem)(e.getSource());
+      String s = "Item event se dogodio:"
+                 + source.getText()
+                 + ". Stanje: "
+                 + ((e.getStateChange() == ItemEvent.SELECTED) ?
+                   "selected":"unselected");
+      System.out.println(s);
+  }
+  
   /*
    * frame.addComponentListener(this);
 	Finally, catch the different events of these components by using four methods of Component Listener as shown below:
