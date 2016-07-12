@@ -138,7 +138,8 @@ public class SurveilanceDisplay extends JPanel {
 		int retval = defaultValue;
 		try {
 			// apsolutna vrijednost radi sigurnosti unosa -- ERROR ALERT ! ERROR ALERT !
-			retval = Math.abs( Integer.parseInt(input) );
+			// retval = Math.abs( Integer.parseInt(input) );
+			retval = Integer.parseInt(input);
 		} catch (Exception exc) {
 			errorSB.append("Parametar \"" + inputName + "\" postavljen na "+ defaultValue + ".\n");
 		}

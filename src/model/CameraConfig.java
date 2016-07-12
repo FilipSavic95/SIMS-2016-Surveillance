@@ -14,7 +14,7 @@ package model;
  */
 public class CameraConfig {
 	/** Brzina okretanja - na svakih koliko otkucaja tajmera se mijenja ofset ugla. */
-	public enum RotationSpeed {
+	public static enum RotationSpeed {
 	    FAST   (1),  //calls constructor with value 1
 	    MEDIUM (2),  //calls constructor with value 2
 	    SLOW   (3)   //calls constructor with value 3
@@ -28,7 +28,7 @@ public class CameraConfig {
 	}
 	
 	/** Smjer kretanja kamere:<br> - 1 za smjer kazaljke,<br> +1 za "unazad". */
-	public enum RotationDirection {
+	public static enum RotationDirection {
 		CLOCKWISE   (-1),
 		COUNTER_CLK (1);
 		
