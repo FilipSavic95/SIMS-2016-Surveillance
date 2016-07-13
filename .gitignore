@@ -10,4 +10,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+<<<<<<< HEAD
+<<<<<<< HEAD
 /bin/
+=======
+>>>>>>> branch 'filip' of https://github.com/FilipSavic95/SIMS-2016-Surveillance
+=======
+/bin/
+>>>>>>> refs/heads/aleksandar
