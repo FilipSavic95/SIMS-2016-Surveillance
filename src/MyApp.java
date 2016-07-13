@@ -5,13 +5,6 @@ import gui.model.ActionPanel;
 import gui.model.MonitoringPanel;
 import gui.model.MyMenuBar;
 import gui.model.MyPanel;
-import gui.model.states.Action1;
-import gui.model.states.Action2;
-import gui.model.states.Action3;
-import gui.model.states.Context;
-import gui.model.states.Monitor1;
-import gui.model.states.Monitor2;
-import gui.model.states.State;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -52,6 +45,13 @@ import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 // za niti
 import javax.swing.SwingWorker;
+
+import model.states.Action1;
+import model.states.Action2;
+import model.states.Action3;
+import model.states.Monitor1;
+import model.states.Monitor2;
+import model.states.State;
 
 /* S T A C K   O V E R   F L O W  LOW */
 
