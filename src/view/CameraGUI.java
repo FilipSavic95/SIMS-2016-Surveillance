@@ -10,6 +10,8 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.SwingUtilities;
+
 import model.CameraConfig;
 import model.CameraDevice;
 
@@ -44,6 +46,9 @@ public class CameraGUI extends Widget {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("kliknuto na komponentu: "+ cd.position);
+				if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {
+                	 //MonitoringView.getCameraConfig();//dodati parametre sa default vrijednostima !
+                }
 			}
 		});
 	}

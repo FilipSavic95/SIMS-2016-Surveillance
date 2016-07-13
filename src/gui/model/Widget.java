@@ -1,16 +1,17 @@
 package gui.model;
 
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.border.EtchedBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-public class Widget extends MyPanel {
+public class Widget extends JPanel {
 
     /**
 	 * auto generated serialVersionUID
@@ -33,6 +34,7 @@ public class Widget extends MyPanel {
         addDragListeners();
         draggable = true;
         overbearing = false;
+        addClickListeners();
     }
 
     /**
@@ -132,11 +134,58 @@ public class Widget extends MyPanel {
 
     /**
      * Set the value of overbearing
-     *
      * @param overbearing new value of overbearing
      */
     public void setOverbearing(boolean overbearing) {
         this.overbearing = overbearing;
+    }
+    
+    /**
+     * Add Mouse Clicked Listener with function which opens JOptionPane
+     */
+    protected void addClickListeners() {
+    	/** This handle is a reference to THIS beacause in next Mouse Adapter "this" is not allowed */
+//        final Widget handle = this;
+        addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Mouse clicked (number of clicks: " + e.getClickCount() + ") "+ (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)));
+
+				if (SwingUtilities.isLeftMouseButton(e)) {
+					System.out.println("Lijeeevoo\n");
+				}
+				
+				if (SwingUtilities.isRightMouseButton(e)) {
+					System.out.println("Desnooooo\n");
+				}
+				if (SwingUtilities.isMiddleMouseButton(e)) {
+					System.out.println("Srednjeee\n");
+				}
+
+                if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {
+                	popoutPane();
+                }
+                revalidate();
+                repaint();
+             }
+        });
+    }
+    
+    private void popoutPane() {
+        JLabel messageLabel = new JLabel("Prikaz parametara widget-a nad kojim je izvršen dvoklik.");
+        JPanel panel = new JPanel();
+        panel.add(messageLabel); 
+        
+        // postavljanje 'OK' i 'Cancel' dugmadi
+        int result = JOptionPane.showConfirmDialog(null, panel, "Properties",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        
+        if (result == JOptionPane.OK_OPTION) {
+            System.out.println("Završena izmjena parametara.");
+        } else {
+            System.out.println("Otkazana izmjena parametara.");
+        }
     }
 }
 

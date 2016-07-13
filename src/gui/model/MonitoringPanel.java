@@ -36,34 +36,6 @@ public MonitoringPanel() {
 	public MonitoringPanel(MonitoringModel mModel) {
 		super();
 		this.mm = mModel;
-		
-		addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				System.out.println("\nPRITISNUU\n");
-				
-				// pravimo model
-				CameraConfig ccfg = getCameraConfig();
-				if (ccfg == null) return; // prekid dodavanja u slucaju Cancel, tj. otkaza
-				CameraDevice cd = new CameraDevice(new Point(e.getX(), e.getY()), ccfg);
-				
-				// pravimo view
-				CameraGUI cg = new CameraGUI( (CameraDevice) cd);
-				
-				System.out.println("\npocinje uvezivanje....");
-				mm.register(cd, 0); // 0 ----> brzina
-				widgList.add(cg);
-				
-				System.out.println("velicina kameraa PRIJE:  "+ getComponentCount() + toString());
-				add(cg);
-				System.out.println("velicina kameraa POSLIJE:"+ getComponentCount());
-			}
-			
-			// ostale metode.. ostavljene za kasnije.. ili nikad.. :)
-			public void mouseReleased(MouseEvent e) {}
-			public void mouseExited(MouseEvent e) {}
-			public void mouseEntered(MouseEvent e) {}
-			public void mouseClicked(MouseEvent e) {}
-		});
 	}
 	
 	/**
@@ -118,7 +90,7 @@ public MonitoringPanel() {
 		// ostali parametri....
 		
 		if (sb.length() > 53)
-			JOptionPane.showMessageDialog(null, sb.toString());
+			JOptionPane.showMessageDialog(panel, sb.toString());
 		
 		// nova podesavanja su dostupna
 		CameraConfig ccfg = new CameraConfig(rs, RotationDirection.COUNTER_CLK, -50, 180, newSightStart, newSightWidth); 

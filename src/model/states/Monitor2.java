@@ -14,7 +14,6 @@ import model.CameraDevice;
 
 public class Monitor2 implements State {
 	private JPanel myPanel;
-	MouseEvent me; // za pomijeranje
 	
 	public Monitor2(JPanel panel) {
 		this.myPanel = panel;
@@ -35,24 +34,7 @@ public class Monitor2 implements State {
 				return; // otkazano dodavanje
 
 			CameraDevice cd = new CameraDevice(new Point(X, Y), ccfg);
-			CameraGUI cg = new CameraGUI(cd); // button = new JButton("MONITOR2");
-			
-			cg.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-		        me = e;
-		    }
-		 
-		    public void mouseDragged(MouseEvent e) {
-		        Component component = me.getComponent();
-		        cg.cd.position = component.getLocation(cg.cd.position);
-		        int x = cg.cd.position.x - me.getX() + e.getX();
-		        int y = cg.cd.position.y - me.getY() + e.getY();
-		        component.setLocation(x, y);
-		    }
-		    public void mouseReleased(MouseEvent e) {
-		    	cg.cd.position = e.getComponent().getLocation();
-		    }
-			});
+			CameraGUI cg = new CameraGUI(cd);
 
 			myPanel.add(cg);
 			myPanel.repaint(); // da komponenta postane vidljiva

@@ -103,7 +103,7 @@ public class CameraConfig {
 	public void move() {
 		if (sightStart == limitStart || sightStart+sightWidth == limitStart+limitWidth)
 			this.turnAround(); // okrece se u drugu stranu
-		//sta sad? povecaj ugao
+		//promjena ugla
 		this.sightStart += this.rotationDirection.direction;
 	}
 	
@@ -116,13 +116,6 @@ public class CameraConfig {
 	}
 	
 	public static void main(String[] args) {
-		/*CameraConfig cat = new CameraConfig(RotationSpeed.FAST, RotationDirection.CLOCKWISE, -10, 180, 0, 60);
-		System.out.println("brzina: " + cat.rotationSpeed + " " + cat.rotationSpeed.speed);
-		System.out.println("smjer:  " + cat.rotationDirection+ " " + cat.rotationDirection.direction);
-		cat.move();
-		System.out.println("promjena!");
-		//System.out.println("ugao:  " + cat.rotatio + " " + cat.rotationSpeed.speed);
-		System.out.println("smjer: " + cat.rotationDirection+ " " + cat.rotationDirection.direction);*/
 	}
 	
 }

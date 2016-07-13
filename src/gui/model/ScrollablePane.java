@@ -20,12 +20,12 @@ public class ScrollablePane extends MyPanel implements Scrollable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ScrollablePane(LayoutManager layout) {
-		super(layout);
+	public ScrollablePane() {
 		addClickListeners();
 	}
 
-	public ScrollablePane() {
+	public ScrollablePane(LayoutManager layout) {
+		super(layout);
 		addClickListeners();
 	}
 
@@ -67,39 +67,11 @@ public class ScrollablePane extends MyPanel implements Scrollable {
 		}
 		return track;
 	}
-	
+
 	protected void addClickListeners() {
-    	/** This handle is a reference to THIS beacause in next Mouse Adapter "this" is not allowed */
-//        final Widget handle = this;
-        addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("Mouse clicked (number of clicks: " + e.getClickCount() + ")\n");
-
-				if (SwingUtilities.isLeftMouseButton(e)) {
-					System.out.println("Left scrollPane/n");
-				}
-				
-				if (SwingUtilities.isRightMouseButton(e)) {
-					System.out.println("Right scrollPane\n");
-				}
-				if (SwingUtilities.isMiddleMouseButton(e)) {
-					System.out.println("Middle scrollPane/n");
-				}
-
-				revalidate();
-				repaint();
-            	
-//				Component parent = getParent();
-//                
-//				parent.revalidate();
-//				parent.repaint();
-				
-//				for (Component comp : parent.getC)
-				
-            }
-        });
-    }
+		/** This handle is a reference to THIS beacause in next Mouse Adapter "this" is not allowed */
+		// final Widget handle = this;
+		
+	}
 
 }

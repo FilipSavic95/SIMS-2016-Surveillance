@@ -1,28 +1,19 @@
 package gui.model;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.LayoutManager;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JCheckBox;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JViewport;
 import javax.swing.ListCellRenderer;
-import javax.swing.Scrollable;
 import javax.swing.UIManager;
 
 public class CameraList extends ActionWidget {
@@ -44,8 +35,8 @@ public class CameraList extends ActionWidget {
 
 		String options[] = { "Item 1", "Item 2", "Item 3", "Item 4" };
 
-		checkBoxes = new ArrayList<MyCheckBox>(); // promijenio sam ja ovdje sa
-													// ovoga:
+		checkBoxes = new ArrayList<MyCheckBox>();
+		// promijenio sam ja ovdje sa ovoga:
 		// checkBoxes = new ArrayList<>(25);
 
 		setLayout(new BorderLayout());
