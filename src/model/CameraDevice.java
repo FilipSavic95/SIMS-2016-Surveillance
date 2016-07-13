@@ -8,6 +8,11 @@ import controler.Observer;
 import controler.Subject;
 
 public class CameraDevice implements Observer {
+	
+	public static int globalCamID = 0;
+	
+	public int camID;
+	
 	/** Sigurnosni sistem kome kamera pripada. */
 	private Subject sSystem;
 	
@@ -21,9 +26,12 @@ public class CameraDevice implements Observer {
 	public CameraConfig camConf;
 
 	public CameraDevice() {
+		camID = globalCamID;
+		globalCamID++;
 	}
 
 	public CameraDevice(Point position, CameraConfig camAtrs) {
+		this();
 		this.position = position;
 		this.camConf = camAtrs;
 	}
@@ -34,6 +42,7 @@ public class CameraDevice implements Observer {
 	public CameraDevice(Point position, RotationSpeed rotationSpeed,
 			RotationDirection rotationDirection, int limitStart,
 			int limitWidth, int sightStart, int sightWidth) {
+		this();
 		this.position = position;
 		this.camConf = new CameraConfig(rotationSpeed, rotationDirection,
 				limitStart, limitWidth, sightStart, sightWidth);
