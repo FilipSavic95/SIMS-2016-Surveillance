@@ -3,6 +3,7 @@
 
 import gui.model.ActionPanel;
 import gui.model.MyMenuBar;
+import model.states.Initial;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -72,6 +73,9 @@ public class MyApp {
 	private boolean resize;
 
 	public MyApp() {
+
+		currentState = new Initial();
+		
 		mainPanel = null;
 		mainTbSplitPane = null;
 		actionMonitorPanel = null;
