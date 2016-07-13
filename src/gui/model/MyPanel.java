@@ -1,5 +1,6 @@
 package gui.model;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.LayoutManager;
@@ -18,6 +19,7 @@ public class MyPanel extends JPanel {
 		// jako bitno za sprečavanje djelovanja layout manager-a na raspored prilikom resize-a
 		setLayout(null);
 		widgList = new ArrayList<Widget>();
+		setMinimumSize(new Dimension(100, 50));
 	}
 
 	public MyPanel(FlowLayout flowLayout) {
