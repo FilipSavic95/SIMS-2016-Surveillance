@@ -24,6 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
+import javax.swing.SwingUtilities;
 
 import view.MonitoringView;
 import model.states.Action1;
@@ -182,6 +183,9 @@ public class MyApp {
 				startX = e.getX();
 				startY = e.getY();
 
+		        if (SwingUtilities.isRightMouseButton(e))
+					  currentState = new Initial();
+		        
 				if (currentState != null)
 					currentState.drawComponent(startX, startY, 'a');
 			}
@@ -197,6 +201,10 @@ public class MyApp {
 				System.out.println("-monitor-");
 				startX = e.getX();
 				startY = e.getY();
+
+		        if (SwingUtilities.isRightMouseButton(e))
+					  currentState = new Initial();
+		        
 				if (currentState != null)
 					currentState.drawComponent(startX, startY, 'm');
 			}
