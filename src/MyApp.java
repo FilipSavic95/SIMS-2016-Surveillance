@@ -3,6 +3,7 @@
 
 import gui.model.ActionPanel;
 import gui.model.MonitoringPanel;
+import gui.model.MyMenuBar;
 import gui.model.MyPanel;
 import gui.model.states.Action1;
 import gui.model.states.Action2;
@@ -25,19 +26,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 // za niti
 import javax.swing.SwingWorker;
 
@@ -56,11 +68,11 @@ public class MyApp {
 
 	private static final int BORDER = 3;
 
+	private MyMenuBar myMBar;
+	
 	private State currentState;
 	// osnovni prozor
 	private JFrame frame;
-
-	// int counter = 0;
 
 	private JSplitPane mainTbSplitPane, mainPanel;
 
@@ -94,16 +106,18 @@ public class MyApp {
 		resize = false;
 		
 		frame = new JFrame("Surveillance System");		
-		frame.setBounds(333, 100, 600, 450);
+		frame.setBounds(300, 100, 800, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout());
 
 		buildToolbox();
 		buildMainPanel();
+		myMBar = new MyMenuBar();
+		frame.setJMenuBar(myMBar.menuBar);
 		frame.setVisible(true);
 	}
-  
-  /**
+
+/**
    * Mijenja stanje aplikacije u zavisnosti od kliknutog dugmeta (tj. njegovog naziva).
    * POBOLjSANJE (jedno od ovo dvoje):
    * 1) promijeniti imena dugmadi u nazive stanja
@@ -164,7 +178,7 @@ public class MyApp {
 
   private void buildMainPanel() {
 	  
-	  //Provide minimum sizes for the two components in the split pane
+	  //Minimalna velicina za komponente u SplitPane-u
 	  Dimension minimumSize = new Dimension(100, 50);
 	  actionPanel.setMinimumSize(minimumSize);
 	  monitorPanel.setMinimumSize(minimumSize);
@@ -228,23 +242,43 @@ public class MyApp {
 	  mainPanel.setDividerLocation(450);
 	  mainPanel.setDividerSize(5);
 	  
-//	  String	listData[] =
-//			{
-//				"Item 1",
-//				"Item 2",
-//				"Item 3",
-//				"Item 4"
-//			};
-//
-//			// Create a new listbox control
-//			JList<String> listbox = new JList<String>( listData );
-//			JPanel kljPanel = new JPanel();
-//			kljPanel.add( listbox, BorderLayout.CENTER );
-	    
 	  frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
-//	  frame.getContentPane().add(kljPanel, BorderLayout.SOUTH);
   }
 
+  public void actionPerformed(ActionEvent e) {
+      JMenuItem source = (JMenuItem)(e.getSource());
+      String s = "Opcija menija:"
+                 + source.getText();
+      System.out.println(s);
+      if (source.getText().equals("Exit"))
+        System.exit(0);
+  }
+
+  public void itemStateChanged(ItemEvent e) {
+      JMenuItem source = (JMenuItem)(e.getSource());
+      String s = "Item event se dogodio:"
+                 + source.getText()
+                 + ". Stanje: "
+                 + ((e.getStateChange() == ItemEvent.SELECTED) ?
+                   "selected":"unselected");
+      System.out.println(s);
+  }
+  
+  /*
+   * frame.addComponentListener(this);
+	Finally, catch the different events of these components by using four methods of Component Listener as shown below:
+	public void componentHidden(ComponentEvent e) {
+	        displayMessage(e.getComponent().getClass().getName() + " --- Hidden");
+	    }
+	
+	    public void componentMoved(ComponentEvent e) {
+	        displayMessage(e.getComponent().getClass().getName() + " --- Moved");
+	    }
+	
+	    public void componentResized(ComponentEvent e) {
+	        displayMessage(e.getComponent().getClass().getName() + " --- Resized ");            
+	    }
+   */
   /* nepotrebna funkcija */
   private void addComponent(JComponent comp) {
     comp.setBounds(10, 10, 80, 24);
