@@ -2,56 +2,36 @@
 /* S T A C K   O V E R   F L O W  LOW */
 
 import gui.model.ActionPanel;
-import gui.model.MonitoringPanel;
 import gui.model.MyMenuBar;
-import gui.model.MyPanel;
-import gui.model.states.Action1;
-import gui.model.states.Action2;
-import gui.model.states.Action3;
-import gui.model.states.Context;
-import gui.model.states.Monitor1;
-import gui.model.states.Monitor2;
-import gui.model.states.State;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
-import javax.swing.KeyStroke;
-// za niti
-import javax.swing.SwingWorker;
+
+import view.MonitoringView;
+import model.states.Action1;
+import model.states.Action2;
+import model.states.Action3;
+import model.states.Monitor1;
+import model.states.Monitor2;
+import model.states.State;
 
 /* S T A C K   O V E R   F L O W  LOW */
 
@@ -85,7 +65,7 @@ public class MyApp {
 	private ActionPanel actionPanel;
 
 	// kanvas2
-	private MonitoringPanel monitorPanel;
+	private MonitoringView monitorPanel;
 
 	private int startX, startY, prevX, prevY;
 
@@ -100,7 +80,7 @@ public class MyApp {
 		monitorToolbar = new JToolBar("MonitorToolbar");
 		
 		actionPanel = new ActionPanel();
-		monitorPanel = new MonitoringPanel();
+		monitorPanel = new MonitoringView();
 		
 		startX = startY = prevX = prevY = NONE;
 		resize = false;
@@ -143,9 +123,9 @@ public class MyApp {
 	  	case "Widg21":
 	  		currentState = new Monitor1(monitorPanel);
 	  		break;
-	  	case "Widg22":
-	  		currentState = new Monitor2(monitorPanel);
-	  		break;
+		case "CameraGUI":
+			currentState = new Monitor2(monitorPanel);
+			break;
 	  	default:
 	  		System.out.println("\n ======== Default ======== \n");
 	  		System.out.println("BUTTON NAME: " + buttonName);
@@ -161,7 +141,7 @@ public class MyApp {
           System.out.println("Clicked on: " + buttonName);
 
           createState(componentName);
-          System.out.println("CUrrent state: " + currentState.toString() + "\n");
+          System.out.println("CUrrent state: " + currentState + "\n");
         }
       });
       toolbar.add(button);
@@ -173,7 +153,7 @@ public class MyApp {
     addButtonToToolbar(actionToolbar, "AddW12", "Widg12");
 	addButtonToToolbar(actionToolbar, "AddW13", "Widg13");
 	addButtonToToolbar(monitorToolbar, "AddW21", "Widg21");
-	addButtonToToolbar(monitorToolbar, "AddW22", "Widg22");  
+	addButtonToToolbar(monitorToolbar, "Add a camera", "CameraGUI"); 
   }
 
   private void buildMainPanel() {
@@ -183,8 +163,8 @@ public class MyApp {
 	  actionPanel.setMinimumSize(minimumSize);
 	  monitorPanel.setMinimumSize(minimumSize);
 	  
-	  actionPanel.setBackground(Color.BLUE);
-	  monitorPanel.setBackground(Color.RED);
+	  actionPanel.setBackground(new Color(255, 255, 102));
+	  monitorPanel.setBackground(new Color(204, 255, 102));
 	  
 	  actionPanel.addMouseListener(new MouseAdapter() {
 	      public void mouseReleased(MouseEvent e) {
@@ -280,7 +260,8 @@ public class MyApp {
 	    }
    */
   /* nepotrebna funkcija */
-  private void addComponent(JComponent comp) {
+  @SuppressWarnings("unused")
+private void addComponent(JComponent comp) {
     comp.setBounds(10, 10, 80, 24);
 
     comp.addMouseListener(new MouseAdapter() {
