@@ -2,16 +2,12 @@ package gui.model;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
 public class Widget extends MyPanel {
@@ -35,9 +31,8 @@ public class Widget extends MyPanel {
     
     public Widget() {
         addDragListeners();
-//        setOpaque(true);
-//        setBackground(new Color(100,200,240)); // sve 240 je siva
-        setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.yellow)); //(2, 2, 2, 2, Color.black))
+        draggable = true;
+        overbearing = false;
     }
 
     /**
@@ -52,7 +47,6 @@ public class Widget extends MyPanel {
             public void mouseMoved(MouseEvent e) {
                 anchorPoint = e.getPoint();
                 setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                
             }
 
             @Override
@@ -68,24 +62,8 @@ public class Widget extends MyPanel {
                 if (overbearing) {
                 	System.out.println("EVO overbearing 11\n");
                     getParent().setComponentZOrder(handle, 0);
-//                    revalidate();
                     repaint();
                 }
-                /*
-                //Change Z-Buffer if it is "overbearing"
-                if (overbearing) {
-                	System.out.println("EVO OVRERKFL 11");
-                    getParent().setComponentZOrder(handle, 0);
-                    revalidate();
-                    repaint();
-                }
-                else {
-                	System.out.println("EVO OVRERKFL 22");
-                	getParent().setComponentZOrder(handle, 1);
-                    revalidate();
-                    repaint();
-                }
-                */
             }
         });
     }

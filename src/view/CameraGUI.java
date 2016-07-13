@@ -1,17 +1,14 @@
 package view;
 
+import gui.model.Widget;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.border.EtchedBorder;
 
 import model.CameraConfig;
 import model.CameraDevice;
@@ -22,7 +19,7 @@ import model.CameraDevice;
  * @author Aleksandar
  */
 @SuppressWarnings("serial")
-public class CameraGUI extends JComponent {
+public class CameraGUI extends Widget {
 	public CameraDevice cd;
 	
 	/** Velicina okvira kamere. */

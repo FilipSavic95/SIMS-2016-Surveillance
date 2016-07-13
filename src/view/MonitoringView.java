@@ -2,8 +2,6 @@ package view;
 
 import gui.model.MyPanel;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -12,12 +10,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.CameraConfig;
+import model.CameraConfig.RotationDirection;
+import model.CameraConfig.RotationSpeed;
 import model.CameraDevice;
 import model.MonitoringModel;
 
@@ -91,27 +92,43 @@ public class MonitoringView extends MyPanel {
 	 * Unos konfiguracije kamere preko prilagođenog dijalog-prozora. 
 	 * @return konfiguracija preuzeta od korisnika. Ako je unos parametara otkazan, biće {@code null}.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public CameraConfig getCameraConfig() {
+JLabel labelCombo = new JLabel("Brzina: "); // labelCombo.setAlignmentX(RIGHT_ALIGNMENT);
+		
+		String[] items = {"SLOW", "MEDIUM", "FAST"};
+        JComboBox combo = new JComboBox(items);
+        combo.setSelectedIndex(2); // default je MEDIUM
+        
         JLabel labelSightStart = new JLabel("Pocetni ugao okretanja: ");
-        JTextField fSightStart = new JTextField("0");
+        JTextField fSightStart = new JTextField("0 - 360");
         JLabel labelSightWidth = new JLabel("Sirina opsega kamere:");
-        JTextField fSightWidth = new JTextField("90");
+        JTextField fSightWidth = new JTextField("1 - 359");
+        /*===== labele i polja za end1 i end2 uglove ====*/
         
-        JPanel panel = new JPanel(new GridLayout(4, 1));
+        // sest redova - jedan ce ostati za razmak nakon dodavanja svih pet parametara !
+        JPanel panel = new JPanel(new GridLayout(6, 1));
+        panel.add(labelCombo);       	panel.add(combo);
         panel.add(labelSightStart);		panel.add(fSightStart);
-        panel.add(labelSightWidth);		panel.add(fSightWidth); 
+        panel.add(labelSightWidth);		panel.add(fSightWidth);
+        /*//dodavanje parametara pocetnih i krajnjih uglova
+        panel.add(labelEndAngle1);		panel.add(fEndAngle1);
+        panel.add(labelEndAngle2);		panel.add(fEndAngle2); // kasnije cemo dodati OVA DVA PARAMETRA */ 
         
+        // postavljanje 'OK' i 'Cancel' dugmadi
         int result = JOptionPane.showConfirmDialog(null, panel, "Test",
             JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         
         if (result == JOptionPane.OK_OPTION) {
-            System.out.println(fSightStart.getText()+ " " + fSightWidth.getText());
+            System.out.println(combo.getSelectedItem()+ " " +
+            		fSightStart.getText()+ " " + fSightWidth.getText());
         } else {
             System.out.println("Otkazano dodavanje kamere.");
-            return null;
+            return null; // valja ovo?
         }
         
 		// pokupimo vrijednosti parametara
+        RotationSpeed rs = RotationSpeed.valueOf(combo.getSelectedItem().toString());
         int newSightStart = 0;	// podrazumijevane vrijednosti
 		int newSightWidth = 90; // za parametre kamere
 		
@@ -119,12 +136,14 @@ public class MonitoringView extends MyPanel {
 		
 		newSightStart = validateInput(fSightStart.getText(), sb, "pocetni ugao", 0);
 		newSightWidth = validateInput(fSightWidth.getText(), sb, "opseg", 90);
+		// ostali parametri....
+		// ostali parametri....
 		
 		if (sb.length() > 53)
 			JOptionPane.showMessageDialog(null, sb.toString());
 		
 		// nova podesavanja su dostupna
-		CameraConfig ccfg = new CameraConfig(newSightStart, newSightWidth); 
+		CameraConfig ccfg = new CameraConfig(rs, RotationDirection.COUNTER_CLK, -50, 180, newSightStart, newSightWidth); 
 		return ccfg;
 	}
 	

@@ -2,7 +2,6 @@ package gui.model;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.List;
