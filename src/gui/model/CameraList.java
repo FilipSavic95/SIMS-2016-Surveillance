@@ -25,8 +25,6 @@ import javax.swing.ListCellRenderer;
 import javax.swing.Scrollable;
 import javax.swing.UIManager;
 
-import acin_paint.ZaTestChBoxListe.CheckBoxGroup.ScrollablePane;
-
 public class CameraList extends ActionWidget {
 
 	private static final long serialVersionUID = 7455335893012389408L;
@@ -39,24 +37,24 @@ public class CameraList extends ActionWidget {
 
 	private static CameraList instance = null;
 
-	private JCheckBox all;
-	private List<JCheckBox> checkBoxes;
+	private MyCheckBox all;
+	private List<MyCheckBox> checkBoxes;
 
 	protected CameraList() {
 
 		String options[] = { "Item 1", "Item 2", "Item 3", "Item 4" };
 
-		checkBoxes = new ArrayList<JCheckBox>(); // promijenio sam ja ovdje sa
+		checkBoxes = new ArrayList<MyCheckBox>(); // promijenio sam ja ovdje sa
 													// ovoga:
 		// checkBoxes = new ArrayList<>(25);
 
 		setLayout(new BorderLayout());
-		JPanel header = new JPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
-		all = new JCheckBox("Select All...");
+		MyPanel header = new MyPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
+		all = new MyCheckBox("Select All...");
 		all.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox cb : checkBoxes) {
+				for (MyCheckBox cb : checkBoxes) {
 					cb.setSelected(all.isSelected());
 				}
 			}
@@ -64,7 +62,10 @@ public class CameraList extends ActionWidget {
 		header.add(all);
 		add(header, BorderLayout.NORTH);
 
-		JPanel content = new ScrollablePane(new GridBagLayout());
+		ComponentMover CamListHeaderCM = new ComponentMover(this, header);
+//		myCompMov.registerComponent(components);
+		MyPanel content = new ScrollablePane(new GridBagLayout());
+		
 		content.setBackground(UIManager.getColor("List.background"));
 		if (options.length > 0) {
 
@@ -73,7 +74,7 @@ public class CameraList extends ActionWidget {
 			gbc.anchor = GridBagConstraints.NORTHWEST;
 			gbc.weightx = 1;
 			for (int index = 0; index < options.length - 1; index++) {
-				JCheckBox cb = new JCheckBox(options[index]);
+				MyCheckBox cb = new MyCheckBox(options[index]);
 				cb.setOpaque(false);
 				checkBoxes.add(cb);
 				content.add(cb, gbc);
@@ -86,16 +87,18 @@ public class CameraList extends ActionWidget {
 			 * sa njihovom weightY. Red koji ima weightY = 0 ne dobija dodatni
 			 * prostor.
 			 */
-			JCheckBox cb = new JCheckBox(options[options.length - 1]);
+			MyCheckBox cb = new MyCheckBox(options[options.length - 1]);
 			cb.setOpaque(false);
 			checkBoxes.add(cb);
 			gbc.weighty = 1;
 			content.add(cb, gbc);
-			System.out.println("Lejaut: " + content.getLayout().toString());
 		}
 		add(new JScrollPane(content));
-	}
 
+		ComponentMover CamListContentCM = new ComponentMover(this, content);
+//		myCompMov.registerComponent(components);
+	}
+	
 	public static CameraList getInstance() {
 		if (instance == null) {
 			instance = new CameraList();
@@ -103,7 +106,7 @@ public class CameraList extends ActionWidget {
 		return instance;
 	}
 
-	public class CheckboxListCellRenderer extends JCheckBox implements
+	public class CheckboxListCellRenderer extends MyCheckBox implements
 			ListCellRenderer {
 
 		public Component getListCellRendererComponent(JList list, Object value,
@@ -120,7 +123,10 @@ public class CameraList extends ActionWidget {
 		}
 	}
 
+	/*
 	public class ScrollablePane extends JPanel implements Scrollable {
+
+		private static final long serialVersionUID = -1313284155086850248L;
 
 		public ScrollablePane(LayoutManager layout) {
 			super(layout);
@@ -169,4 +175,5 @@ public class CameraList extends ActionWidget {
 		}
 
 	}
+	*/
 }
