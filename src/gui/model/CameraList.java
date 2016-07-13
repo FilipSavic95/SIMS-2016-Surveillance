@@ -44,9 +44,7 @@ public class CameraList extends ActionWidget {
 
 		String options[] = { "Item 1", "Item 2", "Item 3", "Item 4" };
 
-		checkBoxes = new ArrayList<MyCheckBox>(); // promijenio sam ja ovdje sa
-													// ovoga:
-		// checkBoxes = new ArrayList<>(25);
+		checkBoxes = new ArrayList<MyCheckBox>();
 
 		setLayout(new BorderLayout());
 		MyPanel header = new MyPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
@@ -63,7 +61,7 @@ public class CameraList extends ActionWidget {
 		add(header, BorderLayout.NORTH);
 
 		ComponentMover CamListHeaderCM = new ComponentMover(this, header);
-//		myCompMov.registerComponent(components);
+		
 		MyPanel content = new ScrollablePane(new GridBagLayout());
 		
 		content.setBackground(UIManager.getColor("List.background"));
@@ -122,58 +120,4 @@ public class CameraList extends ActionWidget {
 			return this;
 		}
 	}
-
-	/*
-	public class ScrollablePane extends JPanel implements Scrollable {
-
-		private static final long serialVersionUID = -1313284155086850248L;
-
-		public ScrollablePane(LayoutManager layout) {
-			super(layout);
-		}
-
-		public ScrollablePane() {
-		}
-
-		@Override
-		public Dimension getPreferredScrollableViewportSize() {
-			return new Dimension(100, 100);
-		}
-
-		@Override
-		public int getScrollableUnitIncrement(Rectangle visibleRect,
-				int orientation, int direction) {
-			return 32;
-		}
-
-		@Override
-		public int getScrollableBlockIncrement(Rectangle visibleRect,
-				int orientation, int direction) {
-			return 32;
-		}
-
-		@Override
-		public boolean getScrollableTracksViewportWidth() {
-			boolean track = false;
-			Container parent = getParent();
-			if (parent instanceof JViewport) {
-				JViewport vp = (JViewport) parent;
-				track = vp.getWidth() > getPreferredSize().width;
-			}
-			return track;
-		}
-
-		@Override
-		public boolean getScrollableTracksViewportHeight() {
-			boolean track = false;
-			Container parent = getParent();
-			if (parent instanceof JViewport) {
-				JViewport vp = (JViewport) parent;
-				track = vp.getHeight() > getPreferredSize().height;
-			}
-			return track;
-		}
-
-	}
-	*/
 }

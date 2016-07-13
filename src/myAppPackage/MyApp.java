@@ -1,3 +1,4 @@
+package myAppPackage;
 /* S T A C K   O V E R   F L O W  LOW */
 
 import gui.model.ActionPanel;
@@ -6,13 +7,10 @@ import model.states.Initial;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -97,11 +95,37 @@ public class MyApp {
 
 		buildToolbox();
 		buildMainPanel();
-		myMBar = new MyMenuBar();
+		myMBar = new MyMenuBar(this);
 		frame.setJMenuBar(myMBar.menuBar);
 		frame.setVisible(true);
 	}
 
+	public void changeTheme(String theme) {
+		switch (theme) {
+		case "Dark":
+			actionPanel.setBackground(Color.BLACK);
+			monitorPanel.setBackground(Color.DARK_GRAY);
+			monitorToolbar.setBackground(Color.DARK_GRAY);
+			actionToolbar.setBackground(Color.DARK_GRAY);
+			break;
+		case "Bright":
+			actionPanel.setBackground(Color.WHITE);
+			monitorPanel.setBackground(Color.LIGHT_GRAY);
+			monitorToolbar.setBackground(new Color(240, 240, 240));
+			actionToolbar.setBackground(new Color(240, 240, 240));
+			break;
+		case "Random":
+			actionPanel.setBackground(new Color(255, 255, 102));
+			monitorPanel.setBackground(new Color(204, 255, 102));
+			monitorToolbar.setBackground(new Color(230, 230, 230));
+			actionToolbar.setBackground(new Color(230, 230, 230));
+			break;
+		default:
+			System.out.println("Tema: " + theme + "\n");
+			break;
+		}
+	}
+	
 	/**
 	 * Mijenja stanje aplikacije u zavisnosti od kliknutog dugmeta (tj. njegovog
 	 * naziva). POBOLjSANJE (jedno od ovo dvoje): 1) promijeniti imena dugmadi u
@@ -250,6 +274,14 @@ public class MyApp {
 
 	public static void main(String[] args) {
 		new MyApp();
+	}
+
+	public void runSimulation() {
+//		monitorPanel
+	}
+
+	public void stopSimulation() {
+		
 	}
 
 }
