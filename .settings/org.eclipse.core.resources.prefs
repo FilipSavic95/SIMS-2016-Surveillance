@@ -1,7 +1,6 @@
 eclipse.preferences.version=1
-encoding//src/gui/model/MyMenuBar.java=UTF-8
-encoding//src/MyApp.java=UTF-8
 encoding//src/gui/model/MonitoringPanel.java=UTF-8
+encoding//src/gui/model/MyMenuBar.java=UTF-8
 encoding//src/gui/model/MyPanel.java=UTF-8
 encoding//src/model/MonitoringModel.java=UTF-8
 encoding//src/myAppPackage/MyApp.java=UTF-8

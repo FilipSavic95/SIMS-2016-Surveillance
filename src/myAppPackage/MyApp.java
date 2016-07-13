@@ -197,11 +197,6 @@ public class MyApp {
 		monitorPanel.setBackground(new Color(204, 255, 102));
 
 		actionPanel.addMouseListener(new MouseAdapter() {
-			public void mouseReleased(MouseEvent e) {
-				// startX = NONE;
-				// startY = NONE;
-			}
-
 			public void mousePressed(MouseEvent e) {
 				System.out.println("-action-");
 				startX = e.getX();
@@ -216,11 +211,6 @@ public class MyApp {
 		});
 
 		monitorPanel.addMouseListener(new MouseAdapter() {
-			public void mouseReleased(MouseEvent e) {
-				// startX = NONE;
-				// startY = NONE;
-			}
-
 			public void mousePressed(MouseEvent e) {
 				System.out.println("-monitor-");
 				startX = e.getX();
@@ -272,10 +262,6 @@ public class MyApp {
 			System.exit(0);
 	}
 
-	public static void main(String[] args) {
-		new MyApp();
-	}
-
 	public void runSimulation() {
 //		monitorPanel
 	}
@@ -284,6 +270,9 @@ public class MyApp {
 		
 	}
 
+	public static void main(String[] args) {
+		new MyApp();
+	}
 }
 
 /* S T A C K O V E R F L O W LOW */
