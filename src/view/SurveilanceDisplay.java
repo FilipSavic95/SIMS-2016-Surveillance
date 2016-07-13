@@ -5,9 +5,9 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -63,7 +63,7 @@ public class SurveilanceDisplay extends JPanel {
 				if (ccfg == null) return; // prekid dodavanja u slucaju Cancel, tj. otkaza
 				
 				// pravimo model
-				CameraDevice cd = new CameraDevice(new Point2D.Double(e.getX(), e.getY()), ccfg);
+				CameraDevice cd = new CameraDevice(new Point(e.getX(), e.getY()), ccfg);
 				// pravimo view
 				CameraGUI cg = new CameraGUI( (CameraDevice) cd);
 				

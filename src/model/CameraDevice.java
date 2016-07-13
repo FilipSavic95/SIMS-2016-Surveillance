@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.geom.Point2D;
+import java.awt.Point;
 
 import model.CameraConfig.RotationDirection;
 import model.CameraConfig.RotationSpeed;
@@ -12,7 +12,7 @@ public class CameraDevice implements Observer {
 	private Subject sSystem;
 	
 	/** pozicija kamere na shemi */
-	public Point2D position;
+	public Point position;
 
 	/**
 	 * konfiguracija kamere<br>
@@ -23,7 +23,7 @@ public class CameraDevice implements Observer {
 	public CameraDevice() {
 	}
 
-	public CameraDevice(Point2D position, CameraConfig camAtrs) {
+	public CameraDevice(Point position, CameraConfig camAtrs) {
 		this.position = position;
 		this.camConf = camAtrs;
 	}
@@ -31,7 +31,7 @@ public class CameraDevice implements Observer {
 	/**
 	 * Za svaki slucaj.. bolje je praviti novi CameraAtrs pa postaviti atribut.
 	 */
-	public CameraDevice(Point2D position, RotationSpeed rotationSpeed,
+	public CameraDevice(Point position, RotationSpeed rotationSpeed,
 			RotationDirection rotationDirection, int limitStart,
 			int limitWidth, int sightStart, int sightWidth) {
 		this.position = position;

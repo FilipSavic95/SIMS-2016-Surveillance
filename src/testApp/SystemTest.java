@@ -2,19 +2,18 @@ package testApp;
 
 
 import java.awt.EventQueue;
+import java.awt.Point;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.geom.Point2D;
 
 import javax.swing.JFrame;
 
-import view.CameraGUI;
-import view.SurveilanceDisplay;
 import model.CameraConfig.RotationDirection;
 import model.CameraConfig.RotationSpeed;
 import model.CameraDevice;
 import model.SecuritySystem;
-import controler.Observer;
+import view.CameraGUI;
+import view.SurveilanceDisplay;
 
 @SuppressWarnings("serial")
 public class SystemTest extends JFrame {
@@ -55,8 +54,8 @@ public class SystemTest extends JFrame {
 	/** Dodavanje test podataka... */
 	private void addTestData() {
 		//create observers
-		CameraDevice obj1 = new CameraDevice(new Point2D.Double(150, 150), RotationSpeed.FAST, RotationDirection.CLOCKWISE, -20, 180, 0, 60);
-		CameraDevice obj3 = new CameraDevice(new Point2D.Double( 50, 50), RotationSpeed.FAST, RotationDirection.COUNTER_CLK, -50, 180, 0, 60);
+		CameraDevice obj1 = new CameraDevice(new Point(150, 150), RotationSpeed.FAST, RotationDirection.CLOCKWISE, -20, 180, 0, 60);
+		CameraDevice obj3 = new CameraDevice(new Point( 50, 50), RotationSpeed.FAST, RotationDirection.COUNTER_CLK, -50, 180, 0, 60);
 		
 		CameraGUI cg1 = new CameraGUI(obj1);
 		CameraGUI cg3 = new CameraGUI(obj3);
