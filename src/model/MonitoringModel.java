@@ -23,7 +23,7 @@ public class MonitoringModel implements Subject, ActionListener {
 	}
 	
 	/** Svakih DELAY[ms] tajmer 'zvoni'.*/
-	private final int DELAY = 200;
+	private final int DELAY = 500;
 	
 	private Timer timer;
 	
