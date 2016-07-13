@@ -1,13 +1,17 @@
 package gui.model;
 
-import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
 
 public class MyPanel extends JPanel {
+	
+	private static final long serialVersionUID = -2212852051935683711L;
+	
 	public List<Widget> widgList;
 	
 	public MyPanel() {
@@ -15,10 +19,24 @@ public class MyPanel extends JPanel {
 		widgList = new ArrayList<Widget>();
 	}
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2212852051935683711L;
+	public MyPanel(FlowLayout flowLayout) {
+		// TODO Auto-generated constructor stub
+		super();
+//		setLayout(null); // OTAC MAJKA TROJE MALE DJECE I JEDNO NERODJENOOO !
+		widgList = new ArrayList<Widget>();
+	}
+	
+	public MyPanel(ScrollablePane scP) {
+		super();
+//		setLayout(null); // OTAC MAJKA TROJE MALE DJECE I JEDNO NERODJENOOO !
+		widgList = new ArrayList<Widget>();
+	}
+	
+	public MyPanel(LayoutManager layout) {
+		super(layout);
+//		setLayout(null); // OTAC MAJKA TROJE MALE DJECE I JEDNO NERODJENOOO !
+		widgList = new ArrayList<Widget>();
+	}
 
 	/*void redrawElements(Graphics g) {
 		for (Widget widg : widgList) {
@@ -35,5 +53,4 @@ public class MyPanel extends JPanel {
 								// overajduje paintComponent() i da pozove redrawElements()...
 								// Ovo cemo mozda raditi jer je cudno da pozovemo apstraktnu metodu
 	}
-	
 }
