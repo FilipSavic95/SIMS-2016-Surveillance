@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 
 import model.CameraConfig;
 import model.CameraDevice;
-import model.SecuritySystem;
+import model.MonitoringModel;
 
 /**
  * Osnovna klasa za prikaz monitoring widget-a. Trenutno nasljedjuje {@code JPanel},
@@ -30,12 +30,12 @@ import model.SecuritySystem;
  *
  */
 @SuppressWarnings("serial")
-public class SurveilanceDisplay extends JPanel {
+public class MonitoringView extends JPanel {
 	
 	public ArrayList<CameraGUI> kamere;
-	SecuritySystem sm;
+	MonitoringModel mm;
 	
-	SurveilanceDisplay() {
+	MonitoringView() {
 		kamere = new ArrayList<CameraGUI>();
 		FlowLayout fl = new FlowLayout();
 		BorderLayout bl = new BorderLayout();
@@ -51,9 +51,9 @@ public class SurveilanceDisplay extends JPanel {
 		// http://stackoverflow.com/questions/2155351/swing-jpanel-wont-repaint
 	}
 	
-	public SurveilanceDisplay(SecuritySystem sModel) {
+	public MonitoringView(MonitoringModel mModel) {
 		this(); // poziv podrazumijevanog konstruktora radi preglednosti
-		this.sm = sModel;
+		this.mm = mModel;
 		
 		addMouseListener(new MouseListener() {
 			public void mousePressed(MouseEvent e) {
@@ -68,7 +68,7 @@ public class SurveilanceDisplay extends JPanel {
 				CameraGUI cg = new CameraGUI( (CameraDevice) cd);
 				
 				System.out.println("\npocinje uvezivanje....");
-				sm.register(cd, 0); // 0 ----> BRZINAAA !!!
+				mm.register(cd, 0); // 0 ----> BRZINAAA !!!
 				kamere.add(cg);
 				
 				//System.out.println("velicina kameraa PRIJE:   "+ getComponentCount() + toString());

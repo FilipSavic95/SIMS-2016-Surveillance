@@ -8,17 +8,17 @@ import java.util.List;
 import javax.swing.Timer;
 
 import view.CameraGUI;
-import view.SurveilanceDisplay;
+import view.MonitoringView;
 import controler.Observer;
 import controler.Subject;
 
-public class SecuritySystem implements Subject, ActionListener {
+public class MonitoringModel implements Subject, ActionListener {
 	ArrayList< ArrayList<Observer> > observerLists;
 	
 	/** Referenca na View dio sablona. */ 
-	private SurveilanceDisplay sd;
+	private MonitoringView sd;
 	
-	public void setSD (SurveilanceDisplay sd) {
+	public void setSD (MonitoringView sd) {
 		this.sd = sd;
 	}
 	
@@ -54,7 +54,7 @@ public class SecuritySystem implements Subject, ActionListener {
 	private long otkucaj; // broj otkucaja
 	private final Object MUTEX = new Object();
 	
-	public SecuritySystem() {
+	public MonitoringModel() {
 		observerLists = new ArrayList<ArrayList<Observer>>();
 		
 		this.observerLists.add(new ArrayList<Observer>());

@@ -15,26 +15,24 @@ public class MyPanel extends JPanel {
 	public List<Widget> widgList;
 	
 	public MyPanel() {
-		setLayout(null); // OTAC MAJKA TROJE MALE DJECE I JEDNO NERODJENOOO !
+		// jako bitno za sprečavanje djelovanja layout manager-a na raspored prilikom resize-a
+		setLayout(null);
 		widgList = new ArrayList<Widget>();
 	}
 
 	public MyPanel(FlowLayout flowLayout) {
 		// TODO Auto-generated constructor stub
 		super();
-//		setLayout(null); // OTAC MAJKA TROJE MALE DJECE I JEDNO NERODJENOOO !
 		widgList = new ArrayList<Widget>();
 	}
 	
 	public MyPanel(ScrollablePane scP) {
 		super();
-//		setLayout(null); // OTAC MAJKA TROJE MALE DJECE I JEDNO NERODJENOOO !
 		widgList = new ArrayList<Widget>();
 	}
 	
 	public MyPanel(LayoutManager layout) {
 		super(layout);
-//		setLayout(null); // OTAC MAJKA TROJE MALE DJECE I JEDNO NERODJENOOO !
 		widgList = new ArrayList<Widget>();
 	}
 

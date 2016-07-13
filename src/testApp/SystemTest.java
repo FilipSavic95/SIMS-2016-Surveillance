@@ -11,22 +11,22 @@ import javax.swing.JFrame;
 import model.CameraConfig.RotationDirection;
 import model.CameraConfig.RotationSpeed;
 import model.CameraDevice;
-import model.SecuritySystem;
+import model.MonitoringModel;
 import view.CameraGUI;
-import view.SurveilanceDisplay;
+import view.MonitoringView;
 
 @SuppressWarnings("serial")
 public class SystemTest extends JFrame {
-	public static SecuritySystem ss; 
-	public static SurveilanceDisplay sd;
+	public static MonitoringModel ss; 
+	public static MonitoringView sd;
 	
 	SystemTest() {
 		initializeSystem();
 	}
 	
 	void initializeSystem () {
-		ss = new SecuritySystem();
-		sd = new SurveilanceDisplay(ss);
+		ss = new MonitoringModel();
+		sd = new MonitoringView(ss);
 		ss.setSD(sd);
 		
 		addTestData();
@@ -61,8 +61,8 @@ public class SystemTest extends JFrame {
 		CameraGUI cg3 = new CameraGUI(obj3);
 		
 		// dodajemo komponente modela u model
-		ss.register(obj1, 0); //obj1.setSubject(sm);
-		ss.register(obj3, 0); //obj3.setSubject(sm);
+		ss.register(obj1, 0); //obj1.setSubject(mm);
+		ss.register(obj3, 0); //obj3.setSubject(mm);
 		
 		sd.kamere.add(cg1);
 		sd.kamere.add(cg3);

@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 import view.CameraGUI;
-import view.SurveilanceDisplay;
+import view.MonitoringView;
 import model.CameraConfig;
 import model.CameraDevice;
 
@@ -25,7 +25,7 @@ public class Monitor2 implements State {
 		if (panel == 'm') {
 			System.out.println("CameraGUI");
 
-			CameraConfig ccfg = ((SurveilanceDisplay) this.myPanel).getCameraConfig();
+			CameraConfig ccfg = ((MonitoringView) this.myPanel).getCameraConfig();
 			if (ccfg == null)
 				return; // otkazano dodavanje
 
