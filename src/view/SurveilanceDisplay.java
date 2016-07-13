@@ -88,7 +88,7 @@ public class SurveilanceDisplay extends JPanel {
 	 * Unos konfiguracije kamere preko prilagođenog dijalog-prozora. 
 	 * @return konfiguracija preuzeta od korisnika. Ako je unos parametara otkazan, biće {@code null}.
 	 */
-	protected CameraConfig getCameraConfig() {
+	public CameraConfig getCameraConfig() {
         JLabel labelSightStart = new JLabel("Pocetni ugao okretanja: ");
         JTextField fSightStart = new JTextField("0");
         JLabel labelSightWidth = new JLabel("Sirina opsega kamere:");
