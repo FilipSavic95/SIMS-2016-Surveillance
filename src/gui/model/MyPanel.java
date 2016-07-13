@@ -35,20 +35,4 @@ public class MyPanel extends JPanel {
 		super(layout);
 		widgList = new ArrayList<Widget>();
 	}
-
-	/*void redrawElements(Graphics g) {
-		for (Widget widg : widgList) {
-			widg.repaint();
-		}
-	}*/
-	
-	@Override
-	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paintComponent(g);
-		
-//		redrawElements(g);		// ako nesto ne bude radilo, prvo prebaci da svaka klasa nasljednica
-								// overajduje paintComponent() i da pozove redrawElements()...
-								// Ovo cemo mozda raditi jer je cudno da pozovemo apstraktnu metodu
-	}
 }

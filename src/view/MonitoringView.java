@@ -1,5 +1,7 @@
 package view;
 
+import gui.model.MyPanel;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -30,16 +32,17 @@ import model.MonitoringModel;
  *
  */
 @SuppressWarnings("serial")
-public class MonitoringView extends JPanel {
+public class MonitoringView extends MyPanel {
 	
 	public ArrayList<CameraGUI> kamere;
 	MonitoringModel mm;
 	
-	MonitoringView() {
+	public MonitoringView() {
+		super();
 		kamere = new ArrayList<CameraGUI>();
-		FlowLayout fl = new FlowLayout();
-		BorderLayout bl = new BorderLayout();
-		this.setLayout(null); // http://javadude.com/articles/layouts/#sin1 <<==== objasnjenje LAYOUTA !
+		//FlowLayout fl = new FlowLayout();
+		//BorderLayout bl = new BorderLayout();
+		//this.setLayout(null);// http://javadude.com/articles/layouts/#sin1 <<==== objasnjenje LAYOUTA !
 		//http://docs.oracle.com/javase/tutorial/uiswing/layout/custom.html <<==== MOJ LAYOUT DA PRAVIM QQ
 		//https://docs.oracle.com/javase/tutorial/uiswing/layout/none.html  <<==== NULL layout
 //http://stackoverflow.com/questions/24530246/placing-multiple-objects-in-a-region-of-borderlayout <==extends BorderLayout

@@ -24,7 +24,7 @@ public class Monitor2 implements State {
 	public void drawComponent(int X, int Y, char panel) {
 		if (panel == 'm') {
 			System.out.println("CameraGUI");
-
+			
 			CameraConfig ccfg = ((MonitoringView) this.myPanel).getCameraConfig();
 			if (ccfg == null)
 				return; // otkazano dodavanje

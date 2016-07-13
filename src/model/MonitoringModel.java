@@ -16,10 +16,10 @@ public class MonitoringModel implements Subject, ActionListener {
 	ArrayList< ArrayList<Observer> > observerLists;
 	
 	/** Referenca na View dio sablona. */ 
-	private MonitoringView sd;
+	private MonitoringView mv;
 	
-	public void setSD (MonitoringView sd) {
-		this.sd = sd;
+	public void setSD (MonitoringView mView) {
+		this.mv = mView;
 	}
 	
 	/** Svakih DELAY[ms] tajmer 'zvoni'.*/
@@ -79,10 +79,6 @@ public class MonitoringModel implements Subject, ActionListener {
 			if(!observerLists.get(queueNo).contains(obj))
 				observerLists.get(queueNo).add(obj);
 		}
-		/*CameraGUI cg = new CameraGUI( (CameraDevice)obj);
-		sd.kamere.add(cg);
-		sd.add(cg);
-		System.out.println("velicina kameraa: "+ sd.kamere.size());*/
 		obj.setSubject(this);
 	}
 
@@ -97,54 +93,57 @@ public class MonitoringModel implements Subject, ActionListener {
 		List<Observer> mediumCams = null;	// brzina = 2
 		List<Observer> slowCams = null;		// brzina = 3
 		
-		// Zakljucavamo da bismo obavijestili samo one
-		// koji su se registrovali prije pocetka notify-a.
+		/**
+		 * Zaključavamo da bismo obavijestili samo one
+		 * koji su se registrovali prije pocetka notify-a.
+		 */
 		synchronized (MUTEX) {
-			 // ovo ce najvjerovatnije biti izbaceno.... !! {#$%!@%? {#$%!@%? {#$%!@%?
-			if (otkucaj == -1) { // ovo ce najvjerovatnije biti izbaceno.... !! {#$%!@%?
-				System.out.println("\nVRACANJE?!?\n"); return;
-			}
+			// izbačena provjera otkucaj == -1 ..
 			
-		//	if (otkucaj % 1 == 0) // svaki otkucaj
-				fastCams = new ArrayList<Observer>(this.observerLists.get(0));
-			if (otkucaj % 2 == 0) // svaki drugi otkucaj
-				mediumCams = new ArrayList<Observer>(this.observerLists.get(1));
-			if (otkucaj % 3 == 0) // svaki treci otkucaj
-				slowCams = new ArrayList<Observer>(this.observerLists.get(2));
+			//	if (otkucaj % 1 == 0) // svaki otkucaj
+					fastCams = new ArrayList<Observer>(this.observerLists.get(0));
+				if (otkucaj % 2 == 0) // svaki drugi otkucaj
+					mediumCams = new ArrayList<Observer>(this.observerLists.get(1));
+				if (otkucaj % 3 == 0) // svaki treci otkucaj
+					slowCams = new ArrayList<Observer>(this.observerLists.get(2));
+			}
+			// obavijestimo odgovarajuće posmatrače
+			for (Observer obj : fastCams)
+				// kada kamere budu mogle biti isključene, samo
+				// dodamo   =====|||   if ( ! iskljucena )   |||=====
+				obj.update();
+			
+			if (mediumCams != null)
+				for (Observer obj : mediumCams)
+					obj.update();
+			
+			if (slowCams != null)
+				for (Observer obj : slowCams)
+					obj.update();
+			
+			otkucaj = -1; // ovo ce najvjerovatnije biti izbaceno.... !! {#$%!@%?
 		}
-		// obavijestimo odgovarajuce posmatrace
-		for (Observer obj : fastCams)
-			obj.update();
-		
-		if (mediumCams != null)
-			for (Observer obj : mediumCams)
-				obj.update();
-		
-		if (slowCams != null)
-			for (Observer obj : slowCams)
-				obj.update();
-		
-		otkucaj = -1; // ovo ce najvjerovatnije biti izbaceno.... !! {#$%!@%?
-	}
 
 	public Object getUpdate(Observer obj) {
 		return this.otkucaj;
 	}
 	
 	// Tajmer "zvoni" govoreci koji put je otkucao.
-	public void ring(long tickNo){
+	public void ring(long tickNo) {
 		this.otkucaj = tickNo;
 		notifyObservers();
+		// Obavještavanje View-a
+		mv.reactToTimer();
 	}
 	
 	/** Reakcija na okidanje tajmera. */
 	public void actionPerformed(ActionEvent e) {
-		roundTime = e.getWhen() - (e.getWhen() % DELAY); // dodaj DELAY ako bude problema
+		// Izračunavanje proteklog vremena. Sad vidim da je moglo samo 
+		// da se krene od otkucaj = 0, pa "otkucaj += 1"..možda kasnije zamijenim
+		roundTime = e.getWhen() - (e.getWhen() % DELAY);
 		long result = (long) Math.ceil((roundTime - timerStarted) / DELAY);
 		System.out.println("rezultat: " + result);
 		ring(result);
-		// Obavjestavanje View-a
-		sd.reactToTimer();
 	}
 
 }
