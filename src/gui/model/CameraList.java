@@ -36,8 +36,6 @@ public class CameraList extends ActionWidget {
 		String options[] = { "Item 1", "Item 2", "Item 3", "Item 4" };
 
 		checkBoxes = new ArrayList<MyCheckBox>();
-		// promijenio sam ja ovdje sa ovoga:
-		// checkBoxes = new ArrayList<>(25);
 
 		setLayout(new BorderLayout());
 		MyPanel header = new MyPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
