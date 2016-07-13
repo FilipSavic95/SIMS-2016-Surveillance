@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/MyApp.java=UTF-8
+encoding//src/model/SecuritySystem.java=UTF-8
+encoding//src/view/CameraGUI.java=UTF-8
+encoding//src/view/SurveilanceDisplay.java=UTF-8

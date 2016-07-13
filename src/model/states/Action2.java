@@ -1,4 +1,4 @@
-package gui.model.states;
+package model.states;
 
 import java.awt.Cursor;
 import java.awt.Rectangle;
@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-public class Monitor1 implements State {
+public class Action2 implements State {
 
 	private	JPanel myPanel;
 	private static final int NONE = -1;
@@ -21,18 +21,18 @@ public class Monitor1 implements State {
 	private int prevY = NONE;
 	private boolean resize = false;
 	
-	public Monitor1(JPanel panel) {
+	public Action2(JPanel panel) {
 		this.myPanel = panel;
 	}
 	
 	@Override
 	public void drawComponent(int X, int Y, char panel) {
 		// TODO Auto-generated method stub
-		if (panel == 'm') {
+		if (panel == 'a') {
 			JButton button = null;
 		
-			System.out.println("MONITOR1");
-			button = new JButton("MONITOR1");
+			System.out.println("ACTION2");
+			button = new JButton("ACTION2");
 			button.setBounds(X, Y, 80, 24);
 	
 			button.addMouseListener(new MouseAdapter() {
@@ -100,6 +100,6 @@ public class Monitor1 implements State {
 
 	@Override
 	public String toString() {
-		return "Monitor1 State";
+		return "Action2 State";
 	}
 }
