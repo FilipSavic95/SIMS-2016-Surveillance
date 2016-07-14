@@ -1,17 +1,12 @@
 package view;
 
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-import javax.swing.JPanel;
 import javax.swing.JViewport;
 import javax.swing.Scrollable;
-import javax.swing.SwingUtilities;
 
 public class ScrollablePane extends MyPanel implements Scrollable {
 

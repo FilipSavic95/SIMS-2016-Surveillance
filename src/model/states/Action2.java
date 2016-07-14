@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-import view.ConditionList;
+import view.ConditionListGUI;
 import view.MyPanel;
 
 public class Action2 implements State {
@@ -27,7 +27,7 @@ public class Action2 implements State {
 	public void drawComponent(int X, int Y, char panel) {
 		// TODO Auto-generated method stub
 		if (panel == 'a') {
-			ConditionList myWidg = ConditionList.getInstance();
+			ConditionListGUI myWidg = ConditionListGUI.getInstance();
 
 			if (myWidg == null) {
 				System.out.println("NULL - VEC DODATA - POMJERI");

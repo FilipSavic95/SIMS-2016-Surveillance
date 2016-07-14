@@ -61,7 +61,7 @@ public class WidgetGUI extends JPanel {
                 setLocation(position);
                 
                 if (overbearing) {
-                	System.out.println("EVO overbearing 11\n");
+                	System.out.println("overbearing happening\n");
                     getParent().setComponentZOrder(handle, 0);
                     repaint();
                 }

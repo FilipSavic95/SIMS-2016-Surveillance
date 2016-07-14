@@ -20,7 +20,7 @@ import javax.swing.UIManager;
 
 import controler.ComponentMover;
 
-public class ConditionList extends AWidgetGUI {
+public class ConditionListGUI extends AWidgetGUI {
 
 	private static final long serialVersionUID = 7455335893012389408L;
 
@@ -30,12 +30,12 @@ public class ConditionList extends AWidgetGUI {
 		// g.drawString("CAMERA LIST", 0, 0);
 	}
 
-	private static ConditionList instance = null;
+	private static ConditionListGUI instance = null;
 
 	private JCheckBox all;
 	private List<JCheckBox> checkBoxes;
 
-	protected ConditionList() {
+	protected ConditionListGUI() {
 
 		String options[] = { "Item 1", "Item 2", "Item 3", "Item 4" };
 
@@ -45,7 +45,7 @@ public class ConditionList extends AWidgetGUI {
 
 		setLayout(new BorderLayout());
 		JPanel header = new JPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
-		all = new JCheckBox("ConditionList 2...");
+		all = new JCheckBox("ConditionListGUI 2...");
 		all.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -93,9 +93,9 @@ public class ConditionList extends AWidgetGUI {
 //		myCompMov.registerComponent(components);
 	}
 
-	public static ConditionList getInstance() {
+	public static ConditionListGUI getInstance() {
 		if (instance == null) {
-			instance = new ConditionList();
+			instance = new ConditionListGUI();
 		}
 		return instance;
 	}
