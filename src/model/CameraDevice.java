@@ -59,10 +59,8 @@ public class CameraDevice extends MonitoringWidget {
 	public void update() {
 		long tickNo = (Long) sSystem.getUpdate(this);
 		if (tickNo == -1) {
-			System.out.println("nije mu vrijeme jos.." + this.camConf.rotationSpeed);
 		}
 		else {
-			System.out.println("Brojcic: "+ tickNo +", "+ this.camConf.rotationSpeed);
 			this.camConf.move();
 		}
 	}

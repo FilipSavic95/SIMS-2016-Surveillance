@@ -59,7 +59,7 @@ public class MyApp {
 		setCurrentState(new Initial());
 
 		frame = new JFrame("Surveillance System");
-		frame.setBounds(300, 100, 800, 550);
+		frame.setBounds(200, 50, 1000, 650);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout());
 		
@@ -77,10 +77,10 @@ public class MyApp {
 	 */
 	public void createState(String buttonName) {
 		switch (buttonName) {
-		case "Condition list":
+		case "Camera List":
 			setCurrentState(new Action1(mainPanel.actionPanel));
 			break;
-		case "Camera List":
+		case "Condition list":
 			setCurrentState(new Action2(mainPanel.actionPanel));
 			break;
 		case "Angle Changer":

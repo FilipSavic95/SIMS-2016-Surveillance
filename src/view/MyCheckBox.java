@@ -14,8 +14,6 @@ public class MyCheckBox extends JCheckBox {
 		super();
 		addClickListeners();
 	}
-
-//	getSource()
 	
 	public MyCheckBox(String string) {
 		super();
@@ -23,8 +21,6 @@ public class MyCheckBox extends JCheckBox {
 	}
 
 	protected void addClickListeners() {
-    	/** This handle is a reference to THIS beacause in next Mouse Adapter "this" is not allowed */
-//        final WidgetGUI handle = this;
         addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
@@ -48,14 +44,6 @@ public class MyCheckBox extends JCheckBox {
                 revalidate();
                 repaint();
              }
-           
-            public void mouseEntered(MouseEvent e) {
-                //System.out.println("Mouse entered in CB/n");
-             }
-
-            public void mouseExited(MouseEvent e) {
-                //System.out.println("Mouse exited in CB/n");
-			}
         });
     }
 	

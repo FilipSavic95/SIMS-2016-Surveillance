@@ -72,7 +72,6 @@ public class Action3 implements State {
 		          int deltaX = x - startX;
 		          int deltaY = y - startY;
 		          if (resize) {
-		            // TODO: handle all resize cases, left, right,...
 		            source.setSize(Math.max(10, bounds.width + x - prevX), Math.max(10, bounds.height + y - prevY));
 		          } else { // pomijeramo
 		            source.setLocation(bounds.x + deltaX, bounds.y + deltaY);

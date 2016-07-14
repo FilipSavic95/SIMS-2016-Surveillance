@@ -25,7 +25,6 @@ public class CameraList extends AWidgetGUI {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		// g.drawString("CAMERA LIST", 0, 0);
 	}
 
 	private static CameraList instance = null;
@@ -53,8 +52,6 @@ public class CameraList extends AWidgetGUI {
 		header.add(all);
 		add(header, BorderLayout.NORTH);
 
-//		ComponentMover CamListHeaderCM = new ComponentMover(this, header);
-//		myCompMov.registerComponent(components);
 		MyPanel content = new ScrollablePane(new GridBagLayout());
 		
 		content.setBackground(UIManager.getColor("List.background"));
@@ -87,7 +84,6 @@ public class CameraList extends AWidgetGUI {
 		add(new JScrollPane(content));
 
 		new ComponentMover(this, content);
-//		myCompMov.registerComponent(components);
 	}
 	
 	public static CameraList getInstance() {
@@ -114,58 +110,4 @@ public class CameraList extends AWidgetGUI {
 			return this;
 		}
 	}
-
-	/*
-	public class ScrollablePane extends JPanel implements Scrollable {
-
-		private static final long serialVersionUID = -1313284155086850248L;
-
-		public ScrollablePane(LayoutManager layout) {
-			super(layout);
-		}
-
-		public ScrollablePane() {
-		}
-
-		@Override
-		public Dimension getPreferredScrollableViewportSize() {
-			return new Dimension(100, 100);
-		}
-
-		@Override
-		public int getScrollableUnitIncrement(Rectangle visibleRect,
-				int orientation, int direction) {
-			return 32;
-		}
-
-		@Override
-		public int getScrollableBlockIncrement(Rectangle visibleRect,
-				int orientation, int direction) {
-			return 32;
-		}
-
-		@Override
-		public boolean getScrollableTracksViewportWidth() {
-			boolean track = false;
-			Container parent = getParent();
-			if (parent instanceof JViewport) {
-				JViewport vp = (JViewport) parent;
-				track = vp.getWidth() > getPreferredSize().width;
-			}
-			return track;
-		}
-
-		@Override
-		public boolean getScrollableTracksViewportHeight() {
-			boolean track = false;
-			Container parent = getParent();
-			if (parent instanceof JViewport) {
-				JViewport vp = (JViewport) parent;
-				track = vp.getHeight() > getPreferredSize().height;
-			}
-			return track;
-		}
-
-	}
-	*/
 }

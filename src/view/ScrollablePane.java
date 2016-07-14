@@ -64,8 +64,6 @@ public class ScrollablePane extends MyPanel implements Scrollable {
 	}
 
 	protected void addClickListeners() {
-		/** This handle is a reference to THIS beacause in next Mouse Adapter "this" is not allowed */
-		// final WidgetGUI handle = this;
 		
 	}
 

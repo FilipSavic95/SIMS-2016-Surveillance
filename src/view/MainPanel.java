@@ -125,7 +125,7 @@ public class MainPanel extends JSplitPane {
 		Dimension minimumSize = new Dimension(100, 50);
 		actionPanel.setMinimumSize(minimumSize);
 		monitoringPanel.setMinimumSize(minimumSize);
-
+		
 		actionPanel.setBackground(new Color(255, 255, 102));
 		monitoringPanel.setBackground(new Color(204, 255, 102));
 
@@ -160,7 +160,7 @@ public class MainPanel extends JSplitPane {
 		actionMonitorPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 				actionPanel, monitoringPanel);
 
-		actionMonitorPanel.setDividerLocation(250);
+		actionMonitorPanel.setDividerLocation(450);
 		actionMonitorPanel.setDividerSize(5);
 
 		actionToolbar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -179,7 +179,7 @@ public class MainPanel extends JSplitPane {
 		mainTbSplitPane.setDividerSize(5);
 		mainTbSplitPane.setMinimumSize(new Dimension(100, 200));
 
-		this.setDividerLocation(500);
+		this.setDividerLocation(700);
 		this.setDividerSize(5);
 	}
 }

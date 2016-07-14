@@ -13,7 +13,6 @@ public class Action1 implements State {
 	}
 
 	public void drawComponent(int X, int Y, char panel) {
-		// TODO Auto-generated method stub
 		if (panel == 'a') {
 			CameraList myWidg = CameraList.getInstance();
 

@@ -27,7 +27,6 @@ public class ConditionListGUI extends AWidgetGUI {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		// g.drawString("CAMERA LIST", 0, 0);
 	}
 
 	private static ConditionListGUI instance = null;
@@ -39,9 +38,7 @@ public class ConditionListGUI extends AWidgetGUI {
 
 		String options[] = { "Item 1", "Item 2", "Item 3", "Item 4" };
 
-		checkBoxes = new ArrayList<JCheckBox>(); // promijenio sam ja ovdje sa
-													// ovoga:
-		// checkBoxes = new ArrayList<>(25);
+		checkBoxes = new ArrayList<JCheckBox>();
 
 		setLayout(new BorderLayout());
 		JPanel header = new JPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
@@ -57,8 +54,6 @@ public class ConditionListGUI extends AWidgetGUI {
 		header.add(all);
 		add(header, BorderLayout.NORTH);
 
-//		ComponentMover CamListHeaderCM = new ComponentMover(this, header);
-//		myCompMov.registerComponent(components);
 		JPanel content = new ScrollablePane(new GridBagLayout());
 		content.setBackground(UIManager.getColor("List.background"));
 		if (options.length > 0) {
@@ -90,7 +85,6 @@ public class ConditionListGUI extends AWidgetGUI {
 		add(new JScrollPane(content));
 
 		new ComponentMover(this, content);
-//		myCompMov.registerComponent(components);
 	}
 
 	public static ConditionListGUI getInstance() {

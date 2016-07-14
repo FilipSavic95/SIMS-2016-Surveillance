@@ -37,8 +37,6 @@ public class CameraGUI extends WidgetGUI {
 		setBounds((int)cd.position.getX(), (int)cd.position.getY(), cameraFrame, cameraFrame);
 		setOpaque(true);
 		setCursor(new Cursor(Cursor.HAND_CURSOR));
-		//setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.RED, Color.WHITE)); //(2, 2, 2, 2, Color.black))
-		//setBorder(null);
 		
 		addMouseListener(new MouseAdapter() {
 			@Override
@@ -67,7 +65,6 @@ public class CameraGUI extends WidgetGUI {
 	 * @param g grafika preko koje iscrtavamo kameru.
 	 */
 	public void drawMe(Graphics g) {
-		System.out.println("drawMe says: \"position: ("+ cd.position + ")\"."+ this.isVisible());
 		CameraConfig ccf = cd.camConf;
 		g.setColor(Color.BLACK);
 		// trenutno vidno polje
@@ -87,8 +84,6 @@ public class CameraGUI extends WidgetGUI {
 		// Graphics2D objekat omogućava dodatne opcije za crtanje
 		// kao što je podebljavanje linija
 		Graphics2D g2 = (Graphics2D) g;
-		// enable antialiasing
-		// g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setStroke(new BasicStroke(2));
 		g2.drawRect(0, 0, cameraFrame, cameraFrame);
 	}

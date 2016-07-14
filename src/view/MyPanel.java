@@ -22,7 +22,6 @@ public class MyPanel extends JPanel {
 	}
 
 	public MyPanel(FlowLayout flowLayout) {
-		// TODO Auto-generated constructor stub
 		super(flowLayout);
 		widgList = new ArrayList<WidgetGUI>();
 	}

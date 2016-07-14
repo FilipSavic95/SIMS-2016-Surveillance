@@ -41,7 +41,6 @@ public class MyMenuBar implements ActionListener, ItemListener {
 
 		// grupa JMenuItem-a
 		menuItem = new JMenuItem("Open", KeyEvent.VK_O);
-		// menuItem.setMnemonic(KeyEvent.VK_O); //moze i ovako
 		menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
 				ActionEvent.CTRL_MASK));
 		// obratiti paznju na to da implementiramo ActionListener i ItemListener
@@ -87,7 +86,7 @@ public class MyMenuBar implements ActionListener, ItemListener {
 		menuItem.addActionListener(this);
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// izbaci JOptionPane za promjenu teme
+				// prikazuje JOptionPane za promjenu teme
 				Object[] possibilities = { "Dark", "Bright", "Random" };
 				String theme = null;
 				theme = (String) JOptionPane.showInputDialog(menu,
@@ -114,7 +113,7 @@ public class MyMenuBar implements ActionListener, ItemListener {
 		menuItem.addActionListener(this);
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// izbaci JOptionPane
+				// prikaze JOptionPane
 				String about = "\n";
 				about = "SurveillanceSystem\n"
 						+ "GraphicalUserInterface(GUI) aplikacija."

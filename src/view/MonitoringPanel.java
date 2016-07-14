@@ -114,8 +114,6 @@ JLabel labelCombo = new JLabel("Brzina: "); // labelCombo.setAlignmentX(RIGHT_AL
 	private static int validateInput (String input, StringBuilder errorSB, String inputName, int defaultValue) {
 		int retval = defaultValue;
 		try {
-			// apsolutna vrijednost radi sigurnosti unosa -- ERROR ALERT ! ERROR ALERT !
-			// retval = Math.abs( Integer.parseInt(input) );
 			retval = Integer.parseInt(input);
 		} catch (Exception exc) {
 			errorSB.append("Parametar \"" + inputName + "\" postavljen na "+ defaultValue + ".\n");
