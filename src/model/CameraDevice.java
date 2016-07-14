@@ -7,7 +7,7 @@ import model.CameraConfig.RotationSpeed;
 import controler.Observer;
 import controler.Subject;
 
-public class CameraDevice implements Observer {
+public class CameraDevice extends MonitoringWidget {
 	
 	public static int globalCamID = 0;
 	
