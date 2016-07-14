@@ -10,10 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import gui.model.ActionPanel;
-import gui.model.MyMenuBar;
-import gui.model.WidgetGUI;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JSplitPane;

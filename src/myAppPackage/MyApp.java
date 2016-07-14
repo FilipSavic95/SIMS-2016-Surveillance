@@ -1,7 +1,5 @@
 package myAppPackage;
 
-import gui.model.MyMenuBar;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -17,6 +15,7 @@ import model.states.Monitor1;
 import model.states.Monitor2;
 import model.states.State;
 import view.MainPanel;
+import view.MyMenuBar;
 
 
 /**
@@ -74,16 +73,7 @@ public class MyApp {
 	}
 	
 	/**
-	 * Mijenja stanje aplikacije u zavisnosti od kliknutog dugmeta (tj. njegovog
-	 * naziva). POBOLjSANJE (jedno od ovo dvoje): 1) promijeniti imena dugmadi u
-	 * nazive stanja 2) napraviti mapu koja za kljuceve ima nazive dugmadi, a za
-	 * vrijednosti nazive odgovarajucih klasa-stanja.
-	 * 
-	 * RJESENjE (FINALLY): izbjegavanje switch-case-a pozivom Class.forName(..)
-	 * http://stackoverflow.com/a/7495850 // na oba linka je isto rjesenje,
-	 * http://stackoverflow.com/a/1268885 // i oba rade :)
-	 * 
-	 * @param buttonName
+	 * Mijenja stanje aplikacije u zavisnosti od kliknutog dugmeta (tj. naziva).
 	 */
 	public void createState(String buttonName) {
 		switch (buttonName) {
@@ -104,7 +94,7 @@ public class MyApp {
 			break;
 		default:
 			System.out.println("\n ======== Default ======== \n");
-			System.out.println("BUTTON NAME: " + buttonName);
+			System.out.println("  BUTTON NAME: " + buttonName);
 			System.out.println("\n ======== Default ======== \n");
 			break;
 		}

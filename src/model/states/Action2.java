@@ -1,8 +1,5 @@
 package model.states;
 
-import gui.model.ConditionList;
-import gui.model.MyPanel;
-
 import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Rectangle;
@@ -14,6 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JPanel;
+
+import view.ConditionList;
+import view.MyPanel;
 
 public class Action2 implements State {
 

@@ -1,7 +1,5 @@
 package view;
 
-import gui.model.WidgetGUI;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;

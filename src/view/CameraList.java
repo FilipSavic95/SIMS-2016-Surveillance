@@ -1,4 +1,4 @@
-package gui.model;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -11,16 +11,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JCheckBox;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.UIManager;
 
 import controler.ComponentMover;
 
-public class ConditionList extends ActionWidget {
+public class CameraList extends AWidgetGUI {
 
 	private static final long serialVersionUID = 7455335893012389408L;
 
@@ -30,26 +28,24 @@ public class ConditionList extends ActionWidget {
 		// g.drawString("CAMERA LIST", 0, 0);
 	}
 
-	private static ConditionList instance = null;
+	private static CameraList instance = null;
 
-	private JCheckBox all;
-	private List<JCheckBox> checkBoxes;
+	private MyCheckBox all;
+	private List<MyCheckBox> checkBoxes;
 
-	protected ConditionList() {
+	protected CameraList() {
 
 		String options[] = { "Item 1", "Item 2", "Item 3", "Item 4" };
 
-		checkBoxes = new ArrayList<JCheckBox>(); // promijenio sam ja ovdje sa
-													// ovoga:
-		// checkBoxes = new ArrayList<>(25);
+		checkBoxes = new ArrayList<MyCheckBox>();
 
 		setLayout(new BorderLayout());
-		JPanel header = new JPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
-		all = new JCheckBox("ConditionList 2...");
+		MyPanel header = new MyPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
+		all = new MyCheckBox("Select All...");
 		all.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox cb : checkBoxes) {
+				for (MyCheckBox cb : checkBoxes) {
 					cb.setSelected(all.isSelected());
 				}
 			}
@@ -59,7 +55,8 @@ public class ConditionList extends ActionWidget {
 
 //		ComponentMover CamListHeaderCM = new ComponentMover(this, header);
 //		myCompMov.registerComponent(components);
-		JPanel content = new ScrollablePane(new GridBagLayout());
+		MyPanel content = new ScrollablePane(new GridBagLayout());
+		
 		content.setBackground(UIManager.getColor("List.background"));
 		if (options.length > 0) {
 
@@ -68,20 +65,20 @@ public class ConditionList extends ActionWidget {
 			gbc.anchor = GridBagConstraints.NORTHWEST;
 			gbc.weightx = 1;
 			for (int index = 0; index < options.length - 1; index++) {
-				JCheckBox cb = new JCheckBox(options[index]);
+				MyCheckBox cb = new MyCheckBox(options[index]);
 				cb.setOpaque(false);
 				checkBoxes.add(cb);
 				content.add(cb, gbc);
 			}
-			// ovu dodajemo posebno jer je potrebno da joj se odredi i weightY
-			/**
-			 * weightY - atribut koji govori
+			// ovu dodajemo posebno jer je potrebno da joj se odredi i
+			// weightY - atribut koji govori
+			/*
 			 * Ako je rezultujuci lejaut manji po vertikali nego povrsina u koju
 			 * treba da stane, dodatni prostor se dijeli medju redovima u skladu
 			 * sa njihovom weightY. Red koji ima weightY = 0 ne dobija dodatni
 			 * prostor.
 			 */
-			JCheckBox cb = new JCheckBox(options[options.length - 1]);
+			MyCheckBox cb = new MyCheckBox(options[options.length - 1]);
 			cb.setOpaque(false);
 			checkBoxes.add(cb);
 			gbc.weighty = 1;
@@ -92,15 +89,16 @@ public class ConditionList extends ActionWidget {
 		new ComponentMover(this, content);
 //		myCompMov.registerComponent(components);
 	}
-
-	public static ConditionList getInstance() {
+	
+	public static CameraList getInstance() {
 		if (instance == null) {
-			instance = new ConditionList();
+			instance = new CameraList();
 		}
 		return instance;
 	}
 
-	public class CheckboxListCellRenderer extends JCheckBox implements
+	@SuppressWarnings({ "serial", "rawtypes" })
+	public class CheckboxListCellRenderer extends MyCheckBox implements
 			ListCellRenderer {
 
 		public Component getListCellRendererComponent(JList list, Object value,
@@ -116,4 +114,58 @@ public class ConditionList extends ActionWidget {
 			return this;
 		}
 	}
+
+	/*
+	public class ScrollablePane extends JPanel implements Scrollable {
+
+		private static final long serialVersionUID = -1313284155086850248L;
+
+		public ScrollablePane(LayoutManager layout) {
+			super(layout);
+		}
+
+		public ScrollablePane() {
+		}
+
+		@Override
+		public Dimension getPreferredScrollableViewportSize() {
+			return new Dimension(100, 100);
+		}
+
+		@Override
+		public int getScrollableUnitIncrement(Rectangle visibleRect,
+				int orientation, int direction) {
+			return 32;
+		}
+
+		@Override
+		public int getScrollableBlockIncrement(Rectangle visibleRect,
+				int orientation, int direction) {
+			return 32;
+		}
+
+		@Override
+		public boolean getScrollableTracksViewportWidth() {
+			boolean track = false;
+			Container parent = getParent();
+			if (parent instanceof JViewport) {
+				JViewport vp = (JViewport) parent;
+				track = vp.getWidth() > getPreferredSize().width;
+			}
+			return track;
+		}
+
+		@Override
+		public boolean getScrollableTracksViewportHeight() {
+			boolean track = false;
+			Container parent = getParent();
+			if (parent instanceof JViewport) {
+				JViewport vp = (JViewport) parent;
+				track = vp.getHeight() > getPreferredSize().height;
+			}
+			return track;
+		}
+
+	}
+	*/
 }

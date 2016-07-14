@@ -1,8 +1,6 @@
 package test;
 
 import static org.junit.Assert.*;
-import gui.model.CameraList;
-import gui.model.MyPanel;
 
 import java.awt.Component;
 
@@ -17,7 +15,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import view.CameraGUI;
+import view.CameraList;
 import view.MonitoringPanel;
+import view.MyPanel;
 
 public class Monitor2Test {
 

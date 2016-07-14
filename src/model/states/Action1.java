@@ -1,8 +1,7 @@
 package model.states;
 
-import gui.model.CameraList;
-import gui.model.MyPanel;
-
+import view.CameraList;
+import view.MyPanel;
 import model.states.State;
 
 public class Action1 implements State {

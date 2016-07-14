@@ -1,4 +1,4 @@
-package gui.model;
+package view;
 
 import java.awt.Cursor;
 import java.awt.GridLayout;
@@ -16,14 +16,14 @@ import javax.swing.JTextField;
 
 import javax.swing.SwingUtilities;
 
-public class ActionWidget extends WidgetGUI {
+public class AWidgetGUI extends WidgetGUI {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5728626107152845617L;
 
-	public ActionWidget() {
+	public AWidgetGUI() {
 		super();
 	}
     	

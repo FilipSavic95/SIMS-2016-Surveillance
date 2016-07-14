@@ -1,7 +1,5 @@
 package view;
 
-import gui.model.MyPanel;
-
 import java.awt.GridLayout;
 
 import javax.swing.JComboBox;

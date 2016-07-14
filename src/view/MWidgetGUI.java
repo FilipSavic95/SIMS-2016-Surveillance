@@ -1,13 +1,12 @@
-package gui.model;
+package view;
 
-public class MonitoringWidget extends WidgetGUI {
+
+public class MWidgetGUI extends WidgetGUI {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5390608029882693947L;
-
-	
 	
 	
 }

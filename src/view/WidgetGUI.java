@@ -1,4 +1,4 @@
-package gui.model;
+package view;
 
 import java.awt.Cursor;
 import java.awt.Point;

@@ -1,4 +1,5 @@
-package gui.model;
+package view;
+
 
 
 public class ActionPanel extends MyPanel{

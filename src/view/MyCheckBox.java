@@ -1,4 +1,4 @@
-package gui.model;
+package view;
 
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
 import javax.swing.SwingUtilities;
 
+@SuppressWarnings("serial")
 public class MyCheckBox extends JCheckBox {
 
 	public MyCheckBox() {
@@ -17,7 +18,6 @@ public class MyCheckBox extends JCheckBox {
 //	getSource()
 	
 	public MyCheckBox(String string) {
-		// TODO Auto-generated constructor stub
 		super();
 		addClickListeners();
 	}
