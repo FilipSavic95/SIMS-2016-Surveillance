@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class Widget extends JPanel {
+public class WidgetGUI extends JPanel {
 
     /**
 	 * auto generated serialVersionUID
@@ -30,7 +30,7 @@ public class Widget extends JPanel {
     /** If sets <b>TRUE</b> when dragging component, it will be painted over each other (z-Buffer change) */
     protected boolean overbearing = false;
     
-    public Widget() {
+    public WidgetGUI() {
         addDragListeners();
         draggable = true;
         overbearing = false;
@@ -42,7 +42,7 @@ public class Widget extends JPanel {
      */
     private void addDragListeners() {
         /** This handle is a reference to THIS beacause in next Mouse Adapter "this" is not allowed */
-        final Widget handle = this;
+        final WidgetGUI handle = this;
         addMouseMotionListener(new MouseAdapter() {
 
             @Override
@@ -145,7 +145,7 @@ public class Widget extends JPanel {
      */
     protected void addClickListeners() {
     	/** This handle is a reference to THIS beacause in next Mouse Adapter "this" is not allowed */
-//        final Widget handle = this;
+//        final WidgetGUI handle = this;
         addMouseListener(new MouseAdapter() {
 
             @Override

@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 import javax.swing.SwingUtilities;
 
-public class ActionWidget extends Widget {
+public class ActionWidget extends WidgetGUI {
 	
 	/**
 	 * 

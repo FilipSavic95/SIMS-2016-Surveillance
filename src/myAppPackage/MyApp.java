@@ -88,7 +88,7 @@ public class MyApp {
 		actionPanel = new ActionPanel();
 		mModel = new MonitoringModel();
 		monitoringPanel = new MonitoringView(mModel);
-		mModel.setSD(monitoringPanel);
+		mModel.setMV(monitoringPanel);
 
 		frame = new JFrame("Surveillance System");
 		frame.setBounds(300, 100, 800, 550);

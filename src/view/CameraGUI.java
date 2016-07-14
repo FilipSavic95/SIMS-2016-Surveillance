@@ -1,6 +1,6 @@
 package view;
 
-import gui.model.Widget;
+import gui.model.WidgetGUI;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -21,7 +21,7 @@ import model.CameraDevice;
  * @author Aleksandar
  */
 @SuppressWarnings("serial")
-public class CameraGUI extends Widget {
+public class CameraGUI extends WidgetGUI {
 	public CameraDevice cd;
 	
 	/** Velicina okvira kamere. */

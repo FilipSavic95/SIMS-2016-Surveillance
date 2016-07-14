@@ -24,7 +24,7 @@ public class MyCheckBox extends JCheckBox {
 
 	protected void addClickListeners() {
     	/** This handle is a reference to THIS beacause in next Mouse Adapter "this" is not allowed */
-//        final Widget handle = this;
+//        final WidgetGUI handle = this;
         addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {

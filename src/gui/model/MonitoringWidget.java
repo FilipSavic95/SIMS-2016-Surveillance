@@ -1,6 +1,6 @@
 package gui.model;
 
-public class MonitoringWidget extends Widget {
+public class MonitoringWidget extends WidgetGUI {
 
 	/**
 	 * 

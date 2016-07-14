@@ -18,7 +18,7 @@ public class MonitoringModel implements Subject, ActionListener {
 	/** Referenca na View dio sablona. */ 
 	private MonitoringView mv;
 	
-	public void setSD (MonitoringView mView) {
+	public void setMV (MonitoringView mView) {
 		this.mv = mView;
 	}
 	
