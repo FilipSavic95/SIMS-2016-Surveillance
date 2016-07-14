@@ -7,7 +7,6 @@ public class Initial implements State{
 
 	@Override
 	public void drawComponent(int X, int Y, char c) {
-		// TODO Auto-generated method stub
 		System.out.println("Initial state, no drawings.");
 //		panel = "action" if c=='a', else "monitoring"
 		String panel = c == 'a' ? "action" : "monitoring";

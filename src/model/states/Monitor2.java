@@ -40,7 +40,7 @@ public class Monitor2 implements State {
 			
 			myPanel.repaint(); // da komponenta odmah postane vidljiva
 		} else
-			System.out.println("\nWrong panel bro!\n");
+			System.out.println("\nWrong panel!\n");
 
 	} // kraj metode drawComponent
 

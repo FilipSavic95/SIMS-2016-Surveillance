@@ -30,7 +30,7 @@ public class Action1 implements State {
 			myPanel.revalidate();
 			myPanel.repaint();
 		} else
-			System.out.println("\nWrong panel bro!\n");
+			System.out.println("\nWrong panel!\n");
 
 	} // kraj metode drawComponent
 

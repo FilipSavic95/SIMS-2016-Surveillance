@@ -27,7 +27,6 @@ public class Monitor1 implements State {
 	
 	@Override
 	public void drawComponent(int X, int Y, char panel) {
-		// TODO Auto-generated method stub
 		if (panel == 'm') {
 			JButton button = null;
 		
@@ -48,7 +47,6 @@ public class Monitor1 implements State {
 		      }
 		    });
 		    
-		    /* S T A C K   O V E R   F L O W  LOW */
 			button.addMouseMotionListener(new MouseMotionAdapter() {
 		      public void mouseMoved(MouseEvent e) {
 		        JComponent source = (JComponent) e.getSource();  // komponenta nad kojom radimo
@@ -58,7 +56,6 @@ public class Monitor1 implements State {
 		        // risajz -=- ako je x ili y u minimalnoj granici ( BORDER-u ) -=- OR-ovi nam govore sa koje strane pomijeramo
 		        resize = x < BORDER || y < BORDER || Math.abs(bounds.width - x) < BORDER || Math.abs(bounds.height - y) < BORDER;
 		        if (resize) {
-		          // TODO: there are a lot of resize cursors here, this is just of proof of concept
 		          source.setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
 		        } else { // pomijeramo
 		          source.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
@@ -75,13 +72,10 @@ public class Monitor1 implements State {
 		          int deltaX = x - startX;
 		          int deltaY = y - startY;
 		          if (resize) {
-		            // TODO: handle all resize cases, left, right,...
 		            source.setSize(Math.max(10, bounds.width + x - prevX), Math.max(10, bounds.height + y - prevY));
 		          } else { // pomijeramo
 		            source.setLocation(bounds.x + deltaX, bounds.y + deltaY);
 		          }
-		          // TODO: make sure you don't resize it as much as it disappears
-		          // TODO: make sure you don't move it outside the main panel
 		        } else { // znaci da JE PUSTEN (NIJE PRITISNUT) klik misa i da su start-ovi NONE
 		          startX = x;
 		          startY = y;
@@ -94,7 +88,7 @@ public class Monitor1 implements State {
 		    myPanel.add(button);
 		    myPanel.repaint();
 		}
-		else System.out.println("\nWrong panel bro!\n");
+		System.out.println("\nWrong panel!\n");
 	
 	} // kraj metode drawComponent
 

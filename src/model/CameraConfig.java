@@ -58,9 +58,6 @@ public class CameraConfig {
     
     /** Trenutni ugao od kog pocinje i sirina luka koji obuhvata */
     public int sightStart, sightWidth; // uglovi u stepenima
-
-    // trajanje pauze u krajnjim tackama - dodati   K A S N I J E
-    // private double pause1, pause2;
 	
 	public CameraConfig() {
 	}

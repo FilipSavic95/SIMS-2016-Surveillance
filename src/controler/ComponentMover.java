@@ -239,7 +239,6 @@ public class ComponentMover extends MouseAdapter
 		potentialDrag = true;
 
 		//  Determine the component that will ultimately be moved
-
 		if (destinationComponent != null)
 		{
 			destination = destinationComponent;
@@ -264,7 +263,6 @@ public class ComponentMover extends MouseAdapter
 
 		//  Making sure autoscrolls is false will allow for smoother dragging of
 		//  individual components
-
 		if (destination instanceof JComponent)
 		{
 			JComponent jc = (JComponent)destination;
@@ -306,7 +304,6 @@ public class ComponentMover extends MouseAdapter
 			locationY -= snapSize.height;
 
 		//  Adjustments are finished, move the component
-
 		destination.setLocation(locationX, locationY);
 	}
 
@@ -374,33 +371,4 @@ public class ComponentMover extends MouseAdapter
 			}
 		}
 	}
-	
-	/*
-	public static void main(String[] args) {
-
-		JFrame myF = new JFrame("prozor");
-		myF.setLayout(new BorderLayout());
-		myF.setBounds(150, 150, 300, 300);
-		myF.setBackground(Color.blue);
-		myF.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		MyPanel myP = new MyPanel();
-		myP.setBackground(Color.red);
-		myF.add(myP, BorderLayout.CENTER);
-		myP.setBounds(10, 10, 20, 20);
-//		myF.add(myP);
-		myF.setBounds(400, 200, 300, 300);
-		MyPanel myP2 = new MyPanel();
-		myP2.setBackground(Color.blue);
-		myF.add(myP2, BorderLayout.CENTER);
-		myP2.setBounds(10, 10, 20, 20);
-//		myF.add(myP2);
-		myF.setBounds(400, 200, 300, 300);
-//		ComponentMover cmpMov = new ComponentMover(myF, myP);
-		ComponentMover cmpMov = new ComponentMover();
-		cmpMov.registerComponent(myP);
-		ComponentMover cmpMov2 = new ComponentMover(myF, myP2);
-		myF.setVisible(true);
-	}
-	*/
-
 }

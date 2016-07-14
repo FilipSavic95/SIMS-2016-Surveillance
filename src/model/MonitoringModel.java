@@ -28,7 +28,7 @@ public class MonitoringModel implements Subject, ActionListener {
 	private Timer timer;
 
 	/** broj otkucaja od početka rada **/
-	private long otkucaj;
+	public long otkucaj;
 	
 	public void initTimer() {
 		timer = new Timer(DELAY, this);
@@ -47,10 +47,6 @@ public class MonitoringModel implements Subject, ActionListener {
 	{
 		this.otkucaj = 0;
 		timer.start();
-		/*timerStarted = System.currentTimeMillis();
-		System.out.println("staro: " + timerStarted);
-		timerStarted = timerStarted - (timerStarted % DELAY);
-		System.out.println("novo:  " + timerStarted);*/
 	}
 	
 	private final Object MUTEX = new Object();

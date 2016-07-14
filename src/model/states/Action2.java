@@ -25,7 +25,6 @@ public class Action2 implements State {
 
 	@Override
 	public void drawComponent(int X, int Y, char panel) {
-		// TODO Auto-generated method stub
 		if (panel == 'a') {
 			ConditionListGUI myWidg = ConditionListGUI.getInstance();
 
@@ -42,7 +41,7 @@ public class Action2 implements State {
 			myPanel.revalidate();
 			myPanel.repaint();
 		} else
-			System.out.println("\nWrong panel bro!\n");
+			System.out.println("\nWrong panel!\n");
 
 	} // kraj metode drawComponent
 
