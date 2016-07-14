@@ -11,14 +11,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import model.Widget;
+
 public class WidgetGUI extends JPanel {
     /**
 	 * auto generated serialVersionUID
 	 */
 	private static final long serialVersionUID = -1163547952273601297L;
 	
-	/** Ako zatreba, a trebace kasnije za dugmice kojima se prelazi u stanja...mozda ne ovdje... */
-	//private static final Dimension dim = new Dimension(40, 80); 
+	/** Dio modela koji prikazujemo ovom komponentom. */
+	protected Widget widget;
 	
 	/** If sets <b>TRUE</b> this component is draggable */
     private boolean draggable = true;
