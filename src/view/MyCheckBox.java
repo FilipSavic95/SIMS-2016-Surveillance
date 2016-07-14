@@ -50,11 +50,11 @@ public class MyCheckBox extends JCheckBox {
              }
            
             public void mouseEntered(MouseEvent e) {
-                System.out.println("Mouse entered in CB/n");
+                //System.out.println("Mouse entered in CB/n");
              }
 
             public void mouseExited(MouseEvent e) {
-                System.out.println("Mouse exited in CB/n");
+                //System.out.println("Mouse exited in CB/n");
 			}
         });
     }
