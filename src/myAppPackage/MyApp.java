@@ -87,19 +87,19 @@ public class MyApp {
 	 */
 	public void createState(String buttonName) {
 		switch (buttonName) {
-		case "Widg11":
+		case "Condition list":
 			setCurrentState(new Action1(mainPanel.actionPanel));
 			break;
-		case "Widg12":
+		case "Camera List":
 			setCurrentState(new Action2(mainPanel.actionPanel));
 			break;
-		case "Widg13":
+		case "Angle Changer":
 			setCurrentState(new Action3(mainPanel.actionPanel));
 			break;
-		case "Widg21":
+		case "Line Widget":
 			setCurrentState(new Monitor1(mainPanel.monitoringPanel));
 			break;
-		case "CameraGUI":
+		case "Camera Widget":
 			setCurrentState(new Monitor2(mainPanel.monitoringPanel));
 			break;
 		default:

@@ -53,7 +53,7 @@ public class CameraList extends ActionWidget {
 		header.add(all);
 		add(header, BorderLayout.NORTH);
 
-		ComponentMover CamListHeaderCM = new ComponentMover(this, header);
+//		ComponentMover CamListHeaderCM = new ComponentMover(this, header);
 //		myCompMov.registerComponent(components);
 		MyPanel content = new ScrollablePane(new GridBagLayout());
 		
@@ -86,7 +86,7 @@ public class CameraList extends ActionWidget {
 		}
 		add(new JScrollPane(content));
 
-		ComponentMover CamListContentCM = new ComponentMover(this, content);
+		new ComponentMover(this, content);
 //		myCompMov.registerComponent(components);
 	}
 	
@@ -97,6 +97,7 @@ public class CameraList extends ActionWidget {
 		return instance;
 	}
 
+	@SuppressWarnings({ "serial", "rawtypes" })
 	public class CheckboxListCellRenderer extends MyCheckBox implements
 			ListCellRenderer {
 

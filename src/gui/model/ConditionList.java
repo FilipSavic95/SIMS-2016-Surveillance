@@ -1,16 +1,11 @@
 package gui.model;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.LayoutManager;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,13 +15,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JViewport;
 import javax.swing.ListCellRenderer;
-import javax.swing.Scrollable;
 import javax.swing.UIManager;
 
 import controler.ComponentMover;
-import gui.model.ScrollablePane;
 
 public class ConditionList extends ActionWidget {
 
@@ -65,7 +57,7 @@ public class ConditionList extends ActionWidget {
 		header.add(all);
 		add(header, BorderLayout.NORTH);
 
-		ComponentMover CamListHeaderCM = new ComponentMover(this, header);
+//		ComponentMover CamListHeaderCM = new ComponentMover(this, header);
 //		myCompMov.registerComponent(components);
 		JPanel content = new ScrollablePane(new GridBagLayout());
 		content.setBackground(UIManager.getColor("List.background"));
@@ -81,9 +73,9 @@ public class ConditionList extends ActionWidget {
 				checkBoxes.add(cb);
 				content.add(cb, gbc);
 			}
-			// ovu dodajemo posebno jer je potrebno da joj se odredi i
-			// weightY - atribut koji govori
-			/*
+			// ovu dodajemo posebno jer je potrebno da joj se odredi i weightY
+			/**
+			 * weightY - atribut koji govori
 			 * Ako je rezultujuci lejaut manji po vertikali nego povrsina u koju
 			 * treba da stane, dodatni prostor se dijeli medju redovima u skladu
 			 * sa njihovom weightY. Red koji ima weightY = 0 ne dobija dodatni
@@ -97,7 +89,7 @@ public class ConditionList extends ActionWidget {
 		}
 		add(new JScrollPane(content));
 
-		ComponentMover CamListContentCM = new ComponentMover(this, content);
+		new ComponentMover(this, content);
 //		myCompMov.registerComponent(components);
 	}
 

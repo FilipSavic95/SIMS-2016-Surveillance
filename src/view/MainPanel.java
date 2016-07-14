@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -116,11 +117,11 @@ public class MainPanel extends JSplitPane {
 
 	/* Funkcija u kojoj dodajemo Button box-ove na toolbar */
 	private void buildToolbox() {
-		addButtonToToolbar(actionToolbar, "AddW11", "Widg11");
-		addButtonToToolbar(actionToolbar, "AddW12", "Widg12");
-		addButtonToToolbar(actionToolbar, "AddW13", "Widg13");
-		addButtonToToolbar(monitorToolbar, "AddW21", "Widg21");
-		addButtonToToolbar(monitorToolbar, "Add a camera", "CameraGUI");
+		addButtonToToolbar(actionToolbar, "Add Condition List", "Condition list");
+		addButtonToToolbar(actionToolbar, "Add Camera List", "Camera List");
+		addButtonToToolbar(actionToolbar, "Add angle changer", "Angle Changer");
+		addButtonToToolbar(monitorToolbar, "Add a line", "Line Widget");
+		addButtonToToolbar(monitorToolbar, "Add a camera", "Camera Widget");
 	}
 	
 	private void buildMainPanel() {
@@ -167,7 +168,7 @@ public class MainPanel extends JSplitPane {
 		actionMonitorPanel.setDividerSize(5);
 
 		actionToolbar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		actionToolbar.setLayout(new FlowLayout(FlowLayout.LEADING, 1, 1));
+		actionToolbar.setLayout(new FlowLayout(FlowLayout.LEFT));
 		actionToolbar.setFloatable(false);
 
 		monitorToolbar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -181,7 +182,7 @@ public class MainPanel extends JSplitPane {
 		mainTbSplitPane.setDividerLocation(200);
 		mainTbSplitPane.setDividerSize(5);
 
-		this.setDividerLocation(450);
+		this.setDividerLocation(500);
 		this.setDividerSize(5);
 	}
 }

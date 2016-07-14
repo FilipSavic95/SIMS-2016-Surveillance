@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class WidgetGUI extends JPanel {
-
     /**
 	 * auto generated serialVersionUID
 	 */
@@ -153,14 +152,14 @@ public class WidgetGUI extends JPanel {
                 System.out.println("Mouse clicked (number of clicks: " + e.getClickCount() + ") "+ (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)));
 
 				if (SwingUtilities.isLeftMouseButton(e)) {
-					System.out.println("Lijeeevoo\n");
+					System.out.println("Lijevi klik\n");
 				}
 				
 				if (SwingUtilities.isRightMouseButton(e)) {
-					System.out.println("Desnooooo\n");
+					System.out.println("Desni klik\n");
 				}
 				if (SwingUtilities.isMiddleMouseButton(e)) {
-					System.out.println("Srednjeee\n");
+					System.out.println("Srednji klik\n");
 				}
 
                 if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {

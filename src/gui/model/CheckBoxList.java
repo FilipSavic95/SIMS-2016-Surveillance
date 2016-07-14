@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import java.util.*;
 
+@SuppressWarnings("rawtypes")
 public class CheckBoxList extends JList {
 
 	/**
@@ -23,6 +24,7 @@ public class CheckBoxList extends JList {
 	 */
 	private static final long serialVersionUID = 6530825744610075822L;
 
+	@SuppressWarnings({ "unchecked" })
 	public CheckBoxList() {
 		super();
 
@@ -51,7 +53,7 @@ public class CheckBoxList extends JList {
 		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked" })
 	public int[] getCheckedIdexes() {
 		List list = new ArrayList();
 		DefaultListModel dlm = (DefaultListModel) getModel();
@@ -74,7 +76,7 @@ public class CheckBoxList extends JList {
 		return indexes;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked" })
 	public List getCheckedItems() {
 		List list = new ArrayList();
 		DefaultListModel dlm = (DefaultListModel) getModel();
@@ -98,6 +100,7 @@ class CheckboxCellRenderer extends DefaultListCellRenderer {
 	private static final long serialVersionUID = -2963911124636015622L;
 	protected static Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
 
+	@SuppressWarnings("rawtypes")
 	public Component getListCellRendererComponent(JList list, Object value,
 			int index, boolean isSelected, boolean cellHasFocus) {
 		if (value instanceof CheckBoxListEntry) {
