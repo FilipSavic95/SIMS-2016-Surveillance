@@ -3,10 +3,6 @@ package view;
 import gui.model.MyPanel;
 
 import java.awt.GridLayout;
-import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,7 +13,6 @@ import javax.swing.JTextField;
 import model.CameraConfig;
 import model.CameraConfig.RotationDirection;
 import model.CameraConfig.RotationSpeed;
-import model.CameraDevice;
 import model.MonitoringModel;
 
 /**
@@ -29,20 +24,17 @@ import model.MonitoringModel;
  *
  */
 @SuppressWarnings("serial")
-public class MonitoringView extends MyPanel {
-	
-	public ArrayList<CameraGUI> kamere;
+public class MonitoringPanel extends MyPanel {
 	MonitoringModel mm;
 	
-	public MonitoringView() {
+	public MonitoringPanel() {
 		super();
-		kamere = new ArrayList<CameraGUI>();
 		/** FlowLayout fl = new FlowLayout();     // UPOZORENJE : NULL LAYOUT ! UPOZORENJE : NULL LAYOUT !
 		/** BorderLayout bl = new BorderLayout(); // UPOZORENJE : NULL LAYOUT ! UPOZORENJE : NULL LAYOUT !
 		/** this.setLayout(null); // http://javadude.com/articles/layouts/#sin1 <== objasnjenje LAYOUTA ! */
 	}
 	
-	public MonitoringView(MonitoringModel mModel) {
+	public MonitoringPanel(MonitoringModel mModel) {
 		this(); // poziv podrazumijevanog konstruktora radi preglednosti
 		this.mm = mModel;
 	}

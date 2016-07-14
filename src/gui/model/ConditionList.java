@@ -25,6 +25,7 @@ import javax.swing.ListCellRenderer;
 import javax.swing.Scrollable;
 import javax.swing.UIManager;
 
+import controler.ComponentMover;
 import gui.model.ScrollablePane;
 
 public class ConditionList extends ActionWidget {

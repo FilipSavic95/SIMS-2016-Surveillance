@@ -7,15 +7,12 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
 
 import myAppPackage.MyApp;
@@ -23,12 +20,10 @@ import myAppPackage.MyApp;
 public class MyMenuBar implements ActionListener, ItemListener {
 	private MyApp myApp;
 	public JMenuBar menuBar;
-	private JMenu menu, submenu;
+	private JMenu menu;
 	private JMenuItem menuItem;
 	private JButton startButton;
 	private JButton stopButton;
-	private JRadioButtonMenuItem rbMenuItem;
-	private JCheckBoxMenuItem cbMenuItem;
 
 	public MyMenuBar(MyApp myMainApp) {
 		myApp = myMainApp;
@@ -101,7 +96,7 @@ public class MyMenuBar implements ActionListener, ItemListener {
 						possibilities, "Random");
 
 				if ((theme != null) && (theme.length() > 0)) {
-					myApp.changeTheme(theme);
+					myApp.mainPanel.changeTheme(theme);
 				} else {
 					System.out.println("");
 				}

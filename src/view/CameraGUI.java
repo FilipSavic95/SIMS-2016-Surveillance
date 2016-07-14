@@ -47,7 +47,7 @@ public class CameraGUI extends WidgetGUI {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("kliknuto na komponentu: "+ cd.position);
 				if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {
-                	 //MonitoringView.getCameraConfig();//dodati parametre sa default vrijednostima !
+                	 //MonitoringPanel.getCameraConfig();//dodati parametre sa default vrijednostima !
                 }
 			}
 		});

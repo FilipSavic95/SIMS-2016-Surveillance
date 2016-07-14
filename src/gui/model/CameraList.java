@@ -16,6 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.UIManager;
 
+import controler.ComponentMover;
+
 public class CameraList extends ActionWidget {
 
 	private static final long serialVersionUID = 7455335893012389408L;

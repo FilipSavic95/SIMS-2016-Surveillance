@@ -17,7 +17,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import view.CameraGUI;
-import view.MonitoringView;
+import view.MonitoringPanel;
 
 public class Monitor2Test {
 
@@ -44,7 +44,7 @@ public class Monitor2Test {
 	 */
 	@Test
 	public void testDrawComponent() {
-		MonitoringView myPane = new MonitoringView();
+		MonitoringPanel myPane = new MonitoringPanel();
 		Monitor2 act1 = new Monitor2(myPane);
 		int X = 100;
 		int Y = 100;

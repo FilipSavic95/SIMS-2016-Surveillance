@@ -8,7 +8,7 @@ import java.util.List;
 import javax.swing.Timer;
 
 import view.CameraGUI;
-import view.MonitoringView;
+import view.MonitoringPanel;
 import controler.Observer;
 import controler.Subject;
 
@@ -16,9 +16,9 @@ public class MonitoringModel implements Subject, ActionListener {
 	ArrayList< ArrayList<Observer> > observerLists;
 	
 	/** Referenca na View dio sablona. */ 
-	private MonitoringView mv;
+	private MonitoringPanel mv;
 	
-	public void setMV (MonitoringView mView) {
+	public void setMV (MonitoringPanel mView) {
 		this.mv = mView;
 	}
 	

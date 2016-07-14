@@ -8,7 +8,7 @@ import model.CameraConfig;
 import model.CameraDevice;
 import myAppPackage.MyApp;
 import view.CameraGUI;
-import view.MonitoringView;
+import view.MonitoringPanel;
 
 public class Monitor2 implements State {
 	private JPanel myPanel;
@@ -23,7 +23,7 @@ public class Monitor2 implements State {
 			System.out.println("CameraGUI");
 			CameraConfig ccfg = null;
 			try {
-				ccfg = MonitoringView.getCameraConfig();
+				ccfg = MonitoringPanel.getCameraConfig();
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -36,7 +36,7 @@ public class Monitor2 implements State {
 
 			myPanel.add(cg);
 			// registrujemo posmatrača
-			MyApp.getInstance().mModel.register(cd, ccfg.rotationSpeed.speed-1);
+			MyApp.getInstance().mainPanel.mModel.register(cd, ccfg.rotationSpeed.speed-1);
 			
 			myPanel.repaint(); // da komponenta odmah postane vidljiva
 		} else
