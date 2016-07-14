@@ -33,7 +33,10 @@ public class MonitoringModel implements Subject, ActionListener {
 	/** Zaokruzeno vrijeme okidanja tajmera. */
 	private static long roundTime;
 
-	private void initTimer() {
+	/** broj otkucaja od početka rada **/
+	private long otkucaj;
+	
+	public void initTimer() {
 		timer = new Timer(DELAY, this);
 		timer.start();
 		timerStarted = System.currentTimeMillis();
@@ -48,10 +51,10 @@ public class MonitoringModel implements Subject, ActionListener {
 	
 	public void stopTimer()
 	{
+		System.out.println("tajmer zaustavljen!");
 		timer.stop();
 	}
 	
-	private long otkucaj; // broj otkucaja
 	private final Object MUTEX = new Object();
 	
 	public MonitoringModel() {
@@ -80,6 +83,7 @@ public class MonitoringModel implements Subject, ActionListener {
 				observerLists.get(queueNo).add(obj);
 		}
 		obj.setSubject(this);
+		System.out.println("ima li ovoga? register : "+ obj + "  " + queueNo);
 	}
 
 	public void unregister(Observer obj, int queueNo) {

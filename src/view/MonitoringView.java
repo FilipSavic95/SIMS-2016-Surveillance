@@ -2,8 +2,6 @@ package view;
 
 import gui.model.MyPanel;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -23,9 +21,7 @@ import model.CameraDevice;
 import model.MonitoringModel;
 
 /**
- * Osnovna klasa za prikaz monitoring widget-a. Trenutno nasljedjuje {@code JPanel},
- * ali ce kasnije to biti {@code MyPanel}.
- * 
+ * Osnovna klasa za prikaz monitoring widget-a.
  * <b>napomena:</b>
  * Default Layout je FLOW. Potrebno je postaviti ga na NULL, da se komponente ne bi pomijerale
  * prilikom promjene velicine kontejnera i ostalih 'opasnih' dogadjaja. 
@@ -44,15 +40,6 @@ public class MonitoringView extends MyPanel {
 		/** FlowLayout fl = new FlowLayout();     // UPOZORENJE : NULL LAYOUT ! UPOZORENJE : NULL LAYOUT !
 		/** BorderLayout bl = new BorderLayout(); // UPOZORENJE : NULL LAYOUT ! UPOZORENJE : NULL LAYOUT !
 		/** this.setLayout(null); // http://javadude.com/articles/layouts/#sin1 <== objasnjenje LAYOUTA ! */
-		//http://docs.oracle.com/javase/tutorial/uiswing/layout/custom.html <<===== pravljenje spostvenog layouta
-		//https://docs.oracle.com/javase/tutorial/uiswing/layout/none.html  <<===== NULL layout
-//stackoverflow.com/questions/24530246/placing-multiple-objects-in-a-region-of-borderlayout <== extends BorderLayout
-		//http://stackoverflow.com/questions/19122416/java-swing-jpanel-vs-jcomponent <<==== treba preći na JPanel!
-		//http://stackoverflow.com/questions/3567190/displaying-a-jcomponent-inside-a-jpanel-on-a-jframe <== treba!
-		//http://www.java2s.com/Questions_And_Answers/Swing/JPanel/JComponent.htm
-		//
-		// TOP ANSWER
-		// http://stackoverflow.com/questions/2155351/swing-jpanel-wont-repaint
 	}
 	
 	public MonitoringView(MonitoringModel mModel) {
@@ -146,34 +133,7 @@ JLabel labelCombo = new JLabel("Brzina: "); // labelCombo.setAlignmentX(RIGHT_AL
 		return retval;
 	}
 	
-	@SuppressWarnings("unused")
-	private void doDrawing(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		for (int i = 0; i < kamere.size(); i++) {
-			kamere.get(i).drawMe(g);
-		}
-	}
-	
-	/**
-	 * paintComponent() vrsi custom crtanje. Da bismo iscrtali nas objekat 
-	 * na pravi nacin, pozvacemo istu metodu od roditeljske klase, cime
-	 * pripremamo nas objekat za iscrtavanje dodatnih komponenti. 
-	 * To delegiramo doDrawing() metodi.
-	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
-	 *
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		//doDrawing(g); // trebalo bi bez ovoga ! ! ! ! ! !
-	} // */
-	
 	public void reactToTimer() {
-		//System.out.println("reakcija na tajmer! ");
-		// Trazimo kontejner koji ima velicinu 2, cak i poslije dodavanja novih komponenti
-		// this.getComponents().length 								je 2 + broj novih
-		// getRootPane().getContentPane().getComponents().length	je 1
-		// getRootPane().getContentPane().getComponentCount()		je 1
-		
 		/**
 		 * Tells the layout manager to recalculate the layout (which is necessary when adding components).
 		 * This should cause children of the panel to repaint, but may not cause the panel itself to do so.

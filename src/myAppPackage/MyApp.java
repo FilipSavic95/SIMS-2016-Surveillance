@@ -3,34 +3,34 @@ package myAppPackage;
 
 import gui.model.ActionPanel;
 import gui.model.MyMenuBar;
-import model.states.Initial;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 
-import view.MonitoringView;
+import model.MonitoringModel;
 import model.states.Action1;
 import model.states.Action2;
 import model.states.Action3;
+import model.states.Initial;
 import model.states.Monitor1;
 import model.states.Monitor2;
 import model.states.State;
+import view.MonitoringView;
 
 /* S T A C K   O V E R   F L O W  LOW */
 
@@ -44,18 +44,21 @@ import model.states.State;
  *
  */
 public class MyApp {
-	// private static final int NONE = -1;
-
-	// private static final int BORDER = 3;
-
-	private MyMenuBar myMBar;
-
+	public static MyApp instance = null;
+	
+	public static MyApp getInstance() {
+		if (instance == null)
+			instance = new MyApp();
+		return instance;
+	}
+	
 	private State currentState;
+
 	// osnovni prozor
 	private JFrame frame;
 
 	private JSplitPane mainTbSplitPane, mainPanel;
-
+	private MyMenuBar myMBar;
 	private JToolBar actionToolbar, monitorToolbar;
 
 	// kanvas 1 i 2
@@ -65,11 +68,11 @@ public class MyApp {
 	private ActionPanel actionPanel;
 
 	// kanvas2
-	private MonitoringView monitorPanel;
+	private MonitoringView monitoringPanel;
+	// model za kanvas2
+	public MonitoringModel mModel;
 
-	private int startX, startY, prevX, prevY;
-
-	private boolean resize;
+	private int startX, startY;
 
 	public MyApp() {
 
@@ -83,10 +86,9 @@ public class MyApp {
 		monitorToolbar = new JToolBar("MonitorToolbar");
 
 		actionPanel = new ActionPanel();
-		monitorPanel = new MonitoringView();
-
-		startX = startY = prevX = prevY = -1;
-		resize = false;
+		mModel = new MonitoringModel();
+		monitoringPanel = new MonitoringView(mModel);
+		mModel.setSD(monitoringPanel);
 
 		frame = new JFrame("Surveillance System");
 		frame.setBounds(300, 100, 800, 550);
@@ -104,19 +106,19 @@ public class MyApp {
 		switch (theme) {
 		case "Dark":
 			actionPanel.setBackground(Color.BLACK);
-			monitorPanel.setBackground(Color.DARK_GRAY);
+			monitoringPanel.setBackground(Color.DARK_GRAY);
 			monitorToolbar.setBackground(Color.DARK_GRAY);
 			actionToolbar.setBackground(Color.DARK_GRAY);
 			break;
 		case "Bright":
 			actionPanel.setBackground(Color.WHITE);
-			monitorPanel.setBackground(Color.LIGHT_GRAY);
+			monitoringPanel.setBackground(Color.LIGHT_GRAY);
 			monitorToolbar.setBackground(new Color(240, 240, 240));
 			actionToolbar.setBackground(new Color(240, 240, 240));
 			break;
 		case "Random":
 			actionPanel.setBackground(new Color(255, 255, 102));
-			monitorPanel.setBackground(new Color(204, 255, 102));
+			monitoringPanel.setBackground(new Color(204, 255, 102));
 			monitorToolbar.setBackground(new Color(230, 230, 230));
 			actionToolbar.setBackground(new Color(230, 230, 230));
 			break;
@@ -150,10 +152,10 @@ public class MyApp {
 			currentState = new Action3(actionPanel);
 			break;
 		case "Widg21":
-			currentState = new Monitor1(monitorPanel);
+			currentState = new Monitor1(monitoringPanel);
 			break;
 		case "CameraGUI":
-			currentState = new Monitor2(monitorPanel);
+			currentState = new Monitor2(monitoringPanel);
 			break;
 		default:
 			System.out.println("\n ======== Default ======== \n");
@@ -191,10 +193,10 @@ public class MyApp {
 		// Minimalna velicina za komponente u SplitPane-u
 		Dimension minimumSize = new Dimension(100, 50);
 		actionPanel.setMinimumSize(minimumSize);
-		monitorPanel.setMinimumSize(minimumSize);
+		monitoringPanel.setMinimumSize(minimumSize);
 
 		actionPanel.setBackground(new Color(255, 255, 102));
-		monitorPanel.setBackground(new Color(204, 255, 102));
+		monitoringPanel.setBackground(new Color(204, 255, 102));
 
 		actionPanel.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -210,7 +212,7 @@ public class MyApp {
 			}
 		});
 
-		monitorPanel.addMouseListener(new MouseAdapter() {
+		monitoringPanel.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				System.out.println("-monitor-");
 				startX = e.getX();
@@ -225,7 +227,7 @@ public class MyApp {
 		});
 
 		actionMonitorPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
-				actionPanel, monitorPanel);
+				actionPanel, monitoringPanel);
 
 		actionMonitorPanel.setDividerLocation(250);
 		actionMonitorPanel.setDividerSize(5);
@@ -263,15 +265,23 @@ public class MyApp {
 	}
 
 	public void runSimulation() {
-//		monitorPanel
+		//mModel.initTimer();
 	}
 
 	public void stopSimulation() {
-		
+		mModel.stopTimer();
 	}
 
 	public static void main(String[] args) {
-		new MyApp();
+		/**
+		 * invokeLater() dodaje zadatak aplikacije u Swing Event Queue.
+		 * Ovim osiguravamo da su sva ažuriranja UI-a konkurentno-sigurna.
+		 */
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				MyApp.getInstance();
+			}
+		});
 	}
 }
 
