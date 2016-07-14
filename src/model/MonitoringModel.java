@@ -23,7 +23,7 @@ public class MonitoringModel implements Subject, ActionListener {
 	}
 	
 	/** Svakih DELAY[ms] tajmer 'zvoni'.*/
-	private final int DELAY = 500;
+	private final int DELAY = 100;
 	
 	private Timer timer;
 	
@@ -38,11 +38,6 @@ public class MonitoringModel implements Subject, ActionListener {
 	
 	public void initTimer() {
 		timer = new Timer(DELAY, this);
-		timer.start();
-		timerStarted = System.currentTimeMillis();
-		System.out.println("staro: " + timerStarted);
-		timerStarted = timerStarted - (timerStarted % DELAY); // DODAJ JOS + DELAY ako bude falilo !
-		System.out.println("novo:  " + timerStarted);
 	}
 
 	public Timer getTimer() {
@@ -53,6 +48,14 @@ public class MonitoringModel implements Subject, ActionListener {
 	{
 		System.out.println("tajmer zaustavljen!");
 		timer.stop();
+	}
+	public void startTimer()
+	{
+		timer.start();
+		timerStarted = System.currentTimeMillis();
+		System.out.println("staro: " + timerStarted);
+		timerStarted = timerStarted - (timerStarted % DELAY); // DODAJ JOS + DELAY ako bude falilo !
+		System.out.println("novo:  " + timerStarted);
 	}
 	
 	private final Object MUTEX = new Object();

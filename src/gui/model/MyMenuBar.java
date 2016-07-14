@@ -36,8 +36,6 @@ public class MyMenuBar implements ActionListener, ItemListener {
 	}
 
 	private void createMenu() {
-		// TODO Auto-generated method stub
-
 		// Glavni meni
 		menuBar = new JMenuBar();
 

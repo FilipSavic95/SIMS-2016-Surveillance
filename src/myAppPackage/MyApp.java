@@ -265,7 +265,7 @@ public class MyApp {
 	}
 
 	public void runSimulation() {
-		//mModel.initTimer();
+		mModel.startTimer();
 	}
 
 	public void stopSimulation() {
