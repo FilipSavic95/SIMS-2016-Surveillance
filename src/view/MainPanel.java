@@ -177,6 +177,7 @@ public class MainPanel extends JSplitPane {
 		mainTbSplitPane.setBackground(Color.black);
 		mainTbSplitPane.setDividerLocation(200);
 		mainTbSplitPane.setDividerSize(5);
+		mainTbSplitPane.setMinimumSize(new Dimension(100, 200));
 
 		this.setDividerLocation(500);
 		this.setDividerSize(5);
