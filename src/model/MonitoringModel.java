@@ -26,12 +26,6 @@ public class MonitoringModel implements Subject, ActionListener {
 	private final int DELAY = 100;
 	
 	private Timer timer;
-	
-	/** Vrijeme pokretanja tajmera. */
-	private static long timerStarted;
-	
-	/** Zaokruzeno vrijeme okidanja tajmera. */
-	private static long roundTime;
 
 	/** broj otkucaja od početka rada **/
 	private long otkucaj;
@@ -51,11 +45,12 @@ public class MonitoringModel implements Subject, ActionListener {
 	}
 	public void startTimer()
 	{
+		this.otkucaj = 0;
 		timer.start();
-		timerStarted = System.currentTimeMillis();
+		/*timerStarted = System.currentTimeMillis();
 		System.out.println("staro: " + timerStarted);
-		timerStarted = timerStarted - (timerStarted % DELAY); // DODAJ JOS + DELAY ako bude falilo !
-		System.out.println("novo:  " + timerStarted);
+		timerStarted = timerStarted - (timerStarted % DELAY);
+		System.out.println("novo:  " + timerStarted);*/
 	}
 	
 	private final Object MUTEX = new Object();
@@ -86,7 +81,6 @@ public class MonitoringModel implements Subject, ActionListener {
 				observerLists.get(queueNo).add(obj);
 		}
 		obj.setSubject(this);
-		System.out.println("ima li ovoga? register : "+ obj + "  " + queueNo);
 	}
 
 	public void unregister(Observer obj, int queueNo) {
@@ -105,8 +99,6 @@ public class MonitoringModel implements Subject, ActionListener {
 		 * koji su se registrovali prije pocetka notify-a.
 		 */
 		synchronized (MUTEX) {
-			// izbačena provjera otkucaj == -1 ..
-			
 			//	if (otkucaj % 1 == 0) // svaki otkucaj
 					fastCams = new ArrayList<Observer>(this.observerLists.get(0));
 				if (otkucaj % 2 == 0) // svaki drugi otkucaj
@@ -127,8 +119,6 @@ public class MonitoringModel implements Subject, ActionListener {
 			if (slowCams != null)
 				for (Observer obj : slowCams)
 					obj.update();
-			
-			otkucaj = -1; // ovo ce najvjerovatnije biti izbaceno.... !! {#$%!@%?
 		}
 
 	public Object getUpdate(Observer obj) {
@@ -136,8 +126,7 @@ public class MonitoringModel implements Subject, ActionListener {
 	}
 	
 	// Tajmer "zvoni" govoreci koji put je otkucao.
-	public void ring(long tickNo) {
-		this.otkucaj = tickNo;
+	public void ring() {
 		notifyObservers();
 		// Obavještavanje View-a
 		mv.reactToTimer();
@@ -145,12 +134,9 @@ public class MonitoringModel implements Subject, ActionListener {
 	
 	/** Reakcija na okidanje tajmera. */
 	public void actionPerformed(ActionEvent e) {
-		// Izračunavanje proteklog vremena. Sad vidim da je moglo samo 
-		// da se krene od otkucaj = 0, pa "otkucaj += 1"..možda kasnije zamijenim
-		roundTime = e.getWhen() - (e.getWhen() % DELAY);
-		long result = (long) Math.ceil((roundTime - timerStarted) / DELAY);
-		System.out.println("rezultat: " + result);
-		ring(result);
+		// Izračunavanje proteklog vremena.
+		this.otkucaj += 1;
+		ring();
 	}
 
 }

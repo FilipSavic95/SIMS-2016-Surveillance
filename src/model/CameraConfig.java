@@ -101,7 +101,7 @@ public class CameraConfig {
 	 * Ako smo dosli do granice u kretanju, mijenja smjer.
 	 */
 	public void move() {
-		if (sightStart == limitStart || sightStart+sightWidth == limitStart+limitWidth)
+		if (sightStart <= limitStart || sightStart+sightWidth >= limitStart+limitWidth)
 			this.turnAround(); // okrece se u drugu stranu
 		//promjena ugla
 		this.sightStart += this.rotationDirection.direction;

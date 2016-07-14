@@ -91,8 +91,8 @@ JLabel labelCombo = new JLabel("Brzina: "); // labelCombo.setAlignmentX(RIGHT_AL
 		
 		newSightStart = validateInput(fSightStart.getText(), sb, "početni ugao", 0);
 		newSightWidth = validateInput(fSightWidth.getText(), sb, "opseg", 90);
-		newSightStart = validateInput(fSightStart.getText(), sb, "početak granice", 0);
-		newSightWidth = validateInput(fSightWidth.getText(), sb, "opseg granice", 180);
+		newLimitStart = validateInput(fLimitStart.getText(), sb, "početak granice", 0);
+		newLimitWidth = validateInput(fLimitWidth.getText(), sb, "opseg granice", 180);
 		
 		if (sb.length() > 53)
 			JOptionPane.showMessageDialog(panel, sb.toString());
