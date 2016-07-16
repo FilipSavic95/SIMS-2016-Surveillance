@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -54,10 +55,18 @@ public class MainPanel extends JSplitPane {
 		super();
 		selectedWidget = null;
 		initContent();
-		this.setLeftComponent(actionMonitorPanel);
-		this.setRightComponent(mainTbSplitPane);
 	}
 	
+	public MainPanel(Dimension size) {
+		this();
+		// glavni panel daje 70% sirine panelima, a 30% toolbar-ovima
+		int mainPanelDivision = (int) Math.round(size.width*0.7);
+		// paneli i toolbarovi zauzimaju polovinu sirine, odnosno visine
+		actionMonitorPanel.setDividerLocation((int) Math.round(mainPanelDivision/2));
+		mainTbSplitPane.setDividerLocation((int) Math.round(size.height/2) );
+		setDividerLocation(mainPanelDivision);
+	}
+
 	private void initContent() {
 		actionToolbar = new JToolBar("ActionToolbar");
 		monitorToolbar = new JToolBar("MonitorToolbar");
@@ -69,6 +78,7 @@ public class MainPanel extends JSplitPane {
 		
 		buildToolbox();
 		buildMainPanel();
+		this.setDividerLocation(0.85);
 	}
 	
 	public void changeTheme(String theme) {
@@ -160,26 +170,26 @@ public class MainPanel extends JSplitPane {
 		actionMonitorPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 				actionPanel, monitoringPanel);
 
-		actionMonitorPanel.setDividerLocation(450);
 		actionMonitorPanel.setDividerSize(5);
+		actionMonitorPanel.setMinimumSize(new Dimension(200,100));
 
 		actionToolbar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		actionToolbar.setLayout(new FlowLayout(FlowLayout.LEFT));
-		actionToolbar.setFloatable(false);
-
 		monitorToolbar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		monitorToolbar.setLayout(new FlowLayout(FlowLayout.LEADING, 1, 1));
+
+		actionToolbar.setLayout(new FlowLayout(FlowLayout.LEFT));
+		monitorToolbar.setLayout(new FlowLayout(FlowLayout.LEFT));
+		actionToolbar.setFloatable(false);
 		monitorToolbar.setFloatable(false);
 
 		mainTbSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
 				actionToolbar, monitorToolbar);
 
 		mainTbSplitPane.setBackground(Color.black);
-		mainTbSplitPane.setDividerLocation(200);
 		mainTbSplitPane.setDividerSize(5);
 		mainTbSplitPane.setMinimumSize(new Dimension(100, 200));
-
-		this.setDividerLocation(700);
 		this.setDividerSize(5);
+		
+		this.setLeftComponent(actionMonitorPanel);
+		this.setRightComponent(mainTbSplitPane);
 	}
 }

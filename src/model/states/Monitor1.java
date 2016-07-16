@@ -1,5 +1,6 @@
 package model.states;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
@@ -28,13 +29,12 @@ public class Monitor1 implements State {
 	@Override
 	public void drawComponent(int X, int Y, char panel) {
 		if (panel == 'm') {
-			JButton button = null;
-		
-			System.out.println("MONITOR1");
-			button = new JButton("MONITOR1");
-			button.setBounds(X, Y, 80, 24);
+			System.out.println("Line Widget");		
+			JPanel linew = new JPanel();
+			linew.setBounds(X, Y, 2, 100);
+			linew.setBackground(Color.black);
 	
-			button.addMouseListener(new MouseAdapter() {
+			linew.addMouseListener(new MouseAdapter() {
 		      public void mouseReleased(MouseEvent e) {
 		        startX = NONE;
 		        startY = NONE;
@@ -47,7 +47,7 @@ public class Monitor1 implements State {
 		      }
 		    });
 		    
-			button.addMouseMotionListener(new MouseMotionAdapter() {
+			linew.addMouseMotionListener(new MouseMotionAdapter() {
 		      public void mouseMoved(MouseEvent e) {
 		        JComponent source = (JComponent) e.getSource();  // komponenta nad kojom radimo
 		        int x = e.getX();
@@ -72,7 +72,7 @@ public class Monitor1 implements State {
 		          int deltaX = x - startX;
 		          int deltaY = y - startY;
 		          if (resize) {
-		            source.setSize(Math.max(10, bounds.width + x - prevX), Math.max(10, bounds.height + y - prevY));
+		            source.setSize(Math.max(5, bounds.width + x - prevX), Math.max(5, bounds.height + y - prevY));
 		          } else { // pomijeramo
 		            source.setLocation(bounds.x + deltaX, bounds.y + deltaY);
 		          }
@@ -85,7 +85,7 @@ public class Monitor1 implements State {
 		      }
 		    });
 			
-		    myPanel.add(button);
+		    myPanel.add(linew);
 		    myPanel.repaint();
 		}
 		System.out.println("\nWrong panel!\n");

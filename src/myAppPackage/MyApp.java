@@ -59,17 +59,16 @@ public class MyApp {
 		setCurrentState(new Initial());
 
 		frame = new JFrame("Surveillance System");
-		frame.setBounds(200, 50, 1000, 650);
+		frame.setBounds(50, 50, 500, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout());
 		
-		mainPanel = new MainPanel();
+		frame.setVisible(true);
+		mainPanel = new MainPanel(frame.getSize());
 		frame.getContentPane().add(mainPanel, BorderLayout.CENTER);
 		
 		myMBar = new MyMenuBar(this);
-		frame.setJMenuBar(myMBar.menuBar);
-		
-		frame.setVisible(true);
+		frame.setJMenuBar(myMBar.menuBar);		
 	}
 	
 	/**

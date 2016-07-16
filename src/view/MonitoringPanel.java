@@ -51,11 +51,11 @@ JLabel labelCombo = new JLabel("Brzina: "); // labelCombo.setAlignmentX(RIGHT_AL
         
         JLabel labelSightStart = new JLabel("Početni ugao okretanja: ");
         JTextField fSightStart = new JTextField("60");
-        JLabel labelSightWidth = new JLabel("Širina opsega kamere:");
+        JLabel labelSightWidth = new JLabel("Širina opsega kamere: ");
         JTextField fSightWidth = new JTextField("60");
-        JLabel labelLimitStart = new JLabel("Najmanji dozvoljeni ugao: ");
+        JLabel labelLimitStart = new JLabel("Početak vidnog polja: ");
         JTextField fLimitStart = new JTextField("0");
-        JLabel labelLimitWidth = new JLabel("Najveći dozvoljeni ugao:");
+        JLabel labelLimitWidth = new JLabel("Kraj vidnog polja: ");
         JTextField fLimitWidth = new JTextField("180");
         /*===== labele i polja za end1 i end2 uglove ====*/
         
